@@ -26,9 +26,15 @@ const Calculator = () => {
   });
 
   const [basePowers, setBasePowers] = useState({
-    shoe: 1,
-    wings: 1,
-    halo: 1
+    shoe: 0,
+    wings: 0,
+    halo: 0
+  });
+
+  const [inputValues, setInputValues] = useState({
+    shoe: '',
+    wings: '',
+    halo: ''
   });
 
   const rarityOrder = ['warrior', 'general', 'knight', 'lord', 'sovereign'];
@@ -40,6 +46,35 @@ const Calculator = () => {
     sovereign: 'Sovereign'
   };
 
+  const rarityPowerRanges = {
+    warrior: { min: 1, max: 10 },    // Common
+    general: { min: 8, max: 18 },    // Uncommon
+    knight: { min: 15, max: 35 },    // Rare
+    lord: { min: 28, max: 63 },      // Epic
+    sovereign: { min: 50, max: 112 }  // Legendary
+  };
+
+  const enhancementPowerRanges = {
+    1: { min: 1, max: 5 },
+    2: { min: 6, max: 10 },
+    3: { min: 11, max: 15 },
+    4: { min: 16, max: 20 },
+    5: { min: 21, max: 25 },
+    6: { min: 26, max: 30 },
+    7: { min: 31, max: 35 },
+    8: { min: 36, max: 40 },
+    9: { min: 41, max: 45 },
+    10: { min: 46, max: 50 }
+  };
+
+  const rarityAttributePoints = {
+    warrior: 4,    // Warrior gets 4 points per level
+    general: 6,    // General gets 6 points per level
+    knight: 8,     // Knight gets 8 points per level
+    lord: 10,      // Lord gets 10 points per level
+    sovereign: 12  // Sovereign gets 12 points per level
+  };
+
   const handleRarityChange = (direction) => {
     const currentIndex = rarityOrder.indexOf(sneaker.rarity);
     let newIndex;
@@ -49,7 +84,7 @@ const Calculator = () => {
     } else {
       newIndex = currentIndex < rarityOrder.length - 1 ? currentIndex + 1 : currentIndex;
     }
-
+    console.log('newIndex:', newIndex)
     handleSneakerChange('rarity', rarityOrder[newIndex]);
   };
 
@@ -63,10 +98,17 @@ const Calculator = () => {
 
   const calculateEnhancementBonus = (level) => {
     if (level === 0) return 0;
-    if (level <= 10) return 0.05;
-    if (level <= 20) return 0.10;
-    if (level <= 30) return 0.15;
-    return 0.20;
+
+    // Tính toán bonus dựa trên level
+    if (level <= 10) {
+      return 0.005 * level; // 0.5% mỗi level, max 5% ở level 10
+    } else if (level <= 20) {
+      return 0.05 + (0.005 * (level - 10)); // Từ 5% lên 10% từ level 11-20
+    } else if (level <= 30) {
+      return 0.10 + (0.005 * (level - 20)); // Từ 10% lên 15% từ level 21-30
+    } else {
+      return 0.15 + (0.005 * (level - 30)); // Từ 15% lên 20% từ level 31-40
+    }
   };
 
   const calculateHSE = () => {
@@ -103,24 +145,70 @@ const Calculator = () => {
 
   const calculateTotalPower = (type) => {
     if (type === 'shoe') {
-      return basePowers[type] + sneaker.power;
+      const levelBonus = sneaker.level * rarityAttributePoints[sneaker.rarity];
+      return basePowers[type] + levelBonus;
     }
-    return basePowers[type] + (sneaker[type]?.level || 0);
+    // Wings và Halo không có power, chỉ có bonus percentage
+    return 0;
   };
 
   useEffect(() => {
     calculateHSE();
   }, [sneaker]);
 
+  useEffect(() => {
+    if (sneaker.level < 10) {
+      // Reset Wings and Halo values when level < 10
+      setBasePowers(prev => ({
+        ...prev,
+        wings: 0,
+        halo: 0
+      }));
+      setInputValues(prev => ({
+        ...prev,
+        wings: '',
+        halo: ''
+      }));
+      handleEnhancementChange('wings', 'level', 0);
+      handleEnhancementChange('halo', 'level', 0);
+    }
+  }, [sneaker.level]);
+
+  const calculatePower = (level) => {
+    // Giả sử Power tăng theo cấp độ, bạn có thể điều chỉnh logic này theo yêu cầu
+    return Math.min(level, 112); // Giới hạn Power tối đa là 112
+  };
+
   const handleSneakerChange = (field, value) => {
     setSneaker(prev => {
       const updatedSneaker = {
         ...prev,
-        [field]: value
+        [field]: field === 'rarity' ? value : Math.min(value, 50)
       };
 
       // Reset wings and halo levels if sneaker level is set below 10
       if (field === 'level' && value < 10) {
+        updatedSneaker.wings.level = 0;
+        updatedSneaker.halo.level = 0;
+      }
+
+      // Reset tất cả giá trị Power khi rarity thay đổi
+      if (field === 'rarity') {
+        // Reset input values
+        setInputValues({
+          shoe: '',
+          wings: '',
+          halo: ''
+        });
+
+        // Reset base powers
+        setBasePowers({
+          shoe: 0,
+          wings: 0,
+          halo: 0
+        });
+
+        // Reset wings và halo level
         updatedSneaker.wings.level = 0;
         updatedSneaker.halo.level = 0;
       }
@@ -145,6 +233,59 @@ const Calculator = () => {
 
   const handlePowerChange = (type, value) => {
     setBasePowers(prev => ({ ...prev, [type]: value }));
+  };
+
+  const handleInputChange = (type, value) => {
+    setInputValues(prev => ({ ...prev, [type]: value }));
+  };
+
+  const handleInputBlur = (type, value) => {
+    if (type === 'shoe') {
+      if (value === '') {
+        const minPower = rarityPowerRanges[sneaker.rarity].min;
+        setInputValues(prev => ({ ...prev, [type]: minPower.toString() }));
+        handlePowerChange(type, minPower);
+      } else {
+        const val = parseInt(value) || 1;
+        const powerRange = rarityPowerRanges[sneaker.rarity];
+        const limitedVal = Math.max(powerRange.min, Math.min(powerRange.max, val));
+        setInputValues(prev => ({ ...prev, [type]: limitedVal.toString() }));
+        handlePowerChange(type, limitedVal);
+      }
+    }
+    // Không xử lý input cho Wings và Halo vì chúng không có power
+  };
+
+  const handleDecrement = (type) => {
+    if (type === 'shoe') {
+      setInputValues(prev => {
+        const currentValue = parseInt(prev[type]) || 1;
+        const powerRange = rarityPowerRanges[sneaker.rarity];
+        const newValue = Math.max(powerRange.min, currentValue - 1);
+        handlePowerChange(type, newValue);
+        return {
+          ...prev,
+          [type]: newValue.toString()
+        };
+      });
+    }
+    // Không xử lý decrement cho Wings và Halo vì chúng không có power
+  };
+
+  const handleIncrement = (type) => {
+    if (type === 'shoe') {
+      setInputValues(prev => {
+        const currentValue = parseInt(prev[type]) || 1;
+        const powerRange = rarityPowerRanges[sneaker.rarity];
+        const newValue = Math.min(powerRange.max, currentValue + 1);
+        handlePowerChange(type, newValue);
+        return {
+          ...prev,
+          [type]: newValue.toString()
+        };
+      });
+    }
+    // Không xử lý increment cho Wings và Halo vì chúng không có power
   };
 
   return (
@@ -242,51 +383,52 @@ const Calculator = () => {
           <div className={styles.calc_contentSection}>
             <h2>Power</h2>
             <div className={styles.calc_powerSection}>
+              <div className={styles.calc_powerHeader}>
+                <div></div>
+                <div className={styles.calc_powerBaseColumn}>
+                  <div className={styles.calc_powerColumnTitle}>Base</div>
+                </div>
+                <div className={styles.calc_powerTotalColumn}>
+                  <div className={styles.calc_powerColumnTitle}>Total</div>
+                </div>
+              </div>
+
               <div className={styles.calc_powerItem}>
-                <div className={styles.calc_powerLabel}>SHOE:</div>
-                <input
-                  type="number"
-                  value={basePowers.shoe}
-                  onChange={(e) => handlePowerChange('shoe', Math.max(1, Math.min(10, parseInt(e.target.value) || 1)))}
-                  className={styles.calc_powerInput}
-                  placeholder="1-10"
-                />
-                <div className={styles.calc_powerControls}>
-                  <button onClick={() => handlePowerChange('shoe', Math.max(1, basePowers.shoe - 1))}>‹</button>
+                <span className={styles.calc_powerLabel}>SHOE:</span>
+                <div className={styles.calc_powerBaseColumn}>
+                  <input
+                    type="number"
+                    className={styles.calc_powerInput}
+                    placeholder={`${rarityPowerRanges[sneaker.rarity].min}-${rarityPowerRanges[sneaker.rarity].max}`}
+                    value={inputValues.shoe || ''}
+                    min={rarityPowerRanges[sneaker.rarity].min}
+                    max={rarityPowerRanges[sneaker.rarity].max}
+                    onChange={(e) => handleInputChange('shoe', e.target.value)}
+                    onBlur={(e) => handleInputBlur('shoe', e.target.value)}
+                  />
+                </div>
+                <div className={styles.calc_powerTotal}>
                   <span>{calculateTotalPower('shoe')}</span>
-                  <button onClick={() => handlePowerChange('shoe', Math.min(10, basePowers.shoe + 1))}>›</button>
                 </div>
               </div>
 
-              <div className={styles.calc_powerItem}>
-                <div className={styles.calc_powerLabel}>WINGS:</div>
-                <input
-                  type="number"
-                  value={basePowers.wings}
-                  onChange={(e) => handlePowerChange('wings', Math.max(1, Math.min(10, parseInt(e.target.value) || 1)))}
-                  className={styles.calc_powerInput}
-                  placeholder="1-10"
-                />
-                <div className={styles.calc_powerControls}>
-                  <button onClick={() => handlePowerChange('wings', Math.max(1, basePowers.wings - 1))}>‹</button>
-                  <span>{calculateTotalPower('wings')}</span>
-                  <button onClick={() => handlePowerChange('wings', Math.min(10, basePowers.wings + 1))}>›</button>
+              <div className={styles.calc_powerItem} style={{ opacity: sneaker.level < 10 ? 0.5 : 1 }}>
+                <span className={styles.calc_powerLabel}>WINGS:</span>
+                <div className={styles.calc_powerBaseColumn}>
+                  <span>+{(calculateEnhancementBonus(sneaker.wings.level) * 100).toFixed(0)}%</span>
+                </div>
+                <div className={styles.calc_powerTotal}>
+                  <span>-</span>
                 </div>
               </div>
 
-              <div className={styles.calc_powerItem}>
-                <div className={styles.calc_powerLabel}>HALO:</div>
-                <input
-                  type="number"
-                  value={basePowers.halo}
-                  onChange={(e) => handlePowerChange('halo', Math.max(1, Math.min(10, parseInt(e.target.value) || 1)))}
-                  className={styles.calc_powerInput}
-                  placeholder="1-10"
-                />
-                <div className={styles.calc_powerControls}>
-                  <button onClick={() => handlePowerChange('halo', Math.max(1, basePowers.halo - 1))}>‹</button>
-                  <span>{calculateTotalPower('halo')}</span>
-                  <button onClick={() => handlePowerChange('halo', Math.min(10, basePowers.halo + 1))}>›</button>
+              <div className={styles.calc_powerItem} style={{ opacity: sneaker.level < 10 ? 0.5 : 1 }}>
+                <span className={styles.calc_powerLabel}>HALO:</span>
+                <div className={styles.calc_powerBaseColumn}>
+                  <span>+{(calculateEnhancementBonus(sneaker.halo.level) * 100).toFixed(0)}%</span>
+                </div>
+                <div className={styles.calc_powerTotal}>
+                  <span>-</span>
                 </div>
               </div>
             </div>

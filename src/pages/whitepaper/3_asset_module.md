@@ -1,4 +1,3 @@
-
 ## Sneaker Types
 HealthStep sneakers exist as NFTs on the BNB Smart Chain, following the BEP-721 standard. Each sneaker NFT represents a unique health tracking sneaker with its own attributes and characteristics.
 
@@ -16,6 +15,16 @@ HealthStep sneakers exist as NFTs on the BNB Smart Chain, following the BEP-721 
   - Requires increasing amounts of HSE for all levels
   - Requires both HSE and HST at milestone levels
   - Can be accelerated by burning additional HSE
+
+Upon levelling, users gain additional Attribute points to assign according to their Sneaker quality:
+
+| Quality | Attribute Point/Level up |
+|---------|------------------------|
+| Warrior | 4 |
+| General | 6 |
+| Knight | 8 |
+| Lord | 10 |
+| Sovereign | 12 |
 
 Key Milestones and Features:
 - Level 5 (Unlocks Minting Feature)
