@@ -1,0 +1,214 @@
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.popup-content {
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 12px;
+  padding: 24px;
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+  padding-bottom: 15px;
+}
+
+.popup-header h3 {
+  margin: 0;
+  color: #FFD700;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.popup-close {
+  background: none;
+  border: none;
+  color: #FFD700;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.popup-close:hover {
+  opacity: 1;
+}
+
+/* Reuse existing guide steps styles */
+.guide-steps {
+  margin-top: 20px;
+}
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  gap: 15px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.step-number {
+  background: #FFD700;
+  color: #000;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+code {
+  display: block;
+  background: rgba(255, 215, 0, 0.1);
+  padding: 12px;
+  border-radius: 4px;
+  margin: 8px 0;
+  word-break: break-all;
+  font-family: monospace;
+  color: #FFD700;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.copy-url {
+  background: #FFD700;
+  color: #000;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.copy-url:hover {
+  background: #FFF;
+  transform: translateY(-1px);
+}
+
+.wallet-info {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 20px;
+}
+
+.disconnect-button {
+  background: linear-gradient(to right, #FFD700, #FFA500);
+  color: #000;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.disconnect-button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* Thêm animation cho popup */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.popup-content {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Tablet styles */
+@media screen and (max-width: 768px) {
+  .popup-content {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .popup-header h3 {
+    font-size: 16px;
+  }
+
+  .step {
+    gap: 12px;
+  }
+}
+
+/* Mobile styles */
+@media screen and (max-width: 480px) {
+  .popup-content {
+    width: 100%;
+    padding: 16px;
+    margin: 0;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 8px;
+    min-height: 200px;
+  }
+
+  .popup-header {
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+  }
+
+  .step {
+    gap: 10px;
+  }
+
+  .step p {
+    font-size: 14px;
+  }
+
+  code {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .copy-url {
+    padding: 8px 12px;
+  }
+
+  .ReactModal__Overlay {
+    padding: 10px;
+    touch-action: none;
+  }
+}
+
+.network-note {
+  display: block;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+  margin-top: 4px;
+  font-style: italic;
+}

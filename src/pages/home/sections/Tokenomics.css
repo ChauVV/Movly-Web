@@ -1,0 +1,178 @@
+.tokenomics-section {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.95) 100%);
+  display: flex;
+  flex-direction: column;
+  padding: 4rem 1rem;
+  overflow: hidden;
+  height: calc(100vh - 53px);
+}
+
+.tokenomics-title {
+  font-size: 4rem;
+  color: #ffffff;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  margin: 0;
+  margin-bottom: 60px;
+  height: 57px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  -webkit-text-stroke: 1px #ffffff;
+  transform: scaleY(0.9);
+}
+
+.tokenomics-content {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+
+.tokenomics-container {
+  display: flex;
+  gap: 30px;
+  height: 98%;
+}
+
+.chart-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.chart-right {
+  flex: 1;
+}
+
+.chart-container-left {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chart-container-left img {
+  width: 150px;
+  height: auto;
+  object-fit: contain;
+}
+
+.chart-container-right {
+  height: 100%;
+  min-height: 0;
+}
+
+.chart-container-right img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.chart-container::before {
+  display: none;
+}
+
+.color-box {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.chart-percentage {
+  color: #00cc6a;
+  font-weight: bold;
+}
+
+.chart-label {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Mobile Responsive */
+@media (max-width: 1200px) {
+  .tokenomics-container {
+    padding: 1rem;
+  }
+
+  /* .chart-container {
+    width: 270px;
+    height: 270px;
+    padding: 0.8rem;
+  } */
+
+  .tokenomics-title {
+    font-size: 3rem;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .tokenomics-section {
+    padding: 1.5rem 0.5rem;
+    height: calc(100vh - 53px);
+  }
+
+  .tokenomics-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    height: 80px;
+    margin-top: 53px;
+  }
+
+  .chart-container {
+    height: 200px;
+  }
+
+  .color-box {
+    width: 12px;
+    height: 12px;
+  }
+
+  .tokenomics-container {
+    padding: 3rem 1rem;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tokenomics-section {
+    padding: 0.8rem 0.5rem;
+    height: calc(100vh - 53px);
+  }
+
+  .tokenomics-title {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+    height: 60px;
+    margin-top: 53px;
+  }
+
+  .tokenomics-container {
+    padding: 2.5rem 1rem;
+    gap: 1.2rem;
+  }
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tokenomics-container {
+  animation: fadeIn 1s ease-out;
+}

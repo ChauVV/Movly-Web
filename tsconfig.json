@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "allowJs": true,
+    "strict": true,
+    "jsx": "react-jsx",
+    "target": "es6",
+    "module": "esnext",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@assets/*": ["src/assets/*"]
+    }
+  },
+  "include": [
+    "src/**/*",
+    "src/types.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
