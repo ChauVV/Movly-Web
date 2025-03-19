@@ -43,8 +43,8 @@ export default function Header() {
           </a>
 
           <Link
-            to="/calculate"
-            className={location.pathname === '/calculate' ? 'active' : ''}
+            to="/calculator"
+            className={location.pathname === '/calculator' ? 'active' : ''}
             onClick={() => setIsMenuOpen(false)}
           >
             Calculate Earn

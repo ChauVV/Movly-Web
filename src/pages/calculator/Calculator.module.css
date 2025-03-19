@@ -1,56 +1,343 @@
-.container {
+.calc_container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
 }
 
-.title {
-  font-size: 2rem;
+.calc_title {
+  font-size: 2.5rem;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+  color: #1a1a1a;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.configGrid {
+.calc_poster {
+  width: 100%;
+  height: 240px;
+  margin-bottom: 3rem;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.calc_poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.calc_mainContent {
+  display: flex;
+  gap: 3rem;
+}
+
+.calc_contentSection {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.calc_configGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr;
   gap: 1.5rem;
   margin-bottom: 2rem;
 }
 
-.configCard {
+.calc_configCard {
   padding: 1.5rem;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.5rem;
+  border: 1px solid rgba(229, 231, 235, 0.5);
+  border-radius: 12px;
   background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
-.attributesSection {
+.calc_configCard h2 {
+  font-size: 1.1rem;
+  color: #374151;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.calc_configItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.calc_configItem:last-child {
+  margin-bottom: 0;
+}
+
+.calc_configLabel {
+  font-size: 1rem;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.calc_controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.calc_controls button {
+  width: 37px;
+  height: 37px;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  font-size: 1.2rem;
+}
+
+.calc_controls button:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+}
+
+.calc_controls span {
+  min-width: 24px;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.calc_select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #1f2937;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.calc_select:hover {
+  border-color: #d1d5db;
+}
+
+.calc_select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+.calc_sneakerSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.calc_sneakerDisplay {
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 2rem;
+  margin: 0 auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.calc_resultsCard,
+.calc_formula {
+  padding: 1.5rem;
+  border: 1px solid rgba(229, 231, 235, 0.5);
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.calc_resultsCard h2,
+.calc_formula h3 {
+  font-size: 1.25rem;
+  color: #374151;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.calc_resultsCard p {
+  font-size: 1.1rem;
+  color: #4b5563;
+  margin-bottom: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.calc_formula code {
+  display: block;
+  padding: 1rem;
+  background: #f9fafb;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #374151;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.calc_enhancementsSection {
+  margin-bottom: 2rem;
+}
+
+.calc_enhancementsSection h2 {
+  font-size: 1.25rem;
+  color: #374151;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.calc_enhancementsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.calc_enhancementCard {
+  padding: 1.5rem;
+  border: 1px solid rgba(229, 231, 235, 0.5);
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.calc_enhancementCard h3 {
+  font-size: 1.1rem;
+  color: #374151;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.calc_enhancementCard p {
+  margin-top: 0.75rem;
+  color: #059669;
+  font-weight: 500;
+}
+
+.calc_sneakerBg {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.calc_flameAnimation {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  animation: glowPulse 2s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes glowPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+}
+
+/* Sneaker Display */
+.calc_sneakerIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+}
+
+/* Halo Animation */
+.calc_halo {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  border-radius: 50%;
+  background: radial-gradient(circle at center,
+      rgba(255, 215, 0, 0.8) 0%,
+      rgba(255, 215, 0, 0.4) 40%,
+      rgba(255, 215, 0, 0.1) 60%,
+      transparent 70%);
+  animation: glowPulse 2s infinite ease-in-out;
+  pointer-events: none;
+}
+
+/* Quality Backgrounds */
+.calc_warriorBg {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ccircle cx='50' cy='50' r='30' fill='%23808080' fill-opacity='.2'/%3E%3Ccircle cx='50' cy='50' r='40' fill='%23808080' fill-opacity='.2'/%3E%3Ccircle cx='50' cy='50' r='50' fill='%23808080' fill-opacity='.2'/%3E%3C/svg%3E");
+}
+
+.calc_generalBg {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ccircle cx='50' cy='50' r='30' fill='%2340A040' fill-opacity='.2'/%3E%3Ccircle cx='50' cy='50' r='40' fill='%2340A040' fill-opacity='.2'/%3E%3Ccircle cx='50' cy='50' r='50' fill='%2340A040' fill-opacity='.2'/%3E%3C/svg%3E");
+}
+
+.calc_knightBg {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ccircle cx='50' cy='50' r='30' fill='%234040FF' fill-opacity='.2'/%3E%3Ccircle cx='50' cy='50' r='40' fill='%234040FF' fill-opacity='.2'/%3E%3Ccircle cx='50' cy='50' r='50' fill='%234040FF' fill-opacity='.2'/%3E%3C/svg%3E");
+}
+
+.calc_lordBg {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ccircle cx='50' cy='50' r='30' fill='%23A040A0' fill-opacity='.2'/%3E%3Ccircle cx='50' cy='50' r='40' fill='%23A040A0' fill-opacity='.2'/%3E%3Ccircle cx='50' cy='50' r='50' fill='%23A040A0' fill-opacity='.2'/%3E%3C/svg%3E");
+}
+
+.calc_sovereignBg {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ccircle cx='50' cy='50' r='30' fill='%23f5a836' fill-opacity='.2'/%3E%3Ccircle cx='50' cy='50' r='40' fill='%23f5a836' fill-opacity='.2'/%3E%3Ccircle cx='50' cy='50' r='50' fill='%23f5a836' fill-opacity='.2'/%3E%3C/svg%3E");
+}
+
+.calc_attributesSection {
   padding: 1.5rem;
   border: 1px solid #e5e7eb;
   border-radius: 0.5rem;
   margin-bottom: 2rem;
 }
 
-.attributesGrid {
+.calc_attributesGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 1rem;
 }
 
-.attributeItem {
+.calc_attributeItem {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.attributeControls {
+.calc_attributeControls {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.button {
+.calc_button {
   padding: 0.5rem 1rem;
   border: 1px solid #e5e7eb;
   border-radius: 0.25rem;
@@ -58,26 +345,218 @@
   cursor: pointer;
 }
 
-.button:hover {
+.calc_button:hover {
   background: #f9fafb;
 }
 
-.select {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.25rem;
+.calc_haloRing {
+  position: absolute;
+  top: -15%;
+  left: -15%;
+  width: 130%;
+  height: 130%;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 165, 0, 0.5);
+  pointer-events: none;
+  z-index: 5;
 }
 
-.resultsCard {
-  padding: 1.5rem;
+.calc_raritySelector {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.calc_rarityNav {
+  width: 37px;
+  height: 37px;
   border: 1px solid #e5e7eb;
-  border-radius: 0.5rem;
+  border-radius: 4px;
   background: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  font-size: 1.2rem;
 }
 
-.resultsGrid {
+.calc_rarityNav:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+}
+
+.calc_rarityDisplay {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  color: white;
+  font-weight: 700;
+  text-align: center;
+  font-size: 1rem;
+  text-transform: uppercase;
+  background-color: #808080;
+  width: 120px;
+}
+
+.calc_rarityWarrior {
+  background-color: #808080;
+}
+
+.calc_rarityGeneral {
+  background-color: #40A040;
+}
+
+.calc_rarityKnight {
+  background-color: #4040FF;
+}
+
+.calc_rarityLord {
+  background-color: #A040A0;
+}
+
+.calc_raritySovereign {
+  background-color: #f5a836;
+}
+
+/* Rarity Background Colors */
+.calc_rarityCommon {
+  background-color: #808080;
+}
+
+.calc_rarityUncommon {
+  background-color: #40A040;
+}
+
+.calc_rarityRare {
+  background-color: #4040FF;
+}
+
+.calc_rarityEpic {
+  background-color: #A040A0;
+}
+
+.calc_rarityLegendary {
+  background-color: #f5a836;
+}
+
+.calc_contentSection h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .calc_container {
+    padding: 1rem;
+  }
+
+  .calc_title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .calc_poster {
+    height: 180px;
+    margin-bottom: 2rem;
+  }
+
+  .calc_mainContent {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .calc_contentSection,
+  .calc_sneakerSection {
+    width: 100%;
+  }
+
+  .calc_configGrid,
+  .calc_enhancementsGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .calc_configCard,
+  .calc_enhancementCard,
+  .calc_resultsCard,
+  .calc_formula {
+    margin-bottom: 1rem;
+  }
+
+  .calc_controls button {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* Power section styling */
+.calc_powerSection {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
+  gap: 12px;
+  padding: 16px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.calc_powerItem {
+  display: grid;
+  grid-template-columns: 150px 100px 100px;
+  align-items: center;
+  gap: 16px;
+}
+
+.calc_powerLabel {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1e293b;
+  text-transform: uppercase;
+}
+
+.calc_powerInput {
+  width: 80px;
+  padding: 4px 8px;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.calc_powerInput::placeholder {
+  color: #94a3b8;
+}
+
+.calc_powerTotal {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1e293b;
+  text-align: center;
+}
+
+.calc_powerControls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.calc_powerControls button {
+  padding: 2px 8px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #64748b;
+}
+
+.calc_powerControls button:hover {
+  background: #f1f5f9;
+}
+
+.calc_powerControls span {
+  min-width: 20px;
+  text-align: center;
+  font-weight: 600;
+  color: #1e293b;
 }

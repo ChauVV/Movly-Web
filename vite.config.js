@@ -18,5 +18,5 @@ export default defineConfig({
     host: true,
     open: true
   },
-  base: '/HealthStep/',
+  base: '/HealthStepPage/',
 }) 
