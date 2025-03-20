@@ -49,7 +49,7 @@ function App() {
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
-        <Router basename="/HealthStepPage">
+        <Router>
           <Routes>
             {/* Calculator tách riêng không có Header */}
             <Route path="/calculate" element={<CalculateTokenEarn />} />
