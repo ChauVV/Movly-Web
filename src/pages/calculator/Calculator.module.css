@@ -605,3 +605,27 @@
   justify-content: center;
   min-width: 50px;
 }
+
+.calc_bonusInfo {
+  margin-top: 12px;
+}
+
+.calc_bonusRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.calc_bonusText {
+  color: #059669;
+  font-weight: 500;
+  margin: 0;
+}
+
+.calc_levelWarning {
+  color: #FFA000;
+  font-size: 0.8rem;
+  font-style: italic;
+  margin: 0;
+}

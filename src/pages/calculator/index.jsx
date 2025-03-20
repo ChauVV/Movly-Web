@@ -187,9 +187,20 @@ const Calculator = () => {
       };
 
       // Reset wings and halo levels if sneaker level is set below 10
-      if (field === 'level' && value < 10) {
-        updatedSneaker.wings.level = 0;
-        updatedSneaker.halo.level = 0;
+      if (field === 'level') {
+        if (value < 10) {
+          // Reset khi level < 10
+          updatedSneaker.wings.level = 0;
+          updatedSneaker.halo.level = 0;
+        } else if (value < prev.level) {
+          // Reset khi giảm level và wings/halo level lớn hơn level mới
+          if (prev.wings.level > value) {
+            updatedSneaker.wings.level = 0;
+          }
+          if (prev.halo.level > value) {
+            updatedSneaker.halo.level = 0;
+          }
+        }
       }
 
       // Reset tất cả giá trị Power khi rarity thay đổi
@@ -222,7 +233,8 @@ const Calculator = () => {
       ...prev,
       [type]: {
         ...prev[type],
-        [field]: Math.max(0, Math.min(value, 40)) // Max level 40 for Wings/Halo
+        // Ensure enhancement level cannot exceed sneaker level and is within 0-40 range
+        [field]: Math.max(0, Math.min(value, Math.min(40, prev.level)))
       }
     }));
   };
@@ -357,7 +369,18 @@ const Calculator = () => {
                     <span>{sneaker.wings.level}</span>
                     <button onClick={() => handleEnhancementChange('wings', 'level', sneaker.wings.level + 1)} disabled={sneaker.level < 10}>+</button>
                   </div>
-                  <p>Bonus: +{(calculateEnhancementBonus(sneaker.wings.level) * 100).toFixed(0)}%</p>
+                </div>
+                <div className={styles.calc_bonusInfo}>
+                  <div className={styles.calc_bonusRow}>
+                    <p className={styles.calc_bonusText}>Bonus: +{(calculateEnhancementBonus(sneaker.wings.level) * 100).toFixed(0)}%</p>
+                    <p className={styles.calc_levelWarning}>
+                      {sneaker.level < 10
+                        ? "Enable at Sneaker Level 10"
+                        : sneaker.wings.level === sneaker.level
+                          ? `Max level reached (Sneaker level: ${sneaker.level})`
+                          : `Max level: ${sneaker.level}`}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -374,7 +397,18 @@ const Calculator = () => {
                     <span>{sneaker.halo.level}</span>
                     <button onClick={() => handleEnhancementChange('halo', 'level', sneaker.halo.level + 1)} disabled={sneaker.level < 10}>+</button>
                   </div>
-                  <p>Bonus: +{(calculateEnhancementBonus(sneaker.halo.level) * 100).toFixed(0)}%</p>
+                </div>
+                <div className={styles.calc_bonusInfo}>
+                  <div className={styles.calc_bonusRow}>
+                    <p className={styles.calc_bonusText}>Bonus: +{(calculateEnhancementBonus(sneaker.halo.level) * 100).toFixed(0)}%</p>
+                    <p className={styles.calc_levelWarning}>
+                      {sneaker.level < 10
+                        ? "Enable at Sneaker Level 10"
+                        : sneaker.halo.level === sneaker.level
+                          ? `Max level reached (Sneaker level: ${sneaker.level})`
+                          : `Max level: ${sneaker.level}`}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
