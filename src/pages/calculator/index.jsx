@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './Calculator.module.css';
 import posterCal from '@assets/images/posterCal.jpeg';
+import goldCoin from '@assets/tokens/gold1.jpg';
+import s3 from '@assets/images/s3.jpg';
 
 const Calculator = () => {
   const [sneaker, setSneaker] = useState({
@@ -245,27 +247,6 @@ const Calculator = () => {
 
   const handlePowerChange = (type, value) => {
     setBasePowers(prev => ({ ...prev, [type]: value }));
-  };
-
-  const handleInputChange = (type, value) => {
-    setInputValues(prev => ({ ...prev, [type]: value }));
-  };
-
-  const handleInputBlur = (type, value) => {
-    if (type === 'shoe') {
-      if (value === '') {
-        const minPower = rarityPowerRanges[sneaker.rarity].min;
-        setInputValues(prev => ({ ...prev, [type]: minPower.toString() }));
-        handlePowerChange(type, minPower);
-      } else {
-        const val = parseInt(value) || 1;
-        const powerRange = rarityPowerRanges[sneaker.rarity];
-        const limitedVal = Math.max(powerRange.min, Math.min(powerRange.max, val));
-        setInputValues(prev => ({ ...prev, [type]: limitedVal.toString() }));
-        handlePowerChange(type, limitedVal);
-      }
-    }
-    // Không xử lý input cho Wings và Halo vì chúng không có power
   };
 
   const handleDecrement = (type) => {
@@ -516,10 +497,26 @@ const Calculator = () => {
                 <div className={styles.calc_powerLabel}>SHOE:</div>
                 <div className={styles.calc_powerControls}>
                   <input
-                    type="text"
+                    type="number"
                     className={styles.calc_powerInput}
-                    value={`${rarityPowerRanges[sneaker.rarity].min}-${rarityPowerRanges[sneaker.rarity].max}`}
-                    readOnly
+                    placeholder={`${rarityPowerRanges[sneaker.rarity].min}-${rarityPowerRanges[sneaker.rarity].max}`}
+                    value={inputValues.shoe || ''}
+                    min={rarityPowerRanges[sneaker.rarity].min}
+                    max={rarityPowerRanges[sneaker.rarity].max}
+                    onChange={(e) => {
+                      const value = parseInt(e.target.value);
+                      const powerRange = rarityPowerRanges[sneaker.rarity];
+                      if (!isNaN(value)) {
+                        const validValue = Math.min(Math.max(value, powerRange.min), powerRange.max);
+                        setInputValues(prev => ({ ...prev, shoe: validValue.toString() }));
+                        handlePowerChange('shoe', validValue);
+                        setSneaker(prev => ({ ...prev, power: validValue }));
+                      } else {
+                        setInputValues(prev => ({ ...prev, shoe: '' }));
+                        handlePowerChange('shoe', powerRange.min);
+                        setSneaker(prev => ({ ...prev, power: powerRange.min }));
+                      }
+                    }}
                   />
                 </div>
                 <div className={styles.calc_powerTotal}>
@@ -553,26 +550,36 @@ const Calculator = () => {
 
           <div className={styles.calc_resultsCard}>
             <h2>Earnings</h2>
-            <p>
-              HSE per minute: <span>{earnings.hsePerMin.toFixed(2)}</span>
-            </p>
-            <p>
-              Running time: <span>{sneaker.mana * 5} minutes</span>
-            </p>
-            <p>
-              HSE per session: <span>{(earnings.hsePerMin * sneaker.mana * 5).toFixed(2)}</span>
-            </p>
-          </div>
-
-          <div className={styles.calc_formula}>
-            <h3>Earning Formula:</h3>
-            <code>
-              HSE/min = 0.35 × Quality × (1 + Power×0.01) × (1 + Level×0.02) × [(1 + Wings) × (1 + Halo)]
-            </code>
+            <div className={styles.calc_resultsContent}>
+              <p className={styles.calc_halvingInfo}>
+                Halving count: <span className={styles.calc_halvingCount}>0</span> <span className={styles.calc_halvingRate}>(Rate: 100%)</span>
+              </p>
+              <p>
+                HSE per minute: <span>{earnings.hsePerMin.toFixed(2)}</span>
+              </p>
+              <p>
+                Running time: <span>{sneaker.mana * 5} minutes</span>
+              </p>
+              <p className={styles.calc_dailyIncome}>
+                DAILY INCOME: <span>{(earnings.hsePerMin * sneaker.mana * 5).toFixed(2)} <img src={goldCoin} alt="HSE" className={styles.calc_coinIcon} /></span>
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div >
+
+      <div className={styles.calc_formula}>
+        <h3>Earning Formula:</h3>
+        <code>
+          HSE/min = 0.35 × Quality × (1 + Power×0.01) × (1 + Level×0.02) × [(1 + Wings) × (1 + Halo)] × HalvingRate
+        </code>
+      </div>
+
+      <div className={styles.calc_footer}>
+        <img src={s3} alt="Footer" />
+        <div className={styles.calc_footerOverlay}></div>
+      </div>
+    </div>
   );
 };
 

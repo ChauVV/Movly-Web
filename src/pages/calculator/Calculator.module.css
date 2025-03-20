@@ -1,7 +1,7 @@
 .calc_container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem 2rem 0;
 }
 
 .calc_title {
@@ -146,39 +146,85 @@
   margin: 0 auto;
 }
 
-.calc_resultsCard,
-.calc_formula {
-  padding: 0.75rem;
+.calc_resultsCard {
+  padding: 0;
   margin-bottom: 0.25rem;
 }
 
-.calc_resultsCard h2,
-.calc_formula h3 {
+.calc_resultsCard h2 {
   font-size: 1.1rem;
   color: #374151;
-  margin-bottom: 0.25rem;
-  margin-top: 0.25rem;
+  margin-bottom: 0.75rem;
+  margin-top: 0;
   font-weight: 600;
+  padding: 0.75rem;
+  border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+}
+
+.calc_resultsContent {
+  padding: 0.75rem;
 }
 
 .calc_resultsCard p {
   font-size: 1.1rem;
   color: #4b5563;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.75rem;
   display: flex;
   justify-content: space-between;
+}
+
+.calc_resultsCard p:last-child {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e293b;
+  border-top: 1px solid #e5e7eb;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.calc_resultsCard p:last-child span {
+  display: flex;
+  align-items: center;
+}
+
+.calc_coinIcon {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  margin-left: 6px;
+  margin-bottom: 1px;
+}
+
+.calc_formula {
+  width: 100%;
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.calc_formula h3 {
+  font-size: 1.1rem;
+  color: #374151;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
 }
 
 .calc_formula code {
   display: block;
   padding: 0.75rem;
-  background: #f9fafb;
+  background: white;
   border-radius: 8px;
   font-size: 0.9rem;
   color: #374151;
   line-height: 1.5;
   white-space: pre-wrap;
   word-break: break-word;
+  border: 1px solid #e5e7eb;
 }
 
 .calc_enhancementsSection {
@@ -550,6 +596,18 @@
   background: white;
 }
 
+/* Hide number input spinners */
+.calc_powerInput::-webkit-outer-spin-button,
+.calc_powerInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* For Firefox */
+.calc_powerInput[type=number] {
+  -moz-appearance: textfield;
+}
+
 .calc_powerControls {
   display: flex;
   align-items: center;
@@ -632,4 +690,80 @@
 /* Xóa margin bottom của section cuối */
 .calc_contentSection:last-child {
   margin-bottom: 0;
+}
+
+.calc_dailyIncome {
+  font-size: 1.4rem !important;
+  font-weight: 700 !important;
+  color: #1e293b !important;
+  border-top: 1px solid #e5e7eb !important;
+  margin-top: 1.25rem !important;
+  padding-top: 1.25rem !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.calc_dailyIncome span {
+  color: #10b981;
+  display: flex;
+  align-items: center;
+}
+
+.calc_halvingInfo {
+  font-size: 1rem;
+  color: #4b5563;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.calc_halvingCount {
+  margin-left: auto;
+  margin-right: 4px;
+  font-weight: 500;
+}
+
+.calc_halvingRate {
+  color: #10b981;
+  font-size: 0.9rem;
+  margin-left: 4px;
+}
+
+.calc_footer {
+  width: 100vw;
+  height: 200px;
+  margin: 6rem 0 0 50%;
+  transform: translateX(-50%);
+  position: relative;
+  left: 0;
+  overflow: hidden;
+}
+
+.calc_footerOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(to bottom,
+      rgb(255, 255, 255) 0%,
+      rgba(255, 255, 255, 0.9) 20%,
+      rgba(255, 255, 255, 0.8) 30%,
+      rgba(255, 255, 255, 0.7) 50%,
+      rgba(255, 255, 255, 0.6) 70%,
+      rgba(255, 255, 255, 0) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.calc_footer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: relative;
+  z-index: 1;
 }
