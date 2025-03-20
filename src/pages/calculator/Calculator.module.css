@@ -36,28 +36,26 @@
 
 .calc_contentSection {
   width: 100%;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .calc_configGrid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 0.25rem;
 }
 
 .calc_configCard {
-  padding: 1.5rem;
-  border: 1px solid rgba(229, 231, 235, 0.5);
-  border-radius: 12px;
-  background: white;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 0.75rem;
+  margin-bottom: 0.25rem;
 }
 
 .calc_configCard h2 {
   font-size: 1.1rem;
   color: #374151;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.25rem;
+  margin-top: 0.25rem;
   font-weight: 600;
 }
 
@@ -65,7 +63,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.7rem;
 }
 
 .calc_configItem:last-child {
@@ -144,41 +142,36 @@
   width: 100%;
   max-width: 320px;
   aspect-ratio: 1;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
   padding: 2rem;
   margin: 0 auto;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .calc_resultsCard,
 .calc_formula {
-  padding: 1.5rem;
-  border: 1px solid rgba(229, 231, 235, 0.5);
-  border-radius: 12px;
-  background: white;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 0.75rem;
+  margin-bottom: 0.25rem;
 }
 
 .calc_resultsCard h2,
 .calc_formula h3 {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   color: #374151;
-  margin-bottom: 1rem;
+  margin-bottom: 0.25rem;
+  margin-top: 0.25rem;
   font-weight: 600;
 }
 
 .calc_resultsCard p {
   font-size: 1.1rem;
   color: #4b5563;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.25rem;
   display: flex;
   justify-content: space-between;
 }
 
 .calc_formula code {
   display: block;
-  padding: 1rem;
+  padding: 0.75rem;
   background: #f9fafb;
   border-radius: 8px;
   font-size: 0.9rem;
@@ -189,7 +182,7 @@
 }
 
 .calc_enhancementsSection {
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
 }
 
 .calc_enhancementsSection h2 {
@@ -492,11 +485,10 @@
 
 /* Power section styling */
 .calc_powerSection {
-  padding: 24px;
+  padding: 12px;
   background-color: #ffffff;
-  border-radius: 12px;
   border: 1px solid rgba(229, 231, 235, 0.5);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  margin-top: 0.25rem;
 }
 
 .calc_powerHeader {
@@ -504,7 +496,7 @@
   grid-template-columns: 120px 1fr 120px;
   align-items: center;
   gap: 16px;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 
 .calc_powerColumnTitle {
@@ -532,6 +524,7 @@
   align-items: center;
   gap: 16px;
   margin-bottom: 12px;
+  padding: 0.25rem 0;
 }
 
 .calc_powerLabel {
@@ -607,7 +600,7 @@
 }
 
 .calc_bonusInfo {
-  margin-top: 12px;
+  margin-top: 0.25rem;
 }
 
 .calc_bonusRow {
@@ -628,4 +621,15 @@
   font-size: 0.8rem;
   font-style: italic;
   margin: 0;
+}
+
+/* Thêm đường kẻ mỏng để phân cách các nhóm */
+.calc_enhancementsSection,
+.calc_contentSection {
+  padding: 0;
+}
+
+/* Xóa margin bottom của section cuối */
+.calc_contentSection:last-child {
+  margin-bottom: 0;
 }

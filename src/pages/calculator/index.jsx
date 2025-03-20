@@ -447,7 +447,7 @@ const Calculator = () => {
                 </div>
                 <div className={styles.calc_bonusInfo}>
                   <div className={styles.calc_bonusRow}>
-                    <p className={styles.calc_bonusText}>Bonus: +{(calculateEnhancementBonus(sneaker.wings.level) * 100).toFixed(0)}%</p>
+                    <p className={styles.calc_bonusText}>Bonus: +{(calculateEnhancementBonus(sneaker.wings.level) * 100).toFixed(2)}%</p>
                     <p className={styles.calc_levelWarning}>
                       {sneaker.level < 10
                         ? "Enable at Sneaker Level 10"
@@ -485,7 +485,7 @@ const Calculator = () => {
                 </div>
                 <div className={styles.calc_bonusInfo}>
                   <div className={styles.calc_bonusRow}>
-                    <p className={styles.calc_bonusText}>Bonus: +{(calculateEnhancementBonus(sneaker.halo.level) * 100).toFixed(0)}%</p>
+                    <p className={styles.calc_bonusText}>Bonus: +{(calculateEnhancementBonus(sneaker.halo.level) * 100).toFixed(2)}%</p>
                     <p className={styles.calc_levelWarning}>
                       {sneaker.level < 10
                         ? "Enable at Sneaker Level 10"
@@ -505,49 +505,25 @@ const Calculator = () => {
               <div className={styles.calc_powerHeader}>
                 <div></div>
                 <div className={styles.calc_powerBaseColumn}>
-                  <div className={styles.calc_powerColumnTitle}>Base</div>
+                  <span className={styles.calc_powerColumnTitle}>BASE</span>
                 </div>
                 <div className={styles.calc_powerTotalColumn}>
-                  <div className={styles.calc_powerColumnTitle}>Total</div>
+                  <span className={styles.calc_powerColumnTitle}>TOTAL</span>
                 </div>
               </div>
 
               <div className={styles.calc_powerItem}>
-                <span className={styles.calc_powerLabel}>SHOE:</span>
-                <div className={styles.calc_powerBaseColumn}>
+                <div className={styles.calc_powerLabel}>SHOE:</div>
+                <div className={styles.calc_powerControls}>
                   <input
-                    type="number"
+                    type="text"
                     className={styles.calc_powerInput}
-                    placeholder={`${rarityPowerRanges[sneaker.rarity].min}-${rarityPowerRanges[sneaker.rarity].max}`}
-                    value={inputValues.shoe || ''}
-                    min={rarityPowerRanges[sneaker.rarity].min}
-                    max={rarityPowerRanges[sneaker.rarity].max}
-                    onChange={(e) => handleInputChange('shoe', e.target.value)}
-                    onBlur={(e) => handleInputBlur('shoe', e.target.value)}
+                    value={`${rarityPowerRanges[sneaker.rarity].min}-${rarityPowerRanges[sneaker.rarity].max}`}
+                    readOnly
                   />
                 </div>
                 <div className={styles.calc_powerTotal}>
                   <span>{calculateTotalPower('shoe')}</span>
-                </div>
-              </div>
-
-              <div className={styles.calc_powerItem} style={{ opacity: sneaker.level < 10 ? 0.5 : 1 }}>
-                <span className={styles.calc_powerLabel}>WINGS:</span>
-                <div className={styles.calc_powerBaseColumn}>
-                  <span>+{(calculateEnhancementBonus(sneaker.wings.level) * 100).toFixed(0)}%</span>
-                </div>
-                <div className={styles.calc_powerTotal}>
-                  <span>-</span>
-                </div>
-              </div>
-
-              <div className={styles.calc_powerItem} style={{ opacity: sneaker.level < 10 ? 0.5 : 1 }}>
-                <span className={styles.calc_powerLabel}>HALO:</span>
-                <div className={styles.calc_powerBaseColumn}>
-                  <span>+{(calculateEnhancementBonus(sneaker.halo.level) * 100).toFixed(0)}%</span>
-                </div>
-                <div className={styles.calc_powerTotal}>
-                  <span>-</span>
                 </div>
               </div>
             </div>
@@ -577,13 +553,15 @@ const Calculator = () => {
 
           <div className={styles.calc_resultsCard}>
             <h2>Earnings</h2>
-            <div className={styles.calc_resultsGrid}>
-              <div>
-                <p>HSE per minute: {earnings.hsePerMin}</p>
-                <p>Session time: {earnings.sessionTime} minutes</p>
-                <p>HSE per session: {earnings.hsePerSession}</p>
-              </div>
-            </div>
+            <p>
+              HSE per minute: <span>{earnings.hsePerMin.toFixed(2)}</span>
+            </p>
+            <p>
+              Running time: <span>{sneaker.mana * 5} minutes</span>
+            </p>
+            <p>
+              HSE per session: <span>{(earnings.hsePerMin * sneaker.mana * 5).toFixed(2)}</span>
+            </p>
           </div>
 
           <div className={styles.calc_formula}>
