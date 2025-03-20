@@ -82,11 +82,12 @@ const Calculator = () => {
     let newIndex;
 
     if (direction === 'prev') {
+      if (currentIndex === 0) return;
       newIndex = currentIndex > 0 ? currentIndex - 1 : currentIndex;
     } else {
+      if (currentIndex === rarityOrder.length - 1) return;
       newIndex = currentIndex < rarityOrder.length - 1 ? currentIndex + 1 : currentIndex;
     }
-    console.log('newIndex:', newIndex)
     handleSneakerChange('rarity', rarityOrder[newIndex]);
   };
 
@@ -195,11 +196,11 @@ const Calculator = () => {
           updatedSneaker.wings.level = 0;
           updatedSneaker.halo.level = 0;
         } else if (value < prev.level) {
-          // Reset khi giảm level và wings/halo level lớn hơn level mới
-          if (prev.wings.level > value) {
+          // Reset khi giảm level và wings/halo level lớn hơn level mới hoặc 40
+          if (prev.wings.level > Math.min(value, 40)) {
             updatedSneaker.wings.level = 0;
           }
-          if (prev.halo.level > value) {
+          if (prev.halo.level > Math.min(value, 40)) {
             updatedSneaker.halo.level = 0;
           }
         }
@@ -241,29 +242,22 @@ const Calculator = () => {
     }));
   };
 
-  const getQualityBackground = (quality) => {
-    return styles[`calc_${quality}Bg`];
+  const getQualityBackground = () => {
+    const haloLevel = sneaker.halo.level;
+
+    if (haloLevel >= 0 && haloLevel < 10) return styles.calc_warriorBg;
+    if (haloLevel >= 10 && haloLevel < 20) return styles.calc_generalBg;
+    if (haloLevel >= 20 && haloLevel < 30) return styles.calc_knightBg;
+    if (haloLevel >= 30 && haloLevel < 40) return styles.calc_lordBg;
+    if (haloLevel === 40) return styles.calc_sovereignBg;
+
+    return styles.calc_warriorBg; // Default case
   };
 
   const handlePowerChange = (type, value) => {
     setBasePowers(prev => ({ ...prev, [type]: value }));
   };
 
-  const handleDecrement = (type) => {
-    if (type === 'shoe') {
-      setInputValues(prev => {
-        const currentValue = parseInt(prev[type]) || 1;
-        const powerRange = rarityPowerRanges[sneaker.rarity];
-        const newValue = Math.max(powerRange.min, currentValue - 1);
-        handlePowerChange(type, newValue);
-        return {
-          ...prev,
-          [type]: newValue.toString()
-        };
-      });
-    }
-    // Không xử lý decrement cho Wings và Halo vì chúng không có power
-  };
 
   const handleIncrement = (type) => {
     if (type === 'shoe') {
@@ -432,9 +426,9 @@ const Calculator = () => {
                     <p className={styles.calc_levelWarning}>
                       {sneaker.level < 10
                         ? "Enable at Sneaker Level 10"
-                        : sneaker.wings.level === sneaker.level
-                          ? `Max level reached (Sneaker level: ${sneaker.level})`
-                          : `Max level: ${sneaker.level}`}
+                        : sneaker.wings.level === Math.min(40, sneaker.level)
+                          ? `Max level reached (${Math.min(40, sneaker.level)})`
+                          : `Max level: ${Math.min(40, sneaker.level)}`}
                     </p>
                   </div>
                 </div>
@@ -470,9 +464,9 @@ const Calculator = () => {
                     <p className={styles.calc_levelWarning}>
                       {sneaker.level < 10
                         ? "Enable at Sneaker Level 10"
-                        : sneaker.halo.level === sneaker.level
-                          ? `Max level reached (Sneaker level: ${sneaker.level})`
-                          : `Max level: ${sneaker.level}`}
+                        : sneaker.halo.level === Math.min(40, sneaker.level)
+                          ? `Max level reached (${Math.min(40, sneaker.level)})`
+                          : `Max level: ${Math.min(40, sneaker.level)}`}
                     </p>
                   </div>
                 </div>
@@ -530,16 +524,56 @@ const Calculator = () => {
         {/* Right side - Sneaker and Results */}
         <div className={styles.calc_sneakerSection}>
           <div className={styles.calc_sneakerDisplay}>
-            <div className={`${styles.calc_sneakerBg} ${getQualityBackground(sneaker.rarity)}`}>
+            <div className={`${styles.calc_sneakerBg} ${getQualityBackground()}`}>
               {sneaker.halo.level > 0 && (
                 <svg viewBox="0 0 100 100" className={styles.calc_flameAnimation}>
                   <defs>
                     <radialGradient id="haloGradient" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stopColor="#FFF" stopOpacity="1" />
-                      <stop offset="30%" stopColor="#FFD700" stopOpacity="0.9" />
-                      <stop offset="60%" stopColor="#FFD700" stopOpacity="0.7" />
-                      <stop offset="85%" stopColor="#FFD700" stopOpacity="0.3" />
-                      <stop offset="100%" stopColor="#FFD700" stopOpacity="0" />
+                      {sneaker.halo.level > 0 && sneaker.halo.level < 10 && (
+                        <>
+                          <stop offset="0%" stopColor="#FFF" stopOpacity="1" />
+                          <stop offset="30%" stopColor="#808080" stopOpacity="0.9" />
+                          <stop offset="60%" stopColor="#808080" stopOpacity="0.7" />
+                          <stop offset="85%" stopColor="#808080" stopOpacity="0.3" />
+                          <stop offset="100%" stopColor="#808080" stopOpacity="0" />
+                        </>
+                      )}
+                      {sneaker.halo.level >= 10 && sneaker.halo.level < 20 && (
+                        <>
+                          <stop offset="0%" stopColor="#FFF" stopOpacity="1" />
+                          <stop offset="30%" stopColor="#4CAF50" stopOpacity="0.9" />
+                          <stop offset="60%" stopColor="#4CAF50" stopOpacity="0.7" />
+                          <stop offset="85%" stopColor="#4CAF50" stopOpacity="0.3" />
+                          <stop offset="100%" stopColor="#4CAF50" stopOpacity="0" />
+                        </>
+                      )}
+                      {sneaker.halo.level >= 20 && sneaker.halo.level < 30 && (
+                        <>
+                          <stop offset="0%" stopColor="#FFF" stopOpacity="1" />
+                          <stop offset="30%" stopColor="#2196F3" stopOpacity="0.9" />
+                          <stop offset="60%" stopColor="#2196F3" stopOpacity="0.7" />
+                          <stop offset="85%" stopColor="#2196F3" stopOpacity="0.3" />
+                          <stop offset="100%" stopColor="#2196F3" stopOpacity="0" />
+                        </>
+                      )}
+                      {sneaker.halo.level >= 30 && sneaker.halo.level < 40 && (
+                        <>
+                          <stop offset="0%" stopColor="#FFF" stopOpacity="1" />
+                          <stop offset="30%" stopColor="#9333EA" stopOpacity="0.9" />
+                          <stop offset="60%" stopColor="#9333EA" stopOpacity="0.7" />
+                          <stop offset="85%" stopColor="#9333EA" stopOpacity="0.3" />
+                          <stop offset="100%" stopColor="#9333EA" stopOpacity="0" />
+                        </>
+                      )}
+                      {sneaker.halo.level === 40 && (
+                        <>
+                          <stop offset="0%" stopColor="#FFF" stopOpacity="1" />
+                          <stop offset="30%" stopColor="#FFD700" stopOpacity="0.9" />
+                          <stop offset="60%" stopColor="#FFD700" stopOpacity="0.7" />
+                          <stop offset="85%" stopColor="#FFD700" stopOpacity="0.3" />
+                          <stop offset="100%" stopColor="#FFD700" stopOpacity="0" />
+                        </>
+                      )}
                     </radialGradient>
                   </defs>
                   <circle cx="50" cy="50" r="49" fill="url(#haloGradient)" />
