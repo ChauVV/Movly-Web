@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './Calculator.module.css';
 import posterCal from '@assets/images/posterCal.jpeg';
 
@@ -300,6 +300,55 @@ const Calculator = () => {
     // Không xử lý increment cho Wings và Halo vì chúng không có power
   };
 
+  // Thêm các hàm xử lý long press
+  const useLongPress = (callback, options = {}) => {
+    const {
+      initialDelay = 140,   // Tăng lên 200ms
+      interval = 100,       // Tăng lên 100ms
+      speedUpDelay = 500   // Tăng lên 1000ms
+    } = options;
+
+    const [isPressed, setIsPressed] = useState(false);
+    const timeoutRef = useRef(null);
+    const intervalRef = useRef(null);
+    const startTimeRef = useRef(null);
+    const isLongPressRef = useRef(false);
+
+    useEffect(() => {
+      if (isPressed) {
+        startTimeRef.current = Date.now();
+
+        timeoutRef.current = setTimeout(() => {
+          isLongPressRef.current = true;
+          callback();
+        }, initialDelay);
+      } else {
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        if (intervalRef.current) clearInterval(intervalRef.current);
+
+        if (!isLongPressRef.current && startTimeRef.current) {
+          callback();
+        }
+
+        startTimeRef.current = null;
+        isLongPressRef.current = false;
+      }
+
+      return () => {
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        if (intervalRef.current) clearInterval(intervalRef.current);
+      };
+    }, [isPressed, callback, initialDelay, interval, speedUpDelay]);
+
+    return {
+      onMouseDown: () => setIsPressed(true),
+      onMouseUp: () => setIsPressed(false),
+      onMouseLeave: () => setIsPressed(false),
+      onTouchStart: () => setIsPressed(true),
+      onTouchEnd: () => setIsPressed(false)
+    };
+  };
+
   return (
     <div className={styles.calc_container}>
       <h1 className={styles.calc_title}>HSE Earn Calculator</h1>
@@ -339,18 +388,34 @@ const Calculator = () => {
               <div className={styles.calc_configItem}>
                 <div className={styles.calc_configLabel}>SNEAKERS LEVEL:</div>
                 <div className={styles.calc_controls}>
-                  <button onClick={() => handleSneakerChange('level', Math.max(1, sneaker.level - 1))}>‹</button>
+                  <button
+                    {...useLongPress(
+                      () => handleSneakerChange('level', Math.max(1, sneaker.level - 1))
+                    )}
+                  >‹</button>
                   <span>{sneaker.level}</span>
-                  <button onClick={() => handleSneakerChange('level', sneaker.level + 1)}>›</button>
+                  <button
+                    {...useLongPress(
+                      () => handleSneakerChange('level', sneaker.level + 1)
+                    )}
+                  >›</button>
                 </div>
               </div>
 
               <div className={styles.calc_configItem}>
                 <div className={styles.calc_configLabel}>DAILY MANA:</div>
                 <div className={styles.calc_controls}>
-                  <button onClick={() => handleSneakerChange('mana', Math.max(2, sneaker.mana - 1))}>‹</button>
+                  <button
+                    {...useLongPress(
+                      () => handleSneakerChange('mana', Math.max(2, sneaker.mana - 1))
+                    )}
+                  >‹</button>
                   <span>{sneaker.mana}</span>
-                  <button onClick={() => handleSneakerChange('mana', Math.min(20, sneaker.mana + 1))}>›</button>
+                  <button
+                    {...useLongPress(
+                      () => handleSneakerChange('mana', Math.min(20, sneaker.mana + 1))
+                    )}
+                  >›</button>
                 </div>
               </div>
             </div>
@@ -365,9 +430,19 @@ const Calculator = () => {
                 <div className={styles.calc_configItem}>
                   <div className={styles.calc_configLabel}>WINGS LEVEL:</div>
                   <div className={styles.calc_controls}>
-                    <button onClick={() => handleEnhancementChange('wings', 'level', sneaker.wings.level - 1)} disabled={sneaker.level < 10}>-</button>
+                    <button
+                      {...useLongPress(
+                        () => handleEnhancementChange('wings', 'level', sneaker.wings.level - 1)
+                      )}
+                      disabled={sneaker.level < 10}
+                    >-</button>
                     <span>{sneaker.wings.level}</span>
-                    <button onClick={() => handleEnhancementChange('wings', 'level', sneaker.wings.level + 1)} disabled={sneaker.level < 10}>+</button>
+                    <button
+                      {...useLongPress(
+                        () => handleEnhancementChange('wings', 'level', sneaker.wings.level + 1)
+                      )}
+                      disabled={sneaker.level < 10}
+                    >+</button>
                   </div>
                 </div>
                 <div className={styles.calc_bonusInfo}>
@@ -393,9 +468,19 @@ const Calculator = () => {
                 <div className={styles.calc_configItem}>
                   <div className={styles.calc_configLabel}>HALO LEVEL:</div>
                   <div className={styles.calc_controls}>
-                    <button onClick={() => handleEnhancementChange('halo', 'level', sneaker.halo.level - 1)} disabled={sneaker.level < 10}>-</button>
+                    <button
+                      {...useLongPress(
+                        () => handleEnhancementChange('halo', 'level', sneaker.halo.level - 1)
+                      )}
+                      disabled={sneaker.level < 10}
+                    >-</button>
                     <span>{sneaker.halo.level}</span>
-                    <button onClick={() => handleEnhancementChange('halo', 'level', sneaker.halo.level + 1)} disabled={sneaker.level < 10}>+</button>
+                    <button
+                      {...useLongPress(
+                        () => handleEnhancementChange('halo', 'level', sneaker.halo.level + 1)
+                      )}
+                      disabled={sneaker.level < 10}
+                    >+</button>
                   </div>
                 </div>
                 <div className={styles.calc_bonusInfo}>
@@ -509,7 +594,7 @@ const Calculator = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
