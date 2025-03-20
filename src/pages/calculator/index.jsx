@@ -498,6 +498,9 @@ const Calculator = () => {
                     min={rarityPowerRanges[sneaker.rarity].min}
                     max={rarityPowerRanges[sneaker.rarity].max}
                     onChange={(e) => {
+                      setInputValues(prev => ({ ...prev, shoe: e.target.value }));
+                    }}
+                    onBlur={(e) => {
                       const value = parseInt(e.target.value);
                       const powerRange = rarityPowerRanges[sneaker.rarity];
                       if (!isNaN(value)) {
