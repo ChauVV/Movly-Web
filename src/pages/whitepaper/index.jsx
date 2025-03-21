@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -17,6 +17,8 @@ import antiCheating from './sections/4.5_game_module_AntiCheating.md?raw';
 import earningMechanics from './sections/4.8_MGD Earning Mechanics.md?raw';
 import movlyToken from './sections/4.9_MOVLY_token.md?raw';
 import mgdToken from './sections/4.10_MGD_token.md?raw';
+import gettingHelp from './sections/getting_help.md?raw';
+import privacy from './sections/privacy.md?raw';
 
 const sections = [
   { id: 'overview', title: 'Overview', content: overview },
@@ -42,12 +44,24 @@ const sections = [
       { id: 'earning-mechanics', title: 'Earning Mechanics', content: earningMechanics }
     ]
   },
+  { id: 'getting-help', title: 'Getting Help', content: gettingHelp },
+  { id: 'privacy', title: 'Privacy Policy', content: privacy }
 ];
 
 const Whitepaper = () => {
   const [activeSection, setActiveSection] = useState('overview');
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [expandedSection, setExpandedSection] = useState(null);
+  const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 480);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth <= 480);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleSectionClick = (sectionId) => {
     setActiveSection(sectionId);
@@ -113,14 +127,7 @@ const Whitepaper = () => {
           >
             Whitepaper
           </motion.div>
-          <motion.div
-            className="version"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
-          >
-            Version 1.0
-          </motion.div>
+
         </div>
         <div className="nav-sections">
           {sections.map((section) => (
@@ -167,6 +174,7 @@ const Whitepaper = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
+        style={{ paddingBottom: isMobileView ? '70px' : '40px' }}
       >
         <div className="markdown-content">
           <ReactMarkdown

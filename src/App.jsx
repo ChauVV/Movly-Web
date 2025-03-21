@@ -10,6 +10,8 @@ import CalculateTokenEarn from '@pages/calculateTokenEarn/calculateTokenEarn';
 import Calculator from './pages/calculator';
 import Whitepaper from './pages/whitepaper';
 import MailRequest from './pages/mailRequest/MailRequest';
+import Privacy from './pages/privacy';
+import Terms from './pages/terms';
 import './App.css';
 
 // Define Ganache chain
@@ -58,6 +60,8 @@ function App() {
             <Route path="/calculator" element={<Calculator />} />
             <Route path="/whitepaper/*" element={<Whitepaper />} />
             <Route path="/mail-request" element={<MailRequest />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
 
             {/* Routes with header */}
             <Route path="/" element={

@@ -21,8 +21,8 @@ function BuyToken() {
   const [bnbPrice, setBnbPrice] = useState(0);
   const [isTooltipActive, setIsTooltipActive] = useState(false);
 
-  // Giá presale: 1 USDT = 10 Movly (với bonus 15% trong presale)
-  const MOVLY_PER_USDT = 10;
+  // Giá presale: 1 USDT = 66.67 Movly (với bonus 15% trong presale)
+  const MOVLY_PER_USDT = 66.67;
   const BONUS_PERCENT = 15;
 
   const fetchPrices = async () => {
@@ -290,7 +290,7 @@ function BuyToken() {
 
               <div className="token-sale-rate">
                 <div className="rate-with-info">
-                  <span className="rate-text">Rate: 1 USDT = 10 Movly</span>
+                  <span className="rate-text">Rate: 1 USDT = 66.67 Movly</span>
                   <FaExclamationCircle
                     className="info-icon"
                     title="* The displayed Movly amount is an estimate
