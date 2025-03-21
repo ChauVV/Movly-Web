@@ -36,7 +36,7 @@
 
 .Community-main {
   flex: 1;
-  padding: 60px 0;
+  padding-top: 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -157,6 +157,7 @@
     grid-template-columns: 1fr;
     gap: 20px;
     padding: 0 15px;
+    margin-top: 0;
   }
 
   .Community-card {
@@ -201,6 +202,7 @@
   .Community-container {
     grid-template-columns: repeat(2, 1fr);
     gap: 25px;
+    margin-top: 0;
   }
 
   .Community-card {
