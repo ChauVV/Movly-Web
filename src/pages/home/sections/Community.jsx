@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 // Import icons
 import { FaTelegram, FaDiscord, FaMedium, FaGithub } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
+import { MdEmail } from 'react-icons/md';
 
 export default function Community() {
   const [isMobile, setIsMobile] = useState(false);
@@ -46,6 +47,14 @@ export default function Community() {
       description: 'Join our Discord server for community events & support',
       color: '#5865F2'
     },
+    {
+      name: 'Email Support',
+      icon: <MdEmail />,
+      type: 'Support',
+      url: '/mail-request',
+      description: 'Submit a request or get help from our support team',
+      color: '#00ffd1'
+    }
   ];
 
   const SocialCard = ({ social, index }) => {

@@ -1,0 +1,328 @@
+.mail-request-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  position: relative;
+}
+
+.mail-request-header {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.mail-request-header .background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(2px);
+}
+
+.mail-request-headerOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 100%);
+  backdrop-filter: blur(4px);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.mail-request-logo-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  text-align: center;
+}
+
+.mail-request-logo-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.mail-request-logo {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+}
+
+.mail-request-logo-text {
+  font-size: 48px;
+  font-weight: bold;
+  background: linear-gradient(90deg,
+      #ff0000 0%,
+      /* Red */
+      #ff8000 20%,
+      /* Orange */
+      #ffff00 40%,
+      /* Yellow */
+      #00ff00 60%,
+      /* Green */
+      #00ffff 80%,
+      /* Cyan */
+      #0000ff 100%
+      /* Blue */
+    );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+.mail-request-nav {
+  background-color: #00ffd1;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo img {
+  height: 40px;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.search-box input {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  width: 200px;
+}
+
+.sign-in {
+  color: #000;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.breadcrumb {
+  padding: 1rem 2rem;
+  color: #666;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+.breadcrumb a {
+  color: #00ffd1;
+  text-decoration: none;
+}
+
+.breadcrumb span {
+  margin: 0 0.5rem;
+}
+
+.mail-request-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin: 2rem 0;
+  color: #333;
+  position: relative;
+  z-index: 1;
+}
+
+.mail-request-content {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.required {
+  color: #ff4d4f;
+  margin-left: 4px;
+}
+
+.optional {
+  color: #666;
+  font-weight: normal;
+  margin-left: 4px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #00ffd1;
+}
+
+.editor-toolbar {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: #fafafa;
+  border: 1px solid #d9d9d9;
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+}
+
+.editor-toolbar button {
+  padding: 0.25rem 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.editor-toolbar button:hover {
+  background-color: #eee;
+  border-radius: 4px;
+}
+
+.description-help {
+  margin-top: 0.5rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.attachment-dropzone {
+  border: 2px dashed #d9d9d9;
+  border-radius: 4px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.attachment-dropzone:hover {
+  border-color: #00ffd1;
+}
+
+.file-input-label {
+  color: #00ffd1;
+  cursor: pointer;
+}
+
+.file-input-label:hover {
+  text-decoration: underline;
+}
+
+.submit-button {
+  background-color: #00ffd1;
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: block;
+  margin: 2rem auto 0;
+}
+
+.submit-button:hover {
+  background-color: #00e6bc;
+}
+
+.mail-request-footer {
+  margin-top: auto;
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.mail-request-footer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(2px);
+}
+
+.mail-request-footerOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom,
+      rgb(245, 245, 245) 0%,
+      rgba(245, 245, 245, 0.9) 20%,
+      rgba(245, 245, 245, 0.8) 30%,
+      rgba(245, 245, 245, 0.7) 50%,
+      rgba(245, 245, 245, 0.6) 70%,
+      rgba(245, 245, 245, 0) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.back-link {
+  color: #fff;
+  text-decoration: none;
+}
+
+.twitter-link {
+  color: #fff;
+}
+
+.twitter-link svg {
+  width: 24px;
+  height: 24px;
+}
+
+@media (max-width: 768px) {
+  .mail-request-nav {
+    padding: 1rem;
+  }
+
+  .search-box input {
+    width: 150px;
+  }
+
+  .mail-request-content {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .mail-request-title {
+    font-size: 2rem;
+    margin: 1.5rem 0;
+  }
+
+  .mail-request-header,
+  .mail-request-footer {
+    height: 150px;
+  }
+}

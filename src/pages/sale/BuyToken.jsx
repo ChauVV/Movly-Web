@@ -6,7 +6,7 @@ import { FaEthereum, FaExclamationCircle } from 'react-icons/fa';
 import { SiTether } from 'react-icons/si';
 import { SiBinance } from 'react-icons/si';
 import bg from '@assets/images/mm5.jpg';
-import silverCoin from '@assets/tokens/silver.jpeg';
+import silverCoin from '@assets/tokens/silverSmall.png';
 import './BuyToken.css';
 import { toast } from 'react-hot-toast';
 
@@ -21,8 +21,8 @@ function BuyToken() {
   const [bnbPrice, setBnbPrice] = useState(0);
   const [isTooltipActive, setIsTooltipActive] = useState(false);
 
-  // Giá presale: 1 USDT = 10 HST (với bonus 15% trong presale)
-  const HST_PER_USDT = 10;
+  // Giá presale: 1 USDT = 10 Movly (với bonus 15% trong presale)
+  const MOVLY_PER_USDT = 10;
   const BONUS_PERCENT = 15;
 
   const fetchPrices = async () => {
@@ -49,13 +49,13 @@ function BuyToken() {
     if (paymentMethod === 'ETH') {
       // Chuyển đổi giá ETH từ wei sang USD (8 số thập phân)
       const ethPriceUSD = ethPrice ? parseFloat(ethers.utils.formatUnits(ethPrice, 8)) : 0;
-      baseTokens = parseFloat(inputAmount) * ethPriceUSD * HST_PER_USDT;
+      baseTokens = parseFloat(inputAmount) * ethPriceUSD * MOVLY_PER_USDT;
     } else if (paymentMethod === 'BNB') {
       // Chuyển đổi giá BNB từ wei sang USD (8 số thập phân)
       const bnbPriceUSD = bnbPrice ? parseFloat(ethers.utils.formatUnits(bnbPrice, 8)) : 0;
-      baseTokens = parseFloat(inputAmount) * bnbPriceUSD * HST_PER_USDT;
+      baseTokens = parseFloat(inputAmount) * bnbPriceUSD * MOVLY_PER_USDT;
     } else {
-      baseTokens = parseFloat(inputAmount) * HST_PER_USDT;
+      baseTokens = parseFloat(inputAmount) * MOVLY_PER_USDT;
     }
 
     // Calculate bonus tokens
@@ -218,7 +218,7 @@ function BuyToken() {
         <img src={bg} alt="background" />
         <div className="token-sale-bg-overlay" />
       </div>
-      <h1 className="token-sale-heading">Buy HST Token</h1>
+      <h1 className="token-sale-heading">Buy Movly Token</h1>
       <div className="token-sale-content">
         <div className="token-sale-card">
           <h2 className="token-sale-card-title">Purchase Tokens</h2>
@@ -264,36 +264,36 @@ function BuyToken() {
           <div className="info-item">
             <div className="token-sale-calc">
               <div className="token-sale-row">
-                <span>BASE HST:</span>
+                <span>BASE Movly:</span>
                 <span className="token-sale-amount">
                   <span>{Number(estimatedTokens.baseTokens).toLocaleString()}</span>
-                  <span className="token-sale-unit">HST</span>
-                  <img src={silverCoin} alt="HST" className="token-sale-icon" />
+                  <span className="token-sale-unit">Movly</span>
+                  <img src={silverCoin} alt="Movly" className="token-sale-icon" />
                 </span>
               </div>
               <div className="token-sale-row">
                 <span>BONUS ({BONUS_PERCENT}%):</span>
                 <span className="token-sale-amount">
                   <span>{Number(estimatedTokens.bonusTokens).toLocaleString()}</span>
-                  <span className="token-sale-unit">HST</span>
-                  <img src={silverCoin} alt="HST" className="token-sale-icon" />
+                  <span className="token-sale-unit">Movly</span>
+                  <img src={silverCoin} alt="Movly" className="token-sale-icon" />
                 </span>
               </div>
               <div className="token-sale-row total">
                 <span>You will receive:</span>
                 <span className="token-sale-amount">
                   <span>{Number(estimatedTokens.totalTokens).toLocaleString()}</span>
-                  <span className="token-sale-unit">HST</span>
-                  <img src={silverCoin} alt="HST" className="token-sale-icon" />
+                  <span className="token-sale-unit">Movly</span>
+                  <img src={silverCoin} alt="Movly" className="token-sale-icon" />
                 </span>
               </div>
 
               <div className="token-sale-rate">
                 <div className="rate-with-info">
-                  <span className="rate-text">Rate: 1 USDT = 10 HST</span>
+                  <span className="rate-text">Rate: 1 USDT = 10 Movly</span>
                   <FaExclamationCircle
                     className="info-icon"
-                    title="* The displayed HST amount is an estimate
+                    title="* The displayed Movly amount is an estimate
 * Actual amount will be calculated based on market price at transaction time
 * Price updates every 30 seconds"
                   />
