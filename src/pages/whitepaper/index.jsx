@@ -14,9 +14,9 @@ import energySystem from './sections/4.2_game_module_EnegySystem.md?raw';
 import mysteryBox from './sections/4.3_game_module_MysteryBox.md?raw';
 import gps from './sections/4.4_game_module_GPS.md?raw';
 import antiCheating from './sections/4.5_game_module_AntiCheating.md?raw';
-import earningMechanics from './sections/4.8_HSE Earning Mechanics.md?raw';
-import hstToken from './sections/4.9_HST_token.md?raw';
-import hseToken from './sections/4.10_HSE_token.md?raw';
+import earningMechanics from './sections/4.8_MGD Earning Mechanics.md?raw';
+import hstToken from './sections/4.9_MOVLY_token.md?raw';
+import mgdToken from './sections/4.10_MGD_token.md?raw';
 import uiRequirements from './sections/4.11_UI_UX_Requirements.md?raw';
 
 // Combine game module content
@@ -40,38 +40,74 @@ const sections = [
   { id: 'asset-module', title: 'Asset Module', content: assetModule },
   { id: 'game-module', title: 'Game Module', content: gameModuleContent },
   { id: 'earning-mechanics', title: 'Earning Mechanics', content: earningMechanics },
-  { id: 'movly-token', title: 'MOVLY Token', content: hseToken },
+  { id: 'mgd-token', title: 'MGD Token', content: mgdToken },
   { id: 'ui-requirements', title: 'UI/UX Requirements', content: uiRequirements }
 ];
 
-export default function Whitepaper() {
+const Whitepaper = () => {
   const [activeSection, setActiveSection] = useState('overview');
+  const [isNavOpen, setIsNavOpen] = useState(false);
 
-  // Process content to replace tokens and names
-  const processContent = (content) => {
-    return content
-      .replace(/HST/g, 'MVS')
-      .replace(/HSE/g, 'MOVLY')
-      .replace(/HealthStep/g, 'Movly')
-      .replace(/Health Step/g, 'Movly');
+  const handleSectionChange = (sectionId) => {
+    setActiveSection(sectionId);
+    setIsNavOpen(false); // Close nav after selection on mobile
+    const rootElement = document.getElementById('root');
+    if (rootElement) {
+      rootElement.scrollTop = 0;
+    }
   };
 
   const currentSection = sections.find(s => s.id === activeSection);
-  const content = currentSection ? processContent(currentSection.content) : '';
+  const content = currentSection ? currentSection.content : '';
 
   return (
     <div className="whitepaper-container">
-      <nav className="whitepaper-nav">
+      <button
+        className="nav-toggle"
+        onClick={() => setIsNavOpen(!isNavOpen)}
+      >
+        {isNavOpen ? '✕' : '☰'}
+      </button>
+
+      {isNavOpen && (
+        <div
+          className="nav-overlay"
+          onClick={() => setIsNavOpen(false)}
+        />
+      )}
+
+      <nav className={`whitepaper-nav ${isNavOpen ? 'open' : ''}`}>
         <div className="nav-header">
-          <h2>Movly Whitepaper</h2>
-          <p className="version">Version 1.0</p>
+          <motion.h2
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            Movly
+          </motion.h2>
+          <motion.div
+            className="subtitle"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+          >
+            Whitepaper
+          </motion.div>
+          <motion.div
+            className="version"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.5 }}
+          >
+            Version 1.0
+          </motion.div>
         </div>
         <ul className="nav-sections">
           {sections.map(section => (
             <li key={section.id}>
               <button
                 className={activeSection === section.id ? 'active' : ''}
-                onClick={() => setActiveSection(section.id)}
+                onClick={() => handleSectionChange(section.id)}
               >
                 {section.title}
               </button>
@@ -98,4 +134,6 @@ export default function Whitepaper() {
       </motion.main>
     </div>
   );
-} 
+};
+
+export default Whitepaper; 

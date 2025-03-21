@@ -1,20 +1,20 @@
 ## Sneaker Types
-HealthStep sneakers exist as NFTs on the BNB Smart Chain, following the BEP-721 standard. Each sneaker NFT represents a unique health tracking sneaker with its own attributes and characteristics.
+Movly sneakers exist as NFTs on the BNB Smart Chain, following the BEP-721 standard. Each sneaker NFT represents a unique health tracking sneaker with its own attributes and characteristics.
 
 ### Sneaker Specifications
 - **Speed Range**: 1 - 20 km/h
-- **Earning Rate**: Fixed HSE rate for any speed within range
+- **Earning Rate**: Fixed MGD rate for any speed within range
 - **Requirement**: Any form of exercise/movement will generate earnings
 - **Note**: Users only need to be active to earn, regardless of speed
 
 ### Sneaker Levels
 - Maximum Level: 50
-- Users can level up their sneakers by burning HSE, with HST being required at certain milestones
+- Users can level up their sneakers by burning MGD, with Movly being required at certain milestones
 - Each level-up:
   - Takes predetermined time, increasing with sneaker level
-  - Requires increasing amounts of HSE for all levels
-  - Requires both HSE and HST at milestone levels
-  - Can be accelerated by burning additional HSE
+  - Requires increasing amounts of MGD for all levels
+  - Requires both MGD and Movly at milestone levels
+  - Can be accelerated by burning additional MGD
 
 Upon levelling, users gain additional Attribute points to assign according to their Sneaker quality:
 
@@ -36,16 +36,16 @@ Key Milestones and Features:
 - Level 50
 
 Level Up Requirements:
-- Regular Levels: Both HSE and HST required
-- Milestone Levels: Both HSE and HST required
-- Acceleration: Additional HSE can speed up the process
+- Regular Levels: Both MGD and Movly required
+- Milestone Levels: Both MGD and Movly required
+- Acceleration: Additional MGD can speed up the process
 
 ### Sneaker Attributes
 Sneakers have a single main attribute:
 
 **Power**: 
 - Determines sneaker's earning efficiency
-- Affects HSE earning rate
+- Affects MGD earning rate
 - Influences special feature effectiveness
 - Higher Power means better performance and rewards
 
@@ -77,12 +77,12 @@ Sneakers transform their appearance based on:
    - Special effects intensity increases with level
 
 ## Enhancement NFTs
-HealthStep sneakers can be enhanced with two types of special NFTs: Wings and Halo. These NFTs follow the BEP-1155 standard and provide Power bonuses to the sneakers they're equipped to. Both Wings and Halo share identical mechanics in terms of leveling, evolution, and enhancement benefits.
+Movly sneakers can be enhanced with two types of special NFTs: Wings and Halo. These NFTs follow the BEP-1155 standard and provide Power bonuses to the sneakers they're equipped to. Both Wings and Halo share identical mechanics in terms of leveling, evolution, and enhancement benefits.
 
 ### Enhancement System
 1. **Level System**:
    - Maximum Level: 40
-   - Requires both HST and HSE to level up
+   - Requires both Movly and MGD to level up
    - Higher levels provide increased Power boost
    - Upgrade costs increase with each level
    - Both Wings and Halo follow the same leveling pattern
@@ -106,7 +106,7 @@ HealthStep sneakers can be enhanced with two types of special NFTs: Wings and Ha
 ## NFT Marketplace
 ### Trading
 - All NFTs can be traded on the marketplace
-- Prices can be set in HST, HSE, or BNB
+- Prices can be set in Movly, MGD, or BNB
 - 4% marketplace fee on all transactions
 - Instant transfers after purchase
 

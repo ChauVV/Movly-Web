@@ -1,20 +1,62 @@
 .whitepaper-container {
   display: flex;
   min-height: 100vh;
-  background: #0f172a;
-  color: #e2e8f0;
+  background: #ffffff;
+  color: #1a1a1a;
   font-family: 'Inter', sans-serif;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.nav-toggle {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+  background: #f59f00;
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-toggle:hover {
+  background: #e67700;
+}
+
+.nav-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 100;
 }
 
 .whitepaper-nav {
   width: 280px;
-  background: #1e293b;
+  background: #f8f9fa;
   padding: 2rem 1rem;
   position: fixed;
   top: 0;
+  left: 0;
   height: 100vh;
-  overflow-y: auto;
-  border-right: 1px solid #334155;
+  border-right: 1px solid #e9ecef;
+  z-index: 200;
+  transition: transform 0.3s ease;
 }
 
 .nav-header {
@@ -23,10 +65,39 @@
 }
 
 .nav-header h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #f8fafc;
+  font-size: 2rem;
+  font-weight: 800;
   margin: 0;
+  background: linear-gradient(90deg,
+      #FF4D00 0%,
+      /* Orange */
+      #FFD700 30%,
+      /* Yellow */
+      #4CAF50 60%,
+      /* Green */
+      #2196F3 80%,
+      /* Blue */
+      #9C27B0 100%
+      /* Purple */
+    );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0.5px;
+}
+
+.nav-header .subtitle {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin-top: 0.25rem;
+}
+
+.nav-header .version {
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
 }
 
 .nav-sections {
@@ -45,41 +116,47 @@
   padding: 0.75rem 1rem;
   background: transparent;
   border: none;
-  color: #94a3b8;
-  font-size: 0.95rem;
+  color: #495057;
+  font-size: 1rem;
+  font-weight: 500;
   border-radius: 0.5rem;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .nav-sections button:hover {
-  background: #334155;
-  color: #f8fafc;
+  background: #f1f3f5;
+  color: #f59f00;
 }
 
 .nav-sections button.active {
-  background: #3b82f6;
-  color: #ffffff;
+  background: #f8f9fa;
+  color: #f59f00;
+  font-weight: 600;
 }
 
 .whitepaper-content {
   flex: 1;
   margin-left: 280px;
   padding: 3rem 4rem;
-  max-width: 1000px;
+  height: 100vh;
+  overflow-y: auto;
+  width: calc(100% - 280px);
 }
 
 .markdown-content {
   line-height: 1.8;
   font-size: 1.1rem;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .markdown-content h1 {
   font-size: 2.5rem;
   font-weight: 700;
   margin: 2rem 0;
-  color: #f8fafc;
-  border-bottom: 2px solid #334155;
+  color: #1a1a1a;
+  border-bottom: 2px solid #e9ecef;
   padding-bottom: 1rem;
 }
 
@@ -87,34 +164,34 @@
   font-size: 2rem;
   font-weight: 600;
   margin: 2rem 0 1.5rem;
-  color: #f8fafc;
+  color: #1a1a1a;
 }
 
 .markdown-content h3 {
   font-size: 1.5rem;
   font-weight: 600;
   margin: 1.5rem 0 1rem;
-  color: #f8fafc;
+  color: #1a1a1a;
 }
 
 .markdown-content p {
   margin: 1rem 0;
-  color: #cbd5e1;
+  color: #495057;
 }
 
 .markdown-content strong {
-  color: #f8fafc;
+  color: #1a1a1a;
   font-weight: 600;
 }
 
 .markdown-content em {
-  color: #94a3b8;
+  color: #6c757d;
 }
 
 .markdown-content ul,
 .markdown-content ol {
   margin: 1rem 0 1rem 1.5rem;
-  color: #cbd5e1;
+  color: #495057;
 }
 
 .markdown-content li {
@@ -123,66 +200,68 @@
 }
 
 .markdown-content code {
-  background: #334155;
+  background: #f8f9fa;
   padding: 0.2rem 0.4rem;
   border-radius: 0.25rem;
   font-family: 'Fira Code', monospace;
   font-size: 0.9em;
-  color: #f8fafc;
+  color: #1a1a1a;
+  border: 1px solid #e9ecef;
 }
 
 .markdown-content pre {
-  background: #1e293b;
+  background: #f8f9fa;
   padding: 1.5rem;
   border-radius: 0.5rem;
   overflow-x: auto;
   margin: 1.5rem 0;
-  border: 1px solid #334155;
+  border: 1px solid #e9ecef;
 }
 
 .markdown-content pre code {
   background: transparent;
   padding: 0;
-  color: #f8fafc;
+  border: none;
 }
 
 .markdown-content blockquote {
-  border-left: 4px solid #3b82f6;
+  border-left: 4px solid #228be6;
   margin: 1.5rem 0;
   padding: 1rem 0 1rem 1.5rem;
-  background: #1e293b;
+  background: #f8f9fa;
   border-radius: 0 0.5rem 0.5rem 0;
 }
 
 .markdown-content blockquote p {
   margin: 0;
-  color: #94a3b8;
+  color: #6c757d;
 }
 
 .markdown-content table {
   width: 100%;
   border-collapse: collapse;
   margin: 1.5rem 0;
-  background: #1e293b;
+  background: #ffffff;
   border-radius: 0.5rem;
   overflow: hidden;
+  border: 1px solid #e9ecef;
 }
 
 .markdown-content th,
 .markdown-content td {
   padding: 1rem;
-  border: 1px solid #334155;
+  border: 1px solid #e9ecef;
   text-align: left;
 }
 
 .markdown-content th {
-  background: #334155;
-  color: #f8fafc;
+  background: #f8f9fa;
+  color: #1a1a1a;
   font-weight: 600;
 }
 
 .markdown-content td {
-  color: #cbd5e1;
+  color: #495057;
 }
 
 .markdown-content img {
@@ -194,18 +273,18 @@
 
 .markdown-content hr {
   border: none;
-  border-top: 1px solid #334155;
+  border-top: 1px solid #e9ecef;
   margin: 2rem 0;
 }
 
 .markdown-content a {
-  color: #3b82f6;
+  color: #228be6;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .markdown-content a:hover {
-  color: #60a5fa;
+  color: #1971c2;
   text-decoration: underline;
 }
 
@@ -216,13 +295,27 @@
 }
 
 @media (max-width: 768px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-overlay {
+    display: block;
+  }
+
   .whitepaper-nav {
-    width: 240px;
+    transform: translateX(-100%);
+    width: 280px;
+  }
+
+  .whitepaper-nav.open {
+    transform: translateX(0);
   }
 
   .whitepaper-content {
-    margin-left: 240px;
-    padding: 1.5rem;
+    margin-left: 0;
+    width: 100%;
+    padding: 2rem;
   }
 
   .markdown-content {
@@ -244,23 +337,24 @@
 
 @media (max-width: 640px) {
   .whitepaper-container {
-    flex-direction: column;
+    display: block;
   }
 
   .whitepaper-nav {
+    position: fixed;
     width: 100%;
-    height: auto;
-    position: relative;
-    padding: 1rem;
+    max-width: 280px;
   }
 
   .whitepaper-content {
     margin-left: 0;
     padding: 1rem;
+    width: 100%;
   }
 
   .markdown-content {
     font-size: 0.95rem;
+    padding-top: 3rem;
   }
 
   .markdown-content h1 {
@@ -273,5 +367,19 @@
 
   .markdown-content h3 {
     font-size: 1.25rem;
+  }
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
   }
 }

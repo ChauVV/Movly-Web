@@ -23,10 +23,10 @@ export default function Tokens() {
 
   const tokens = [
     {
-      symbol: 'MVS',
+      symbol: 'Movly',
       icon: silverIcon,
-      name: 'Movly Silver',
-      description: 'The governance token of the HealthStep ecosystem. Total supply is limited to 3,000,000,000 MVS.',
+      name: 'Movly',
+      description: 'The governance token of the Movly ecosystem. Total supply is limited to 3,000,000,000 Movly.',
       features: [
         'Fixed max supply: 3B tokens (Unchangeable)',
         'Stake to earn rewards',
@@ -36,10 +36,10 @@ export default function Tokens() {
       ]
     },
     {
-      symbol: 'MOVLY',
+      symbol: 'MGD',
       icon: goldIcon,
-      name: 'Movly Gold',
-      description: 'Revolutionary move-to-earn token with unique halving mechanism. Total supply is limited to 6,900,000,000 MOVLY through automatic rate adjustment.',
+      name: 'Movly Gold (Earn Token)',
+      description: 'The earning token (MGD) of the Movly ecosystem. Users earn MGD through physical activities with a unique halving mechanism. Total supply is limited to 6,900,000,000 MGD.',
       features: [
         'Fixed max supply: 6.9B tokens (Unchangeable)',
         'Unique halving mechanism:',
@@ -51,6 +51,12 @@ export default function Tokens() {
       ]
     }
   ];
+
+  const handleInfoClick = (symbol) => {
+    if (symbol === 'MGD') {
+      setShowHalvingPopup(true);
+    }
+  };
 
   return (
     <section className="main-section tokens-section">
@@ -78,10 +84,10 @@ export default function Tokens() {
 
                 <div className="token-description-wrapper">
                   <p className="token-description">{token.description}</p>
-                  {token.symbol === 'MOVLY' && (
+                  {token.symbol === 'MGD' && (
                     <FaExclamationCircle
                       className="info-icon"
-                      onClick={() => setShowHalvingPopup(true)}
+                      onClick={() => handleInfoClick(token.symbol)}
                       title="Click for halving details"
                     />
                   )}
@@ -144,10 +150,10 @@ export default function Tokens() {
 
                 <div className="token-description-wrapper">
                   <p className="token-description">{token.description}</p>
-                  {token.symbol === 'MOVLY' && (
+                  {token.symbol === 'MGD' && (
                     <FaExclamationCircle
                       className="info-icon"
-                      onClick={() => setShowHalvingPopup(true)}
+                      onClick={() => handleInfoClick(token.symbol)}
                       title="Click for halving details"
                     />
                   )}

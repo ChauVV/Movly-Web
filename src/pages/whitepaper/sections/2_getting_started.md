@@ -1,7 +1,7 @@
-To begin your health and wellness journey with HealthStep, follow these simple steps:
+To begin your health and wellness journey with Movly, follow these simple steps:
 
 ## Download and Installation
-1. **HealthStep Apps** (Coming Soon): 
+1. **Movly Apps** (Coming Soon): 
    - Mobile App: Will be available on App Store and Google Play
    - Watch App: Will be available on App Store for Apple Watch users
    - *Note: Our applications are currently under development. Sign up for our newsletter to be notified when they become available.*
@@ -10,7 +10,7 @@ To begin your health and wellness journey with HealthStep, follow these simple s
    - Sign up using your phone number
    - Complete phone verification via SMS code
    - Provide a valid email address for:
-     - Important updates from HealthStep
+     - Important updates from Movly
      - Security notifications
      - Newsletter and community updates
    - Complete KYC verification process:
@@ -28,7 +28,7 @@ To begin your health and wellness journey with HealthStep, follow these simple s
    - **Important**: Store this phrase securely - it's crucial for wallet recovery
 
 2. **Connect to BNB Network**:
-   - HealthStep currently operates on BNB Smart Chain
+   - Movly currently operates on BNB Smart Chain
    - Ensure you have BNB in your wallet for transaction fees
    - *Future updates will support additional networks*
 
@@ -36,8 +36,8 @@ To begin your health and wellness journey with HealthStep, follow these simple s
 1. **Purchase Your First NFT**:
    - Visit the in-app Marketplace
    - NFTs can be purchased using:
-     - HST (Health Step Token)
-     - HSE (Health Step Earn)
+     - Movly (Governance Token)
+     - MGD (Movly Gold)
      - BNB
    - Use the Filter tool to find NFTs matching your preferences
 
@@ -54,7 +54,7 @@ To begin your health and wellness journey with HealthStep, follow these simple s
    - Workout recognition
 
 2. **Earning Mechanism**:
-   - Complete health activities to earn HSE
+   - Complete health activities to earn MGD
    - Participate in community challenges
    - Achieve daily health goals
    - Stake tokens for additional benefits
@@ -67,4 +67,4 @@ To begin your health and wellness journey with HealthStep, follow these simple s
 
 *We strongly recommend enabling 2FA (Two-Factor Authentication) to enhance the security of your account.*
 
-*Note: The HealthStep platform is under active development. New features and network support will be added in future updates.* 
+*Note: The Movly platform is under active development. New features and network support will be added in future updates.* 

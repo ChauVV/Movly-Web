@@ -1,33 +1,33 @@
 ## A Web3 Health & Wellness Revolution
 
 ### Introduction
-HealthStep represents a groundbreaking advancement in Web3 wellness applications, seamlessly merging health tracking, gamification, and blockchain technology. As a pioneering platform in the health-tech space, HealthStep aims to transform how people approach their daily health activities by making them both engaging and financially rewarding.
+Movly represents a groundbreaking advancement in Web3 wellness applications, seamlessly merging health tracking, gamification, and blockchain technology. As a pioneering platform in the health-tech space, Movly aims to transform how people approach their daily health activities by making them both engaging and financially rewarding.
 
 ### Core Concept
-By leveraging smart devices and wearable technology, users can track various health metrics - from steps and heart rate to sleep quality and workout intensity. Each activity contributes to their health score, earning them rewards in the form of HSE tokens. This comprehensive approach ensures that every aspect of a healthy lifestyle is recognized and rewarded.
+By leveraging smart devices and wearable technology, users can track various health metrics - from steps and heart rate to sleep quality and workout intensity. Each activity contributes to their health score, earning them rewards in the form of MGD tokens. This comprehensive approach ensures that every aspect of a healthy lifestyle is recognized and rewarded.
 
 ### Beyond Move-to-Earn
-While movement is essential, HealthStep expands beyond the traditional move-to-earn model to create a holistic health ecosystem:
+While movement is essential, Movly expands beyond the traditional move-to-earn model to create a holistic health ecosystem:
 - **Active Living**: Earn rewards through walking, running, and various physical activities
 - **Wellness Tracking**: Monitor and earn from maintaining good sleep patterns and stress levels
 - **Community Engagement**: Participate in group challenges and social fitness activities
 - **Health Education**: Learn and earn through wellness workshops and health knowledge sharing
 
 ### Token Ecosystem
-- **HST (Health Step Token)**: The platform's governance and utility token with a maximum supply of 3 billion tokens. HST is used for platform governance, staking, and accessing premium features.
-- **HSE (Health Step Earn)**: The earning token with a maximum supply of 10 billion tokens that users receive as rewards for their physical activities and health achievements in the HealthStep ecosystem. HSE implements a unique halving mechanism:
-  - When 30% of the remaining supply is earned, the earning rate decreases by 30%
+- **Movly**: The platform's governance and utility token with a maximum supply of 3 billion tokens. Movly is used for platform governance, staking, and accessing premium features.
+- **MGD (Movly Gold)**: The earning token with a maximum supply of 6.9 billion tokens that users receive as rewards for their physical activities and health achievements in the Movly ecosystem. MGD implements a unique halving mechanism:
+  - When 25% of the remaining supply is earned, the earning rate decreases by 25%
   - This halving mechanism continues throughout the token's lifecycle
   - This ensures long-term sustainability and rewards early adopters while maintaining token value
 
 ### Mission & Impact
-HealthStep's mission extends beyond personal wellness:
+Movly's mission extends beyond personal wellness:
 - Motivate millions to adopt healthier lifestyles
 - Create a sustainable health-focused economy
 - Build a global community of health enthusiasts
 - Promote environmental consciousness through health activities
 
-*Note: HealthStep is currently in development phase. This whitepaper serves as a living document and may be updated to reflect new developments and community feedback.*
+*Note: Movly is currently in development phase. This whitepaper serves as a living document and may be updated to reflect new developments and community feedback.*
 
 ## Market Analysis
 ### Current Market Landscape
