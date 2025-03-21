@@ -241,3 +241,17 @@
 .mobile-nav-link {
   display: none !important;
 }
+
+.logo span {
+  background: linear-gradient(90deg,
+      #FF4D00 0%,
+      #FFD700 30%,
+      #4CAF50 60%,
+      #2196F3 80%,
+      #9C27B0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  font-family: 'Poppins', sans-serif;
+}

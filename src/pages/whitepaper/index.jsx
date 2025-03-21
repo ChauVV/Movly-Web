@@ -8,57 +8,77 @@ import './Whitepaper.css';
 // Import markdown files directly
 import overview from './sections/1_overview.md?raw';
 import gettingStarted from './sections/2_getting_started.md?raw';
-import assetModule from './sections/3_asset_module.md?raw';
+import assetModule from './sections/3_nft_system.md?raw';
 import shoeMinting from './sections/4.1_game_module_Shoe-Minting.md?raw';
 import energySystem from './sections/4.2_game_module_EnegySystem.md?raw';
 import mysteryBox from './sections/4.3_game_module_MysteryBox.md?raw';
 import gps from './sections/4.4_game_module_GPS.md?raw';
 import antiCheating from './sections/4.5_game_module_AntiCheating.md?raw';
 import earningMechanics from './sections/4.8_MGD Earning Mechanics.md?raw';
-import hstToken from './sections/4.9_MOVLY_token.md?raw';
+import movlyToken from './sections/4.9_MOVLY_token.md?raw';
 import mgdToken from './sections/4.10_MGD_token.md?raw';
-import uiRequirements from './sections/4.11_UI_UX_Requirements.md?raw';
-
-// Combine game module content
-const gameModuleContent = `
-# Game Module
-
-${shoeMinting}
-
-${energySystem}
-
-${mysteryBox}
-
-${gps}
-
-${antiCheating}
-`;
 
 const sections = [
   { id: 'overview', title: 'Overview', content: overview },
   { id: 'getting-started', title: 'Getting Started', content: gettingStarted },
-  { id: 'asset-module', title: 'Asset Module', content: assetModule },
-  { id: 'game-module', title: 'Game Module', content: gameModuleContent },
-  { id: 'earning-mechanics', title: 'Earning Mechanics', content: earningMechanics },
-  { id: 'mgd-token', title: 'MGD Token', content: mgdToken },
-  { id: 'ui-requirements', title: 'UI/UX Requirements', content: uiRequirements }
+  { id: 'nft-system', title: 'NFT System', content: assetModule },
+  {
+    id: 'tokenomic',
+    title: 'Tokenomic',
+    subSections: [
+      { id: 'movly-token', title: 'MOVLY Token', content: movlyToken },
+      { id: 'mgd-token', title: 'MGD Token', content: mgdToken }
+    ]
+  },
+  {
+    id: 'gameplay',
+    title: 'Game Play',
+    subSections: [
+      { id: 'shoe-minting', title: 'Shoe-Minting', content: shoeMinting },
+      { id: 'mystery-box', title: 'Mystery Box System', content: mysteryBox },
+      { id: 'energy-system', title: 'Energy System', content: energySystem },
+      { id: 'gps', title: 'GPS', content: gps },
+      { id: 'anti-cheating', title: 'Anti-Cheating System', content: antiCheating },
+      { id: 'earning-mechanics', title: 'Earning Mechanics', content: earningMechanics }
+    ]
+  },
 ];
 
 const Whitepaper = () => {
   const [activeSection, setActiveSection] = useState('overview');
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [expandedSection, setExpandedSection] = useState(null);
 
-  const handleSectionChange = (sectionId) => {
+  const handleSectionClick = (sectionId) => {
     setActiveSection(sectionId);
-    setIsNavOpen(false); // Close nav after selection on mobile
-    const rootElement = document.getElementById('root');
-    if (rootElement) {
-      rootElement.scrollTop = 0;
-    }
+    setIsNavOpen(false);
   };
 
-  const currentSection = sections.find(s => s.id === activeSection);
-  const content = currentSection ? currentSection.content : '';
+  const toggleSubSections = (sectionId) => {
+    setExpandedSection(expandedSection === sectionId ? null : sectionId);
+  };
+
+  // Updated content finding logic
+  const findContent = (sectionId) => {
+    // First check main sections
+    const mainSection = sections.find(s => s.id === sectionId);
+    if (mainSection && mainSection.content) {
+      return mainSection.content;
+    }
+
+    // Then check sub-sections
+    for (const section of sections) {
+      if (section.subSections) {
+        const subSection = section.subSections.find(sub => sub.id === sectionId);
+        if (subSection) {
+          return subSection.content;
+        }
+      }
+    }
+    return '';
+  };
+
+  const content = findContent(activeSection);
 
   return (
     <div className="whitepaper-container">
@@ -102,18 +122,43 @@ const Whitepaper = () => {
             Version 1.0
           </motion.div>
         </div>
-        <ul className="nav-sections">
-          {sections.map(section => (
-            <li key={section.id}>
+        <div className="nav-sections">
+          {sections.map((section) => (
+            <div key={section.id} className="section-item">
               <button
-                className={activeSection === section.id ? 'active' : ''}
-                onClick={() => handleSectionChange(section.id)}
+                className={`section-button ${activeSection === section.id ? 'active' : ''}`}
+                onClick={() => {
+                  if (section.subSections) {
+                    toggleSubSections(section.id);
+                  } else {
+                    handleSectionClick(section.id);
+                  }
+                }}
               >
                 {section.title}
+                {section.subSections && (
+                  <span className={`arrow ${expandedSection === section.id ? 'expanded' : ''}`}>
+                    ▼
+                  </span>
+                )}
               </button>
-            </li>
+
+              {section.subSections && expandedSection === section.id && (
+                <div className="sub-sections">
+                  {section.subSections.map((subSection) => (
+                    <button
+                      key={subSection.id}
+                      className={`sub-section-button ${activeSection === subSection.id ? 'active' : ''}`}
+                      onClick={() => handleSectionClick(subSection.id)}
+                    >
+                      {subSection.title}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
-        </ul>
+        </div>
       </nav>
 
       <motion.main

@@ -18,16 +18,16 @@ const HalvingPopup = ({ isOpen, onClose }) => {
 
         <section className="popup-section">
           <h3>Total Supply</h3>
-          <p>Maximum supply: 6,900,000,000 MGD</p>
+          <p>Maximum supply: 10,000,000,000 MGD</p>
           <p>The halving mechanism works on remaining tokens:</p>
           <ul>
-            <li>First halving: When 25% of max supply is earned (1,725M MGD)
+            <li>First halving: When 25% of max supply is earned (2,500M MGD)
               <br />- Earning rate reduces by 25%
-              <br />- Remaining supply: 5,175M MGD</li>
-            <li>Second halving: When 25% of remaining supply is earned (1,293.75M MGD)
+              <br />- Remaining supply: 7,500M MGD</li>
+            <li>Second halving: When 25% of remaining supply is earned (1,875M MGD)
               <br />- Earning rate reduces by another 25%
-              <br />- New remaining supply: 3,881.25M MGD</li>
-            <li>Third halving: When 25% of new remaining supply is earned (970.31M MGD)
+              <br />- New remaining supply: 5,625M MGD</li>
+            <li>Third halving: When 25% of new remaining supply is earned (1,406.25M MGD)
               <br />- Earning rate reduces by another 25%
               <br />- Process continues...</li>
           </ul>
@@ -50,13 +50,13 @@ const HalvingPopup = ({ isOpen, onClose }) => {
           <ul>
             <li>Initial Phase:
               <br />- Full rate: 100 MGD/day
-              <br />- Until 1,725M tokens earned (25% of 6,900M)</li>
+              <br />- Until 2,500M tokens earned (25% of 10,000M)</li>
             <li>First Reduction:
               <br />- Rate reduces to: 75 MGD/day
-              <br />- Until 1,293.75M more tokens earned (25% of 5,175M)</li>
+              <br />- Until 1,875M more tokens earned (25% of 7,500M)</li>
             <li>Second Reduction:
               <br />- Rate reduces to: 56.25 MGD/day
-              <br />- Until 970.31M more tokens earned (25% of 3,881.25M)</li>
+              <br />- Until 1,406.25M more tokens earned (25% of 5,625M)</li>
             <li>Pattern continues:
               <br />- Each time 25% of remaining tokens are earned
               <br />- Rate reduces by 25% of current rate</li>

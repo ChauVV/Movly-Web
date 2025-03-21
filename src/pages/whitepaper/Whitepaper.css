@@ -110,7 +110,11 @@
   margin: 0.5rem 0;
 }
 
-.nav-sections button {
+.section-item {
+  width: 100%;
+}
+
+.section-button {
   width: 100%;
   text-align: left;
   padding: 0.75rem 1rem;
@@ -122,17 +126,57 @@
   border-radius: 0.5rem;
   cursor: pointer;
   transition: all 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.nav-sections button:hover {
+.section-button:hover {
   background: #f1f3f5;
   color: #f59f00;
 }
 
-.nav-sections button.active {
+.section-button.active {
   background: #f8f9fa;
   color: #f59f00;
   font-weight: 600;
+}
+
+.arrow {
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+}
+
+.arrow.expanded {
+  transform: rotate(180deg);
+}
+
+.sub-sections {
+  padding-left: 1rem;
+}
+
+.sub-section-button {
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: none;
+  color: #495057;
+  font-size: 0.95rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sub-section-button:hover {
+  background: #f1f3f5;
+  color: #f59f00;
+}
+
+.sub-section-button.active {
+  background: #f8f9fa;
+  color: #f59f00;
+  font-weight: 500;
 }
 
 .whitepaper-content {

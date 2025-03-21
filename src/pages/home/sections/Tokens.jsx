@@ -39,12 +39,12 @@ export default function Tokens() {
       symbol: 'MGD',
       icon: goldIcon,
       name: 'Movly Gold (Earn Token)',
-      description: 'The earning token (MGD) of the Movly ecosystem. Users earn MGD through physical activities with a unique halving mechanism. Total supply is limited to 6,900,000,000 MGD.',
+      description: 'The earning token (MGD) of the Movly ecosystem. Users earn MGD through physical activities with a unique halving mechanism. Total supply is limited to 10,000,000,000 MGD.',
       features: [
-        'Fixed max supply: 6.9B tokens (Unchangeable)',
+        'Fixed max supply: 10B tokens (Unchangeable)',
         'Unique halving mechanism:',
-        ' Rate halves at each milestone (50%)',
-        ' Milestone: 50% of remaining earned',
+        ' Rate halves at each milestone (25%)',
+        ' Milestone: 25% of remaining earned',
         'Anti-inflation features:',
         ' Controlled supply & rate unlike unlimited tokens',
         'Long-term sustainability guaranteed'
@@ -99,7 +99,7 @@ export default function Tokens() {
                     {token.features.map((feature, index) => {
                       const isHighlight = [
                         'Fixed max supply: 3B tokens (Unchangeable)',
-                        'Fixed max supply: 6.9B tokens (Unchangeable)',
+                        'Fixed max supply: 10B tokens (Unchangeable)',
                         'Unique halving mechanism:',
                         'Anti-inflation features:'
                       ].includes(feature);
@@ -165,7 +165,7 @@ export default function Tokens() {
                     {token.features.map((feature, index) => {
                       const isHighlight = [
                         'Fixed max supply: 3B tokens (Unchangeable)',
-                        'Fixed max supply: 6.9B tokens (Unchangeable)',
+                        'Fixed max supply: 10B tokens (Unchangeable)',
                         'Unique halving mechanism:',
                         'Anti-inflation features:'
                       ].includes(feature);

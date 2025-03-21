@@ -52,7 +52,7 @@ export default function Header() {
           className={location.pathname === '/' ? 'active' : ''}
           onClick={handleNavigation('/')}>
           <img src={logo} alt="Movly Logo" className="header-logo" />
-          Movly
+          <span>Movly</span>
         </Link>
 
         <Link
@@ -121,7 +121,7 @@ export default function Header() {
       <nav className="nav-container">
         <Link to="/" className="logo" onClick={handleNavigation('/')}>
           <img src={logo} alt="Movly Logo" className="header-logo" />
-          Movly
+          <span>Movly</span>
         </Link>
 
         {isMobile ? renderMobileMenu() : renderDesktopMenu()}

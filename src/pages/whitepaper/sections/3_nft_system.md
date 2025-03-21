@@ -76,10 +76,9 @@ Sneakers transform their appearance based on:
    - Each evolution stage creates unique combinations
    - Special effects intensity increases with level
 
-## Enhancement NFTs
+## Wings and Halo
 Movly sneakers can be enhanced with two types of special NFTs: Wings and Halo. These NFTs follow the BEP-1155 standard and provide Power bonuses to the sneakers they're equipped to. Both Wings and Halo share identical mechanics in terms of leveling, evolution, and enhancement benefits.
 
-### Enhancement System
 1. **Level System**:
    - Maximum Level: 40
    - Requires both Movly and MGD to level up
