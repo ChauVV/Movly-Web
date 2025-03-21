@@ -1,3 +1,5 @@
+# NFT System
+
 ## Sneaker Types
 Movly sneakers exist as NFTs on the BNB Smart Chain, following the BEP-721 standard. Each sneaker NFT represents a unique health tracking sneaker with its own attributes and characteristics.
 

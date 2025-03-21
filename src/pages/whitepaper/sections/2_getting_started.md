@@ -1,3 +1,5 @@
+# Getting started
+
 To begin your health and wellness journey with Movly, follow these simple steps:
 
 ## Download and Installation
