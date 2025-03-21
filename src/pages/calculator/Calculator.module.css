@@ -798,3 +798,23 @@
   background: linear-gradient(to top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%);
   pointer-events: none;
 }
+
+.calc_sneakerImage {
+  position: absolute;
+  width: 80%;
+  height: auto;
+  top: 45%;
+  left: 47%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.calc_wingsImage {
+  position: absolute;
+  width: 55%;
+  height: auto;
+  top: 30%;
+  left: 95%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}

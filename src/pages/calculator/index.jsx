@@ -3,6 +3,8 @@ import styles from './Calculator.module.css';
 import posterCal from '@assets/images/mm2.jpg';
 import goldCoin from '@assets/tokens/gold.jpeg';
 import s3 from '@assets/images/s3.jpg';
+import shoe from '@assets/images/shoe5.png';
+import wings from '@assets/images/wing3.png';
 
 const Calculator = () => {
   const [sneaker, setSneaker] = useState({
@@ -324,6 +326,25 @@ const Calculator = () => {
     };
   };
 
+  const getHaloGradientStops = (color) => (
+    <>
+      <stop offset="0%" stopColor="#FFF" stopOpacity="1" />
+      <stop offset="30%" stopColor={color} stopOpacity="0.9" />
+      <stop offset="60%" stopColor={color} stopOpacity="0.7" />
+      <stop offset="85%" stopColor={color} stopOpacity="0.3" />
+      <stop offset="100%" stopColor={color} stopOpacity="0" />
+    </>
+  );
+
+  const getHaloColor = (level) => {
+    if (level === 0) return null;
+    if (level < 10) return "#808080";  // Gray
+    if (level < 20) return "#4CAF50";  // Green
+    if (level < 30) return "#2196F3";  // Blue
+    if (level < 40) return "#9333EA";  // Purple
+    return "#FFD700";                  // Gold
+  };
+
   return (
     <div className={styles.calc_container}>
       <div className={styles.calc_header}>
@@ -537,56 +558,16 @@ const Calculator = () => {
                 <svg viewBox="0 0 100 100" className={styles.calc_flameAnimation}>
                   <defs>
                     <radialGradient id="haloGradient" cx="50%" cy="50%" r="50%">
-                      {sneaker.halo.level > 0 && sneaker.halo.level < 10 && (
-                        <>
-                          <stop offset="0%" stopColor="#FFF" stopOpacity="1" />
-                          <stop offset="30%" stopColor="#808080" stopOpacity="0.9" />
-                          <stop offset="60%" stopColor="#808080" stopOpacity="0.7" />
-                          <stop offset="85%" stopColor="#808080" stopOpacity="0.3" />
-                          <stop offset="100%" stopColor="#808080" stopOpacity="0" />
-                        </>
-                      )}
-                      {sneaker.halo.level >= 10 && sneaker.halo.level < 20 && (
-                        <>
-                          <stop offset="0%" stopColor="#FFF" stopOpacity="1" />
-                          <stop offset="30%" stopColor="#4CAF50" stopOpacity="0.9" />
-                          <stop offset="60%" stopColor="#4CAF50" stopOpacity="0.7" />
-                          <stop offset="85%" stopColor="#4CAF50" stopOpacity="0.3" />
-                          <stop offset="100%" stopColor="#4CAF50" stopOpacity="0" />
-                        </>
-                      )}
-                      {sneaker.halo.level >= 20 && sneaker.halo.level < 30 && (
-                        <>
-                          <stop offset="0%" stopColor="#FFF" stopOpacity="1" />
-                          <stop offset="30%" stopColor="#2196F3" stopOpacity="0.9" />
-                          <stop offset="60%" stopColor="#2196F3" stopOpacity="0.7" />
-                          <stop offset="85%" stopColor="#2196F3" stopOpacity="0.3" />
-                          <stop offset="100%" stopColor="#2196F3" stopOpacity="0" />
-                        </>
-                      )}
-                      {sneaker.halo.level >= 30 && sneaker.halo.level < 40 && (
-                        <>
-                          <stop offset="0%" stopColor="#FFF" stopOpacity="1" />
-                          <stop offset="30%" stopColor="#9333EA" stopOpacity="0.9" />
-                          <stop offset="60%" stopColor="#9333EA" stopOpacity="0.7" />
-                          <stop offset="85%" stopColor="#9333EA" stopOpacity="0.3" />
-                          <stop offset="100%" stopColor="#9333EA" stopOpacity="0" />
-                        </>
-                      )}
-                      {sneaker.halo.level === 40 && (
-                        <>
-                          <stop offset="0%" stopColor="#FFF" stopOpacity="1" />
-                          <stop offset="30%" stopColor="#FFD700" stopOpacity="0.9" />
-                          <stop offset="60%" stopColor="#FFD700" stopOpacity="0.7" />
-                          <stop offset="85%" stopColor="#FFD700" stopOpacity="0.3" />
-                          <stop offset="100%" stopColor="#FFD700" stopOpacity="0" />
-                        </>
-                      )}
+                      {sneaker.halo.level > 0 && getHaloGradientStops(getHaloColor(sneaker.halo.level))}
                     </radialGradient>
                   </defs>
                   <circle cx="50" cy="50" r="49" fill="url(#haloGradient)" />
                 </svg>
               )}
+              <img src={shoe} alt="Sneaker" className={styles.calc_sneakerImage} />
+              {sneaker.wings.level > 0 &&
+                <img src={wings} alt="Wings" className={styles.calc_wingsImage} />
+              }
             </div>
           </div>
 
