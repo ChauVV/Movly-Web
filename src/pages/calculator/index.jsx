@@ -277,55 +277,6 @@ const Calculator = () => {
     // Không xử lý increment cho Wings và Halo vì chúng không có power
   };
 
-  // Thêm các hàm xử lý long press
-  const useLongPress = (callback, options = {}) => {
-    const {
-      initialDelay = 140,   // Tăng lên 200ms
-      interval = 100,       // Tăng lên 100ms
-      speedUpDelay = 500   // Tăng lên 1000ms
-    } = options;
-
-    const [isPressed, setIsPressed] = useState(false);
-    const timeoutRef = useRef(null);
-    const intervalRef = useRef(null);
-    const startTimeRef = useRef(null);
-    const isLongPressRef = useRef(false);
-
-    useEffect(() => {
-      if (isPressed) {
-        startTimeRef.current = Date.now();
-
-        timeoutRef.current = setTimeout(() => {
-          isLongPressRef.current = true;
-          callback();
-        }, initialDelay);
-      } else {
-        if (timeoutRef.current) clearTimeout(timeoutRef.current);
-        if (intervalRef.current) clearInterval(intervalRef.current);
-
-        if (!isLongPressRef.current && startTimeRef.current) {
-          callback();
-        }
-
-        startTimeRef.current = null;
-        isLongPressRef.current = false;
-      }
-
-      return () => {
-        if (timeoutRef.current) clearTimeout(timeoutRef.current);
-        if (intervalRef.current) clearInterval(intervalRef.current);
-      };
-    }, [isPressed, callback, initialDelay, interval, speedUpDelay]);
-
-    return {
-      onMouseDown: () => setIsPressed(true),
-      onMouseUp: () => setIsPressed(false),
-      onMouseLeave: () => setIsPressed(false),
-      onTouchStart: () => setIsPressed(true),
-      onTouchEnd: () => setIsPressed(false)
-    };
-  };
-
   const getHaloGradientStops = (color) => (
     <>
       <stop offset="0%" stopColor="#FFF" stopOpacity="1" />
@@ -343,6 +294,105 @@ const Calculator = () => {
     if (level < 30) return "#2196F3";  // Blue
     if (level < 40) return "#9333EA";  // Purple
     return "#FFD700";                  // Gold
+  };
+
+  const useLongPress = (callback, options = {}) => {
+    const {
+      initialDelay = 250,    // Initial delay before repeating
+      interval = 80,         // How fast to repeat the action
+      waitForTouchEnd = true // Prevents accidental double-clicks on touchend
+    } = options;
+
+    // Use refs to track state without causing rerenders
+    const timeoutRef = useRef(null);
+    const intervalRef = useRef(null);
+    const isLongPressActive = useRef(false);
+    const hasFiredClick = useRef(false);
+    const callbackRef = useRef(callback);
+
+    // Update callback ref when callback changes
+    useEffect(() => {
+      callbackRef.current = callback;
+    }, [callback]);
+
+    // Clear all timers
+    const clearTimers = () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+
+    // Handle the start of a press
+    const handleStart = (e) => {
+      // Reset state
+      isLongPressActive.current = false;
+      hasFiredClick.current = false;
+      clearTimers();
+
+      // Start the long press timer
+      timeoutRef.current = setTimeout(() => {
+        isLongPressActive.current = true;
+
+        // Fire the callback once immediately
+        callbackRef.current();
+
+        // Then start repeating at regular intervals
+        intervalRef.current = setInterval(() => {
+          callbackRef.current();
+        }, interval);
+      }, initialDelay);
+    };
+
+    // Handle the end of a press
+    const handleEnd = (e) => {
+      // For touchEnd on mobile, we need to prevent the default to avoid issues
+      if (e.type === 'touchend') {
+        e.preventDefault();
+      }
+
+      // Clear timers first
+      clearTimers();
+
+      // If this wasn't a longpress and we haven't already fired,
+      // treat it as a click and fire once
+      if (!isLongPressActive.current && !hasFiredClick.current) {
+        hasFiredClick.current = true;
+        callbackRef.current();
+      }
+
+      // Reset state after a short delay
+      setTimeout(() => {
+        isLongPressActive.current = false;
+        hasFiredClick.current = false;
+      }, 50);
+    };
+
+    // Clean up timers on unmount
+    useEffect(() => {
+      return clearTimers;
+    }, []);
+
+    // Return all the handlers
+    return {
+      onMouseDown: handleStart,
+      onMouseUp: handleEnd,
+      onMouseLeave: clearTimers,
+      onTouchStart: handleStart,
+      onTouchEnd: handleEnd,
+      onTouchCancel: clearTimers,
+      onContextMenu: e => e.preventDefault(), // Prevent long-press context menu on mobile
+      onClick: e => {
+        // When using with onClick, we want to let the other handlers handle it
+        if (e.type === 'click') {
+          e.preventDefault();
+        }
+      }
+    };
   };
 
   return (
@@ -390,15 +440,11 @@ const Calculator = () => {
                 <div className={styles.calc_configLabel}>SNEAKERS LEVEL:</div>
                 <div className={styles.calc_controls}>
                   <button
-                    {...useLongPress(
-                      () => handleSneakerChange('level', Math.max(1, sneaker.level - 1))
-                    )}
+                    {...useLongPress(() => handleSneakerChange('level', Math.max(1, sneaker.level - 1)))}
                   >‹</button>
                   <span>{sneaker.level}</span>
                   <button
-                    {...useLongPress(
-                      () => handleSneakerChange('level', sneaker.level + 1)
-                    )}
+                    {...useLongPress(() => handleSneakerChange('level', sneaker.level + 1))}
                   >›</button>
                 </div>
               </div>
@@ -407,15 +453,11 @@ const Calculator = () => {
                 <div className={styles.calc_configLabel}>DAILY MANA:</div>
                 <div className={styles.calc_controls}>
                   <button
-                    {...useLongPress(
-                      () => handleSneakerChange('mana', Math.max(2, sneaker.mana - 1))
-                    )}
+                    {...useLongPress(() => handleSneakerChange('mana', Math.max(2, sneaker.mana - 1)))}
                   >‹</button>
                   <span>{sneaker.mana}</span>
                   <button
-                    {...useLongPress(
-                      () => handleSneakerChange('mana', Math.min(20, sneaker.mana + 1))
-                    )}
+                    {...useLongPress(() => handleSneakerChange('mana', Math.min(20, sneaker.mana + 1)))}
                   >›</button>
                 </div>
               </div>
@@ -432,16 +474,20 @@ const Calculator = () => {
                   <div className={styles.calc_configLabel}>WINGS LEVEL:</div>
                   <div className={styles.calc_controls}>
                     <button
-                      {...useLongPress(
-                        () => handleEnhancementChange('wings', 'level', sneaker.wings.level - 1)
-                      )}
+                      {...useLongPress(() => {
+                        if (sneaker.level >= 10) {
+                          handleEnhancementChange('wings', 'level', sneaker.wings.level - 1);
+                        }
+                      })}
                       disabled={sneaker.level < 10}
                     >-</button>
                     <span>{sneaker.wings.level}</span>
                     <button
-                      {...useLongPress(
-                        () => handleEnhancementChange('wings', 'level', sneaker.wings.level + 1)
-                      )}
+                      {...useLongPress(() => {
+                        if (sneaker.level >= 10) {
+                          handleEnhancementChange('wings', 'level', sneaker.wings.level + 1);
+                        }
+                      })}
                       disabled={sneaker.level < 10}
                     >+</button>
                   </div>
@@ -470,16 +516,20 @@ const Calculator = () => {
                   <div className={styles.calc_configLabel}>HALO LEVEL:</div>
                   <div className={styles.calc_controls}>
                     <button
-                      {...useLongPress(
-                        () => handleEnhancementChange('halo', 'level', sneaker.halo.level - 1)
-                      )}
+                      {...useLongPress(() => {
+                        if (sneaker.level >= 10) {
+                          handleEnhancementChange('halo', 'level', sneaker.halo.level - 1);
+                        }
+                      })}
                       disabled={sneaker.level < 10}
                     >-</button>
                     <span>{sneaker.halo.level}</span>
                     <button
-                      {...useLongPress(
-                        () => handleEnhancementChange('halo', 'level', sneaker.halo.level + 1)
-                      )}
+                      {...useLongPress(() => {
+                        if (sneaker.level >= 10) {
+                          handleEnhancementChange('halo', 'level', sneaker.halo.level + 1);
+                        }
+                      })}
                       disabled={sneaker.level < 10}
                     >+</button>
                   </div>
@@ -575,7 +625,7 @@ const Calculator = () => {
             <h2>Earnings</h2>
             <div className={styles.calc_resultsContent}>
               <p className={styles.calc_halvingInfo}>
-                Halving count: <span className={styles.calc_halvingCount}>0</span> <span className={styles.calc_halvingRate}>(Rate: 100%)</span>
+                Halving count: <span className={styles.calc_halvingCount}>0</span> <span className={styles.calc_halvingRate}>(Earn Rate: 100%)</span>
               </p>
               <p>
                 MOVLY per minute: <span>{earnings.movlyPerMin.toFixed(2)}</span>
