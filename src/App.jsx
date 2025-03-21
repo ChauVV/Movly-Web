@@ -6,7 +6,6 @@ import { injected } from 'wagmi/connectors';
 import Header from '@components/Header';
 import Main from '@pages/home/Main';
 import BuyToken from '@/pages/sale/BuyToken';
-import CalculateTokenEarn from '@pages/calculateTokenEarn/calculateTokenEarn';
 import Calculator from './pages/calculator';
 import Whitepaper from './pages/whitepaper';
 import MailRequest from './pages/mailRequest/MailRequest';
@@ -56,7 +55,6 @@ function App() {
         <Router>
           <Routes>
             {/* Routes without header */}
-            <Route path="/calculate" element={<CalculateTokenEarn />} />
             <Route path="/calculator" element={<Calculator />} />
             <Route path="/whitepaper/*" element={<Whitepaper />} />
             <Route path="/mail-request" element={<MailRequest />} />

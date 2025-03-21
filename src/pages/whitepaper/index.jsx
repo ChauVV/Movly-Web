@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import './Whitepaper.css';
+import { Link } from 'react-router-dom';
 
 // Import markdown files directly
 import overview from './sections/1_overview.md?raw';
@@ -17,6 +18,7 @@ import antiCheating from './sections/4.5_game_module_AntiCheating.md?raw';
 import earningMechanics from './sections/4.8_MGD Earning Mechanics.md?raw';
 import movlyToken from './sections/4.9_MOVLY_token.md?raw';
 import mgdToken from './sections/4.10_MGD_token.md?raw';
+import smartContract from './sections/smart_contract.md?raw';
 import gettingHelp from './sections/getting_help.md?raw';
 import privacy from './sections/privacy.md?raw';
 
@@ -44,6 +46,7 @@ const sections = [
       { id: 'earning-mechanics', title: 'Earning Mechanics', content: earningMechanics }
     ]
   },
+  { id: 'smart-contract', title: 'Smart Contract', content: smartContract },
   { id: 'getting-help', title: 'Getting Help', content: gettingHelp },
   { id: 'privacy', title: 'Privacy Policy', content: privacy }
 ];
@@ -117,7 +120,7 @@ const Whitepaper = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            Movly
+            <Link to="/" className="home-link">Movly</Link>
           </motion.h2>
           <motion.div
             className="subtitle"
@@ -126,8 +129,8 @@ const Whitepaper = () => {
             transition={{ delay: 0.2, duration: 0.5 }}
           >
             Whitepaper
+            <span className="version">v1.0.0</span>
           </motion.div>
-
         </div>
         <div className="nav-sections">
           {sections.map((section) => (
@@ -174,7 +177,7 @@ const Whitepaper = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        style={{ paddingBottom: isMobileView ? '70px' : '40px' }}
+        style={{ paddingBottom: isMobileView ? '140px' : '70px' }}
       >
         <div className="markdown-content">
           <ReactMarkdown

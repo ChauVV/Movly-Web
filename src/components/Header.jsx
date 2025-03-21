@@ -68,7 +68,7 @@ export default function Header() {
           className={location.pathname === '/calculator' ? 'active' : ''}
           onClick={handleNavigation('/calculator')}
         >
-          Calculate Earn
+          Earn Calculator
         </Link>
 
         <Link
@@ -101,7 +101,7 @@ export default function Header() {
           className={location.pathname === '/calculator' ? 'active' : ''}
           onClick={handleNavigation('/calculator')}
         >
-          Calculate Earn
+          Earn Calculator
         </Link>
 
         <Link

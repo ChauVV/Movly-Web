@@ -2,6 +2,10 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .calc_title {
@@ -9,7 +13,7 @@
   font-weight: bold;
   text-align: center;
   margin-bottom: 5rem;
-  color: #1a1a1a;
+  color: #f5a836;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }

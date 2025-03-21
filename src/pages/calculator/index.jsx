@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './Calculator.module.css';
-import posterCal from '@assets/images/posterCal.jpeg';
+import posterCal from '@assets/images/mm2.jpg';
 import goldCoin from '@assets/tokens/gold.jpeg';
 import s3 from '@assets/images/s3.jpg';
 
