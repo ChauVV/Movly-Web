@@ -1,8 +1,6 @@
 import { motion } from 'framer-motion';
-import { PieChart } from 'react-minimal-pie-chart';
 import './Tokenomics.css';
 import bg from '@assets/images/ma7.jpg';
-import chart from '@assets/images/distributions.png';
 import chartDetail from '@assets/images/TokenDistributionStructure.png';
 
 export default function Tokenomics() {
@@ -30,11 +28,6 @@ export default function Tokenomics() {
       >
 
         <div className="tokenomics-container">
-          {/* <div className="chart-left">
-            <div className="chart-container-left">
-              <img src={chart} alt="background" style={{ height: '100%', width: '100%', objectFit: 'contain' }} />
-            </div>
-          </div> */}
           <div className="chart-right">
             <div className="chart-container-right">
               <img src={chartDetail} alt="background" style={{ height: '90%', width: '90%', objectFit: 'center' }} />

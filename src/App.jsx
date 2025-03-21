@@ -8,6 +8,7 @@ import Main from '@pages/home/Main';
 import BuyToken from '@/pages/sale/BuyToken';
 import CalculateTokenEarn from '@pages/calculateTokenEarn/calculateTokenEarn';
 import Calculator from './pages/calculator';
+import Whitepaper from './pages/whitepaper';
 import './App.css';
 
 // Define Ganache chain
@@ -51,11 +52,13 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <Router>
           <Routes>
-            {/* Calculator tách riêng không có Header */}
+            {/* Routes without header */}
             <Route path="/calculate" element={<CalculateTokenEarn />} />
+            <Route path="/calculator" element={<Calculator />} />
+            <Route path="/whitepaper/*" element={<Whitepaper />} />
 
-            {/* Layout chính có Header */}
-            <Route element={
+            {/* Routes with header */}
+            <Route path="/" element={
               <div className="App">
                 <Header />
                 <main className="main-content">
@@ -63,14 +66,11 @@ function App() {
                 </main>
               </div>
             }>
-              <Route path="/" element={<Main />} />
-              <Route path="/sale" element={<BuyToken />} />
+              <Route index element={<Main />} />
+              <Route path="sale" element={<BuyToken />} />
             </Route>
 
-            {/* Calculator route */}
-            <Route path="/calculator" element={<Calculator />} />
-
-            {/* Redirect các URL không hợp lệ về trang chủ */}
+            {/* Redirect invalid URLs to home */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Router>

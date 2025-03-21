@@ -55,13 +55,13 @@ export default function Header() {
           Movly
         </Link>
 
-        <a
-          href="https://vo-van-chau.gitbook.io/health-step"
+        <Link
+          to="/whitepaper"
           className={location.pathname === '/whitepaper' ? 'active' : ''}
-          onClick={handleNavigation('https://vo-van-chau.gitbook.io/health-step', true)}
+          onClick={handleNavigation('/whitepaper')}
         >
           Whitepaper
-        </a>
+        </Link>
 
         <Link
           to="/calculator"
@@ -88,13 +88,13 @@ export default function Header() {
   const renderDesktopMenu = () => (
     <>
       <div className="nav-links">
-        <a
-          href="https://vo-van-chau.gitbook.io/health-step"
+        <Link
+          to="/whitepaper"
           className={location.pathname === '/whitepaper' ? 'active' : ''}
-          onClick={handleNavigation('https://vo-van-chau.gitbook.io/health-step', true)}
+          onClick={handleNavigation('/whitepaper')}
         >
           Whitepaper
-        </a>
+        </Link>
 
         <Link
           to="/calculator"

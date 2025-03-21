@@ -9,8 +9,8 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src'),
       '@components': path.resolve(__dirname, './src/components'),
+      '@pages': path.resolve(__dirname, './src/pages'),
       '@assets': path.resolve(__dirname, './src/assets'),
-      '@pages': path.resolve(__dirname, './src/pages')
     }
   },
   server: {
@@ -18,5 +18,19 @@ export default defineConfig({
     host: true,
     open: true
   },
-  base: '/',
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    rollupOptions: {
+      output: {
+        entryFileNames: 'assets/[name].js',
+        chunkFileNames: 'assets/[name].js',
+        assetFileNames: 'assets/[name].[ext]'
+      }
+    }
+  },
+  assetsInclude: ['**/*.md'],
+  optimizeDeps: {
+    include: ['react-markdown', 'remark-gfm', 'rehype-raw']
+  }
 }) 
