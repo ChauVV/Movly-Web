@@ -51,8 +51,8 @@ export default function Community() {
       name: 'Email Support',
       icon: <MdEmail />,
       type: 'Support',
-      url: '/mail-request',
-      description: 'Submit a request or get help from our support team',
+      url: 'mailto:support@movly.run',
+      description: 'Submit a request or get help from our support team: support@movly.run',
       color: '#00ffd1'
     }
   ];

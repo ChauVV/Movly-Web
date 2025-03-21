@@ -100,15 +100,6 @@
 
 /* Mobile Responsive */
 @media (max-width: 1200px) {
-  .tokenomics-container {
-    padding: 1rem;
-  }
-
-  /* .chart-container {
-    width: 270px;
-    height: 270px;
-    padding: 0.8rem;
-  } */
 
   .tokenomics-title {
     font-size: 3rem;
@@ -138,16 +129,17 @@
     height: 12px;
   }
 
-  .tokenomics-container {
-    padding: 3rem 1rem;
-    gap: 1.5rem;
-  }
 }
 
 @media (max-width: 480px) {
   .tokenomics-section {
     padding: 0.8rem 0.5rem;
     height: calc(100vh - 53px);
+  }
+
+  .chart-container-right img {
+    width: 100%;
+    height: 100%;
   }
 
   .tokenomics-title {
@@ -157,10 +149,6 @@
     margin-top: 53px;
   }
 
-  .tokenomics-container {
-    padding: 2.5rem 1rem;
-    gap: 1.2rem;
-  }
 }
 
 /* Animation */
@@ -178,4 +166,11 @@
 
 .tokenomics-container {
   animation: fadeIn 1s ease-out;
+}
+
+@media screen and (max-width: 768px) {
+  .chart-container-right img {
+    width: 100%;
+    height: 100%;
+  }
 }

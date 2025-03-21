@@ -7,6 +7,7 @@ import Tokenomics from './sections/Tokenomics';
 import Tokens from './sections/Tokens';
 import Roadmap from './sections/Roadmap';
 import AppPreview from './sections/AppPreview';
+import AppPreviewWatch from './sections/AppPreviewWatch';
 import Community from './sections/Community';
 import './Main.css';
 
@@ -80,6 +81,7 @@ function Main() {
       <Tokens />
       <Roadmap />
       <AppPreview />
+      <AppPreviewWatch />
       <Community />
 
       <div className="section-controls">

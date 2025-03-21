@@ -30,7 +30,7 @@ export default function Tokenomics() {
         <div className="tokenomics-container">
           <div className="chart-right">
             <div className="chart-container-right">
-              <img src={chartDetail} alt="background" style={{ height: '90%', width: '90%', objectFit: 'center' }} />
+              <img src={chartDetail} alt="background" style={{ objectFit: 'center' }} />
             </div>
           </div>
         </div>
