@@ -21,8 +21,8 @@ function BuyToken() {
   const [bnbPrice, setBnbPrice] = useState(0);
   const [isTooltipActive, setIsTooltipActive] = useState(false);
 
-  // Giá presale: 1 USDT = 66.67 Movly (với bonus 15% trong presale)
-  const MOVLY_PER_USDT = 66.67;
+  // Giá presale: 1 USDT = 25 Movly (với bonus 15% trong presale)
+  const MOVLY_PER_USDT = 25;
   const BONUS_PERCENT = 15;
 
   const fetchPrices = async () => {
