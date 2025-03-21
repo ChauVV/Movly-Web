@@ -67,10 +67,11 @@ function App() {
               <Route path="/sale" element={<BuyToken />} />
             </Route>
 
+            {/* Calculator route */}
+            <Route path="/calculator" element={<Calculator />} />
+
             {/* Redirect các URL không hợp lệ về trang chủ */}
             <Route path="*" element={<Navigate to="/" replace />} />
-
-            <Route path="/calculator" element={<Calculator />} />
           </Routes>
         </Router>
       </QueryClientProvider>
