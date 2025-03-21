@@ -14,16 +14,34 @@
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   height: 53px;
   padding: 0;
 }
 
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  margin-right: 60px;
+}
+
+.header-logo {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  vertical-align: middle;
+  border-radius: 4px;
+}
+
+/* Desktop Navigation */
 .nav-links {
   display: flex;
-  gap: 2rem;
   align-items: center;
+  gap: 60px;
 }
 
 .nav-links a {
@@ -31,16 +49,19 @@
   text-decoration: none;
   font-size: 1rem;
   transition: all 0.3s ease;
-  padding: 6px 12px;
+  padding: 6px 0;
   position: relative;
+  white-space: nowrap;
 }
 
-/* Style cho tab active trên desktop */
 .nav-links a.active {
   color: #FFD700;
 }
 
-/* Bottom line cho active tab trên desktop */
+.connect-wallet-btn {
+  margin-top: 20px;
+}
+
 .nav-links a.active::after {
   content: '';
   position: absolute;
@@ -51,17 +72,8 @@
   background: #FFD700;
 }
 
-/* Hover effect */
 .nav-links a:hover {
   color: #FFD700;
-}
-
-.menu-button {
-  display: none;
-}
-
-.logo {
-  display: none;
 }
 
 .connect-wallet-btn {
@@ -73,11 +85,21 @@
   cursor: pointer;
   font-weight: 600;
   transition: all 0.3s ease;
+  margin-left: 60px;
+  white-space: nowrap;
 }
 
 .connect-wallet-btn:hover {
   opacity: 0.9;
   transform: translateY(-1px);
+}
+
+/* Hide mobile elements on desktop */
+.menu-button,
+.mobile-nav-link,
+.nav-logo,
+.mobile-only {
+  display: none;
 }
 
 /* Mobile & Tablet styles */
@@ -90,6 +112,10 @@
     justify-content: space-between;
   }
 
+  .logo {
+    margin-right: 0;
+  }
+
   .menu-button {
     display: block;
     background: none;
@@ -98,13 +124,6 @@
     font-size: 1.5rem;
     cursor: pointer;
     padding: 0.5rem;
-  }
-
-  .logo {
-    display: block;
-    color: white;
-    text-decoration: none;
-    font-size: 1.2rem;
   }
 
   .nav-links {
@@ -119,6 +138,7 @@
     justify-content: center;
     padding: 2rem;
     transition: right 0.3s ease;
+    gap: 0;
   }
 
   .nav-links.active {
@@ -138,6 +158,28 @@
 
   .nav-links a.active::after {
     display: none;
+  }
+
+  .mobile-nav-link {
+    display: flex !important;
+    align-items: center;
+  }
+
+  .nav-logo {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 6px;
+    vertical-align: middle;
+    border-radius: 4px;
+  }
+
+  .mobile-only {
+    display: inline;
+  }
+
+  .connect-wallet-btn {
+    margin-left: 0;
   }
 }
 
@@ -179,4 +221,23 @@
   border-radius: 4px;
   cursor: pointer;
   margin-top: 10px;
+}
+
+.nav-logo {
+  width: 20px;
+  height: 20px;
+  margin-right: 6px;
+  vertical-align: middle;
+  border-radius: 4px;
+}
+
+@media (min-width: 769px) {
+  .nav-logo {
+    display: none;
+    /* Ẩn logo trong nav-links trên desktop */
+  }
+}
+
+.mobile-nav-link {
+  display: none !important;
 }

@@ -3,15 +3,23 @@ import { IoMenu, IoClose } from 'react-icons/io5';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Header.css';
 import ConnectWallet from './ConnectWallet';
+import logo from '@assets/icons/logo2.jpeg';
 
 export default function Header() {
   const location = useLocation();
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleNavigation = (path, isExternal = false) => (e) => {
     e.preventDefault();
@@ -24,51 +32,99 @@ export default function Header() {
     }
   };
 
+  const renderMobileMenu = () => (
+    <>
+      <button className="menu-button" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        {isMenuOpen ? <IoClose /> : <IoMenu />}
+      </button>
+
+      <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
+        <Link
+          to="/"
+          className={`mobile-nav-link ${location.pathname === '/' ? 'active' : ''}`}
+          onClick={handleNavigation('/')}
+        >
+          <img src={logo} alt="Movly Logo" className="nav-logo" />
+          <span className="mobile-only">Movly</span>
+        </Link>
+
+        <Link to="/"
+          className={location.pathname === '/' ? 'active' : ''}
+          onClick={handleNavigation('/')}>
+          <img src={logo} alt="Movly Logo" className="header-logo" />
+          Movly
+        </Link>
+
+        <a
+          href="https://vo-van-chau.gitbook.io/health-step"
+          className={location.pathname === '/whitepaper' ? 'active' : ''}
+          onClick={handleNavigation('https://vo-van-chau.gitbook.io/health-step', true)}
+        >
+          Whitepaper
+        </a>
+
+        <Link
+          to="/calculator"
+          className={location.pathname === '/calculator' ? 'active' : ''}
+          onClick={handleNavigation('/calculator')}
+        >
+          Calculate Earn
+        </Link>
+
+        <Link
+          to="/sale"
+          className={location.pathname === '/sale' ? 'active' : ''}
+          onClick={handleNavigation('/sale')}
+        >
+          Buy Token
+        </Link>
+        <div className='connect-wallet-btn'>
+          <ConnectWallet />
+        </div>
+      </div>
+    </>
+  );
+
+  const renderDesktopMenu = () => (
+    <>
+      <div className="nav-links">
+        <a
+          href="https://vo-van-chau.gitbook.io/health-step"
+          className={location.pathname === '/whitepaper' ? 'active' : ''}
+          onClick={handleNavigation('https://vo-van-chau.gitbook.io/health-step', true)}
+        >
+          Whitepaper
+        </a>
+
+        <Link
+          to="/calculator"
+          className={location.pathname === '/calculator' ? 'active' : ''}
+          onClick={handleNavigation('/calculator')}
+        >
+          Calculate Earn
+        </Link>
+
+        <Link
+          to="/sale"
+          className={location.pathname === '/sale' ? 'active' : ''}
+          onClick={handleNavigation('/sale')}
+        >
+          Buy Token
+        </Link>
+        <ConnectWallet />
+      </div>
+    </>
+  );
+
   return (
     <header className="header">
       <nav className="nav-container">
         <Link to="/" className="logo" onClick={handleNavigation('/')}>
+          <img src={logo} alt="Movly Logo" className="header-logo" />
           Movly
         </Link>
 
-        <button className="menu-button" onClick={toggleMenu}>
-          {isMenuOpen ? <IoClose /> : <IoMenu />}
-        </button>
-
-        <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
-          <Link
-            to="/"
-            className={location.pathname === '/' ? 'active' : ''}
-            onClick={handleNavigation('/')}
-          >
-            Movly
-          </Link>
-
-          <a
-            href="https://vo-van-chau.gitbook.io/health-step"
-            className={location.pathname === '/whitepaper' ? 'active' : ''}
-            onClick={handleNavigation('https://vo-van-chau.gitbook.io/health-step', true)}
-          >
-            Whitepaper
-          </a>
-
-          <Link
-            to="/calculator"
-            className={location.pathname === '/calculator' ? 'active' : ''}
-            onClick={handleNavigation('/calculator')}
-          >
-            Calculate Earn
-          </Link>
-
-          <Link
-            to="/sale"
-            className={location.pathname === '/sale' ? 'active' : ''}
-            onClick={handleNavigation('/sale')}
-          >
-            Buy Token
-          </Link>
-          <ConnectWallet />
-        </div>
+        {isMobile ? renderMobileMenu() : renderDesktopMenu()}
       </nav>
     </header>
   );

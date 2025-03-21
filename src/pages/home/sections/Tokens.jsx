@@ -28,7 +28,7 @@ export default function Tokens() {
       name: 'Movly Silver',
       description: 'The governance token of the HealthStep ecosystem. Total supply is limited to 3,000,000,000 MVS.',
       features: [
-        'Fixed max supply: 3B tokens',
+        'Fixed max supply: 3B tokens (Unchangeable)',
         'Stake to earn rewards',
         'Vote on project proposals',
         'NFT purchase benefits',
@@ -41,7 +41,7 @@ export default function Tokens() {
       name: 'Movly Gold',
       description: 'Revolutionary move-to-earn token with unique halving mechanism. Total supply is limited to 6,900,000,000 MOVLY through automatic rate adjustment.',
       features: [
-        'Fixed max supply: 6.9B tokens',
+        'Fixed max supply: 6.9B tokens (Unchangeable)',
         'Unique halving mechanism:',
         ' Rate halves at each milestone (50%)',
         ' Milestone: 50% of remaining earned',
@@ -92,7 +92,8 @@ export default function Tokens() {
                   <ul>
                     {token.features.map((feature, index) => {
                       const isHighlight = [
-                        'Fixed max supply: 6.9B tokens',
+                        'Fixed max supply: 3B tokens (Unchangeable)',
+                        'Fixed max supply: 6.9B tokens (Unchangeable)',
                         'Unique halving mechanism:',
                         'Anti-inflation features:'
                       ].includes(feature);
@@ -157,7 +158,8 @@ export default function Tokens() {
                   <ul>
                     {token.features.map((feature, index) => {
                       const isHighlight = [
-                        'Fixed max supply: 6.9B tokens',
+                        'Fixed max supply: 3B tokens (Unchangeable)',
+                        'Fixed max supply: 6.9B tokens (Unchangeable)',
                         'Unique halving mechanism:',
                         'Anti-inflation features:'
                       ].includes(feature);

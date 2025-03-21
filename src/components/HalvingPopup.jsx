@@ -9,57 +9,68 @@ const HalvingPopup = ({ isOpen, onClose }) => {
       <div className="halving-popup-content" onClick={e => e.stopPropagation()}>
         <button className="close-button" onClick={onClose}>&times;</button>
 
-        <h2>HSE Halving Mechanism</h2>
+        <h2>MOVLY Halving Mechanism</h2>
 
         <section className="popup-section">
           <h3>Overview</h3>
-          <p>HSE implements a unique halving mechanism that automatically adjusts earning rates based on the total amount of tokens earned, ensuring sustainable and fair distribution over time.</p>
+          <p>MOVLY implements a dynamic halving mechanism that reduces earning rates based on the percentage of remaining tokens earned, ensuring sustainable and long-lasting distribution over time.</p>
         </section>
 
         <section className="popup-section">
           <h3>Total Supply</h3>
-          <p>Maximum supply: 2,000,000,000 HSE</p>
+          <p>Maximum supply: 6,900,000,000 MOVLY</p>
+          <p>The halving mechanism works on remaining tokens:</p>
           <ul>
-            <li>First milestone: 1,000,000,000 HSE (50% of max)</li>
-            <li>Second milestone: 500,000,000 HSE (25% of max)</li>
-            <li>Third milestone: 250,000,000 HSE (12.5% of max)</li>
-            <li>And continues following this pattern</li>
+            <li>First halving: When 25% of max supply is earned (1,725M MOVLY)
+              <br />- Earning rate reduces by 25%
+              <br />- Remaining supply: 5,175M MOVLY</li>
+            <li>Second halving: When 25% of remaining supply is earned (1,293.75M MOVLY)
+              <br />- Earning rate reduces by another 25%
+              <br />- New remaining supply: 3,881.25M MOVLY</li>
+            <li>Third halving: When 25% of new remaining supply is earned (970.31M MOVLY)
+              <br />- Earning rate reduces by another 25%
+              <br />- Process continues...</li>
           </ul>
         </section>
 
         <section className="popup-section">
           <h3>Earning Rate Formula</h3>
-          <p>Daily Rate = Base Rate / (1 + Time Factor)</p>
+          <p>Current Rate = Base Rate × (Current Reduction Factor)</p>
           <p>Where:</p>
           <ul>
-            <li>Base Rate: Initial earning rate for each milestone</li>
-            <li>Time Factor: Increases as more tokens are earned within each milestone</li>
-            <li>Rate halves automatically when reaching each milestone</li>
+            <li>Base Rate: Initial earning rate</li>
+            <li>Reduction Factor: Decreases by 25% each time users earn 25% of remaining supply</li>
+            <li>Process continues indefinitely, making tokens increasingly scarce</li>
           </ul>
         </section>
 
         <section className="popup-section">
           <h3>Example</h3>
-          <p>Starting with Base Rate = 100 HSE/day:</p>
+          <p>Starting with Base Rate = 100 MOVLY/day:</p>
           <ul>
-            <li>Until 1B tokens earned:
-              <br />- Initial rate: 100 HSE/day
-              <br />- Rate gradually decreases as tokens are earned
-              <br />- Halves when reaching 1B total earned</li>
-            <li>After first halving:
-              <br />- New base rate: 50 HSE/day
-              <br />- Rate continues to decrease gradually
-              <br />- Halves again at 500M more tokens earned</li>
+            <li>Initial Phase:
+              <br />- Full rate: 100 MOVLY/day
+              <br />- Until 1,725M tokens earned (25% of 6,900M)</li>
+            <li>First Reduction:
+              <br />- Rate reduces to: 75 MOVLY/day
+              <br />- Until 1,293.75M more tokens earned (25% of 5,175M)</li>
+            <li>Second Reduction:
+              <br />- Rate reduces to: 56.25 MOVLY/day
+              <br />- Until 970.31M more tokens earned (25% of 3,881.25M)</li>
+            <li>Pattern continues:
+              <br />- Each time 25% of remaining tokens are earned
+              <br />- Rate reduces by 25% of current rate</li>
           </ul>
         </section>
 
         <section className="popup-section">
           <h3>Benefits</h3>
           <ul>
-            <li>Self-adjusting distribution based on actual usage</li>
-            <li>Prevents inflation through automatic rate reduction</li>
-            <li>Rewards early adopters while maintaining long-term sustainability</li>
-            <li>Transparent and predictable earning mechanism</li>
+            <li>Truly sustainable long-term distribution</li>
+            <li>Natural scarcity increases over time</li>
+            <li>Rewards early participants while maintaining long-term earning potential</li>
+            <li>Dynamic adjustment based on actual token circulation</li>
+            <li>Theoretically infinite earning cycles with decreasing rates</li>
           </ul>
         </section>
       </div>
