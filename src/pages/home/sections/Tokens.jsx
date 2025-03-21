@@ -4,11 +4,8 @@ import React, { useState, useEffect } from 'react';
 import HalvingPopup from '../../../components/HalvingPopup';
 import { FaExclamationCircle } from 'react-icons/fa';
 import bg from '@assets/images/map4.jpeg';
-import silverIcon from '@assets/tokens/silver1.jpg';
-import goldIcon from '@assets/tokens/gold1.jpg';
-
-// import silverIcon from '@assets/tokens/silver.png';
-// import goldIcon from '@assets/tokens/gold.png';
+import silverIcon from '@assets/tokens/silver.jpeg';
+import goldIcon from '@assets/tokens/gold.jpeg';
 
 export default function Tokens() {
   const [showHalvingPopup, setShowHalvingPopup] = useState(false);
@@ -26,12 +23,12 @@ export default function Tokens() {
 
   const tokens = [
     {
-      symbol: 'HST',
+      symbol: 'MVS',
       icon: silverIcon,
-      name: 'Health Step Token',
-      description: 'The governance token of the HealthStep ecosystem. Total supply is limited to 100,000,000 HST.',
+      name: 'Movly Silver',
+      description: 'The governance token of the HealthStep ecosystem. Total supply is limited to 3,000,000,000 MVS.',
       features: [
-        'Fixed max supply: 100M tokens',
+        'Fixed max supply: 3B tokens',
         'Stake to earn rewards',
         'Vote on project proposals',
         'NFT purchase benefits',
@@ -39,12 +36,12 @@ export default function Tokens() {
       ]
     },
     {
-      symbol: 'HSE',
+      symbol: 'MOVLY',
       icon: goldIcon,
-      name: 'Health Step Earn',
-      description: 'Revolutionary move-to-earn token with unique halving mechanism. Total supply is limited to 2,000,000,000 HSE through automatic rate adjustment.',
+      name: 'Movly Gold',
+      description: 'Revolutionary move-to-earn token with unique halving mechanism. Total supply is limited to 6,900,000,000 MOVLY through automatic rate adjustment.',
       features: [
-        'Fixed max supply: 2B tokens',
+        'Fixed max supply: 6.9B tokens',
         'Unique halving mechanism:',
         ' Rate halves at each milestone (50%)',
         ' Milestone: 50% of remaining earned',
@@ -81,7 +78,7 @@ export default function Tokens() {
 
                 <div className="token-description-wrapper">
                   <p className="token-description">{token.description}</p>
-                  {token.symbol === 'HSE' && (
+                  {token.symbol === 'MOVLY' && (
                     <FaExclamationCircle
                       className="info-icon"
                       onClick={() => setShowHalvingPopup(true)}
@@ -95,7 +92,7 @@ export default function Tokens() {
                   <ul>
                     {token.features.map((feature, index) => {
                       const isHighlight = [
-                        'Fixed max supply: 2B tokens',
+                        'Fixed max supply: 6.9B tokens',
                         'Unique halving mechanism:',
                         'Anti-inflation features:'
                       ].includes(feature);
@@ -146,7 +143,7 @@ export default function Tokens() {
 
                 <div className="token-description-wrapper">
                   <p className="token-description">{token.description}</p>
-                  {token.symbol === 'HSE' && (
+                  {token.symbol === 'MOVLY' && (
                     <FaExclamationCircle
                       className="info-icon"
                       onClick={() => setShowHalvingPopup(true)}
@@ -160,7 +157,7 @@ export default function Tokens() {
                   <ul>
                     {token.features.map((feature, index) => {
                       const isHighlight = [
-                        'Fixed max supply: 2B tokens',
+                        'Fixed max supply: 6.9B tokens',
                         'Unique halving mechanism:',
                         'Anti-inflation features:'
                       ].includes(feature);

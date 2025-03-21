@@ -20,7 +20,7 @@ export default function Tokenomics() {
         <img src={bg} alt="background" />
         <div className="blur-overlay1" />
       </div>
-      <h2 className="tokenomics-title">HST Distribution</h2>
+      <h2 className="tokenomics-title">Movly Distribution</h2>
       <motion.div
         className="tokenomics-content"
         initial={{ opacity: 0, y: 20 }}
@@ -30,14 +30,14 @@ export default function Tokenomics() {
       >
 
         <div className="tokenomics-container">
-          <div className="chart-left">
+          {/* <div className="chart-left">
             <div className="chart-container-left">
               <img src={chart} alt="background" style={{ height: '100%', width: '100%', objectFit: 'contain' }} />
             </div>
-          </div>
+          </div> */}
           <div className="chart-right">
             <div className="chart-container-right">
-              <img src={chartDetail} alt="background" style={{ height: '100%', width: '100%', objectFit: 'contain' }} />
+              <img src={chartDetail} alt="background" style={{ height: '90%', width: '90%', objectFit: 'center' }} />
             </div>
           </div>
         </div>

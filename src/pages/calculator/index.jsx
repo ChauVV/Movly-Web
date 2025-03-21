@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './Calculator.module.css';
 import posterCal from '@assets/images/posterCal.jpeg';
-import goldCoin from '@assets/tokens/gold1.jpg';
+import goldCoin from '@assets/tokens/gold.jpeg';
 import s3 from '@assets/images/s3.jpg';
 
 const Calculator = () => {
@@ -22,8 +22,8 @@ const Calculator = () => {
   });
 
   const [earnings, setEarnings] = useState({
-    hsePerMin: 0,
-    hsePerSession: 0,
+    movlyPerMin: 0,
+    movlyPerSession: 0,
     sessionTime: 0
   });
 
@@ -114,7 +114,7 @@ const Calculator = () => {
     }
   };
 
-  const calculateHSE = () => {
+  const calculateMOVLY = () => {
     // Base rate
     const baseRate = 0.35;
 
@@ -132,16 +132,16 @@ const Calculator = () => {
     const haloBonus = 1 + calculateEnhancementBonus(sneaker.halo.level);
     const enhancementMultiplier = wingsBonus * haloBonus;
 
-    // Calculate HSE per minute
-    const hsePerMin = baseRate * qualityMultiplier * powerBonus * levelMultiplier * enhancementMultiplier;
+    // Calculate MOVLY per minute
+    const movlyPerMin = baseRate * qualityMultiplier * powerBonus * levelMultiplier * enhancementMultiplier;
 
     // Calculate session details
     const sessionTime = sneaker.mana * 10; // 10 minutes per mana
-    const hsePerSession = hsePerMin * sessionTime;
+    const movlyPerSession = movlyPerMin * sessionTime;
 
     setEarnings({
-      hsePerMin: parseFloat(hsePerMin.toFixed(2)),
-      hsePerSession: parseFloat(hsePerSession.toFixed(2)),
+      movlyPerMin: parseFloat(movlyPerMin.toFixed(2)),
+      movlyPerSession: parseFloat(movlyPerSession.toFixed(2)),
       sessionTime
     });
   };
@@ -156,7 +156,7 @@ const Calculator = () => {
   };
 
   useEffect(() => {
-    calculateHSE();
+    calculateMOVLY();
   }, [sneaker]);
 
   useEffect(() => {
@@ -326,7 +326,12 @@ const Calculator = () => {
 
   return (
     <div className={styles.calc_container}>
-      <h1 className={styles.calc_title}>HSE Earn Calculator</h1>
+      <div className={styles.calc_header}>
+        <img src={s3} alt="Header" />
+        <div className={styles.calc_headerOverlay}></div>
+      </div>
+
+      <h1 className={styles.calc_title}>MOVLY Earn Calculator</h1>
 
       <div className={styles.calc_poster}>
         <img src={posterCal} alt="Health Step Calculator Poster" />
@@ -592,13 +597,13 @@ const Calculator = () => {
                 Halving count: <span className={styles.calc_halvingCount}>0</span> <span className={styles.calc_halvingRate}>(Rate: 100%)</span>
               </p>
               <p>
-                HSE per minute: <span>{earnings.hsePerMin.toFixed(2)}</span>
+                MOVLY per minute: <span>{earnings.movlyPerMin.toFixed(2)}</span>
               </p>
               <p>
                 Running time: <span>{sneaker.mana * 5} minutes</span>
               </p>
               <p className={styles.calc_dailyIncome}>
-                DAILY INCOME: <span>{(earnings.hsePerMin * sneaker.mana * 5).toFixed(2)} <img src={goldCoin} alt="HSE" className={styles.calc_coinIcon} /></span>
+                DAILY INCOME: <span>{(earnings.movlyPerMin * sneaker.mana * 5).toFixed(2)} <img src={goldCoin} alt="MOVLY" className={styles.calc_coinIcon} /></span>
               </p>
             </div>
           </div>
@@ -608,7 +613,7 @@ const Calculator = () => {
       <div className={styles.calc_formula}>
         <h3>Earning Formula:</h3>
         <code>
-          HSE/min = 0.35 × Quality × (1 + Power×0.01) × (1 + Level×0.02) × [(1 + Wings) × (1 + Halo)] × HalvingRate
+          MOVLY = 0.35 × Quality × (1 + Power×0.01) × (1 + Level×0.02) × [(1 + Wings) × (1 + Halo)] × HalvingRate
         </code>
       </div>
 

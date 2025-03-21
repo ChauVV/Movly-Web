@@ -16,7 +16,7 @@ export default function Header() {
     <header className="header">
       <nav className="nav-container">
         <Link to="/" className="logo" onClick={() => setIsMenuOpen(false)}>
-          Health Step
+          Movly
         </Link>
 
         <button className="menu-button" onClick={toggleMenu}>
@@ -29,7 +29,7 @@ export default function Header() {
             className={location.pathname === '/' ? 'active' : ''}
             onClick={() => setIsMenuOpen(false)}
           >
-            Health Step
+            Movly
           </Link>
 
           <a

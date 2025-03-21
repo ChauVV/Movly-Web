@@ -6,7 +6,7 @@ import { FaEthereum, FaExclamationCircle } from 'react-icons/fa';
 import { SiTether } from 'react-icons/si';
 import { SiBinance } from 'react-icons/si';
 import bg from '@assets/images/mm5.jpg';
-import silverCoin from '@assets/tokens/silver1.jpg';
+import silverCoin from '@assets/tokens/silver.jpeg';
 import './BuyToken.css';
 import { toast } from 'react-hot-toast';
 

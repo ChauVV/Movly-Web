@@ -59,7 +59,7 @@ export default function Hero({ onScroll }) {
               }}
             >
               <motion.h1>
-                HEALTH STEP
+                Movly
               </motion.h1>
               <motion.p
                 className="hero-subtitle"
