@@ -26,9 +26,9 @@ export default function Tokens() {
       symbol: 'Movly',
       icon: silverIcon,
       name: 'Movly',
-      description: 'The governance token of the Movly ecosystem. Total supply is limited to 3,000,000,000 Movly.',
+      description: 'The governance token of the Movly ecosystem. Total supply is limited to 5,000,000,000 Movly.',
       features: [
-        'Fixed max supply: 3B tokens (Unchangeable)',
+        'Fixed max supply: 5B tokens (Unchangeable)',
         'Stake to earn rewards',
         'Vote on project proposals',
         'NFT purchase benefits',
