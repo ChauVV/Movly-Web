@@ -223,10 +223,6 @@ const Calculator = () => {
           wings: 0,
           halo: 0
         });
-
-        // Reset wings và halo level
-        updatedSneaker.wings.level = 0;
-        updatedSneaker.halo.level = 0;
       }
 
       return updatedSneaker;

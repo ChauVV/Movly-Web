@@ -29,6 +29,9 @@ function BuyToken() {
   // Manual wallet management - now shared with ConnectWallet component
   const [account, setAccount] = useState(null);
 
+  // Ajouter un nouvel état pour la modale d'information
+  const [showInfoModal, setShowInfoModal] = useState(false);
+
   const MOVLY_PER_USDT = 25;
   const BONUS_PERCENT = 15;
 
@@ -266,8 +269,14 @@ function BuyToken() {
     setEstimatedTokens(tokens);
   }, [paymentMethod, bnbPrice]);
 
+  // Fonction pour gérer le clic sur l'icône d'information
   const handleInfoClick = () => {
-    setIsTooltipActive(!isTooltipActive);
+    setShowInfoModal(true);
+  };
+
+  // Fonction pour fermer la modale
+  const handleCloseInfoModal = () => {
+    setShowInfoModal(false);
   };
 
   const paymentOptions = [
@@ -367,9 +376,7 @@ function BuyToken() {
                     <span className="rate-text">Rate: 1 USDT = 25 Movly</span>
                     <FaExclamationCircle
                       className="info-icon"
-                      title="* The displayed Movly amount is an estimate
-* Actual amount will be calculated based on market price at transaction time
-* Price updates every 30 seconds"
+                      onClick={handleInfoClick}
                     />
                   </div>
                 </div>
@@ -402,6 +409,21 @@ function BuyToken() {
 
           {/* Dialog */}
           <DialogResult isOpen={showDialog} onClose={handleCloseDialog} result={dialogResult} />
+
+          {/* Ajouter la modale d'information */}
+          {showInfoModal && (
+            <div className="info-modal-overlay" onClick={handleCloseInfoModal}>
+              <div className="info-modal-content" onClick={(e) => e.stopPropagation()}>
+                <h3>Price Information</h3>
+                <ul>
+                  <li>The displayed Movly amount is an estimate</li>
+                  <li>Actual amount will be calculated based on market price at transaction time</li>
+                  <li>Price updates every 30 seconds</li>
+                </ul>
+                <button className="info-modal-close" onClick={handleCloseInfoModal}>Close</button>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Footer */}

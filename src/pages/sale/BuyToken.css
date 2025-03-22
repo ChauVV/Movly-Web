@@ -157,6 +157,7 @@
   font-size: 24px;
   font-weight: 600;
   text-align: center;
+  margin-bottom: 20px;
 }
 
 .token-sale-form-group {
@@ -723,4 +724,73 @@
   position: relative;
   z-index: 10;
   background-color: rgba(255, 248, 220, 0.1);
+}
+
+/* Styles pour l'icône d'information */
+.info-icon {
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.info-icon:hover {
+  color: #FFD700;
+}
+
+/* Styles pour la modale d'information */
+.info-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(3px);
+}
+
+.info-modal-content {
+  background-color: #1a1a2e;
+  border: 1px solid rgba(255, 215, 0, 0.5);
+  border-radius: 8px;
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.info-modal-content h3 {
+  color: #FFD700;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.info-modal-content ul {
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+.info-modal-content li {
+  margin-bottom: 8px;
+  color: #f1f1f1;
+}
+
+.info-modal-close {
+  background-color: rgba(255, 215, 0, 0.7);
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 15px;
+  font-weight: bold;
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+  transition: background-color 0.2s;
+}
+
+.info-modal-close:hover {
+  background-color: rgba(255, 215, 0, 0.9);
 }
