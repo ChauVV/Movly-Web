@@ -119,9 +119,10 @@ export default function Community() {
                 ))}
               </div>
             </div>
-            <div className="Community-footer">
-              <Footer />
-            </div>
+            {!isMobile &&
+              <div className="Community-footer">
+                <Footer />
+              </div>}
           </div>
         </div>
       </section>
