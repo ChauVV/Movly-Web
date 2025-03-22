@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import { useAccount } from 'wagmi';
 import { DEPLOYER_ADDRESS, DEPLOYER_ABI, USDT_ADDRESS } from '../../config/BNBcontracts';
-import { FaEthereum, FaExclamationCircle } from 'react-icons/fa';
+import { FaExclamationCircle } from 'react-icons/fa';
 import { SiTether } from 'react-icons/si';
 import { SiBinance } from 'react-icons/si';
 import bg from '@assets/images/mm5.jpg';
@@ -17,11 +17,9 @@ function BuyToken() {
   const [estimatedTokens, setEstimatedTokens] = useState({ baseTokens: 0, bonusTokens: 0, totalTokens: 0 });
   const [saleInfo, setSaleInfo] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [ethPrice, setEthPrice] = useState(0);
   const [bnbPrice, setBnbPrice] = useState(0);
   const [isTooltipActive, setIsTooltipActive] = useState(false);
 
-  // Giá presale: 1 USDT = 25 Movly (với bonus 15% trong presale)
   const MOVLY_PER_USDT = 25;
   const BONUS_PERCENT = 15;
 
@@ -33,9 +31,7 @@ function BuyToken() {
         DEPLOYER_ABI,
         provider
       );
-      const ethPriceData = await tokenDeployer.getETHPrice();
       const bnbPriceData = await tokenDeployer.getBNBPrice();
-      setEthPrice(ethPriceData);
       setBnbPrice(bnbPriceData);
     } catch (error) {
       console.error("Error fetching prices:", error);
@@ -46,11 +42,7 @@ function BuyToken() {
     if (!inputAmount) return { baseTokens: 0, bonusTokens: 0, totalTokens: 0 };
 
     let baseTokens;
-    if (paymentMethod === 'ETH') {
-      // Chuyển đổi giá ETH từ wei sang USD (8 số thập phân)
-      const ethPriceUSD = ethPrice ? parseFloat(ethers.utils.formatUnits(ethPrice, 8)) : 0;
-      baseTokens = parseFloat(inputAmount) * ethPriceUSD * MOVLY_PER_USDT;
-    } else if (paymentMethod === 'BNB') {
+    if (paymentMethod === 'BNB') {
       // Chuyển đổi giá BNB từ wei sang USD (8 số thập phân)
       const bnbPriceUSD = bnbPrice ? parseFloat(ethers.utils.formatUnits(bnbPrice, 8)) : 0;
       baseTokens = parseFloat(inputAmount) * bnbPriceUSD * MOVLY_PER_USDT;
@@ -124,11 +116,7 @@ function BuyToken() {
       const signer = provider.getSigner();
       const tokenDeployer = new ethers.Contract(DEPLOYER_ADDRESS, DEPLOYER_ABI, signer);
 
-      if (paymentMethod === "ETH") {
-        const amountInWei = ethers.utils.parseEther(amount);
-        const tx = await tokenDeployer.buyWithETH({ value: amountInWei });
-        await tx.wait();
-      } else if (paymentMethod === "BNB") {
+      if (paymentMethod === "BNB") {
         const amountInWei = ethers.utils.parseEther(amount);
         const tx = await tokenDeployer.buyWithBNB({ value: amountInWei });
         await tx.wait();
@@ -200,7 +188,7 @@ function BuyToken() {
   useEffect(() => {
     const tokens = calculateTokens(amount);
     setEstimatedTokens(tokens);
-  }, [paymentMethod, ethPrice]);
+  }, [paymentMethod, bnbPrice]);
 
   const handleInfoClick = () => {
     setIsTooltipActive(!isTooltipActive);
@@ -208,7 +196,6 @@ function BuyToken() {
 
   const paymentOptions = [
     { value: 'BNB', label: 'BNB', icon: <SiBinance size={20} /> },
-    { value: 'ETH', label: 'ETH', icon: <FaEthereum size={20} /> },
     { value: 'USDT', label: 'USDT', icon: <SiTether size={20} /> }
   ];
 
@@ -290,7 +277,7 @@ function BuyToken() {
 
               <div className="token-sale-rate">
                 <div className="rate-with-info">
-                  <span className="rate-text">Rate: 1 USDT = 66.67 Movly</span>
+                  <span className="rate-text">Rate: 1 USDT = 25 Movly</span>
                   <FaExclamationCircle
                     className="info-icon"
                     title="* The displayed Movly amount is an estimate
