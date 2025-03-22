@@ -103,29 +103,27 @@ export default function Community() {
   };
 
   return (
-    <div className="Community-wrapper">
-      <section className="Community-section">
-        <div className="Community-background blur-img1">
-          <img src={bg} alt="background" />
-          <div className="Community-blur-overlay" />
-        </div>
-        <div className="Community-main">
-          <h2 className="Community-title">Join Our Community</h2>
-          <div className="Community-content">
-            <div className="Community-wrap-content">
-              <div className="Community-container">
-                {socialLinks.map((social, index) => (
-                  <SocialCard key={social.name} social={social} index={index} />
-                ))}
-              </div>
+    <section className="Community-section">
+      <div className="Community-background blur-img1">
+        <img src={bg} alt="background" />
+        <div className="Community-blur-overlay" />
+      </div>
+      <div className="Community-main">
+        <h2 className="Community-title">Join Our Community</h2>
+        <div className="Community-content">
+          <div className="Community-wrap-content">
+            <div className="Community-container">
+              {socialLinks.map((social, index) => (
+                <SocialCard key={social.name} social={social} index={index} />
+              ))}
             </div>
-            {!isMobile &&
-              <div className="Community-footer">
-                <Footer />
-              </div>}
           </div>
+          {!isMobile &&
+            <div className="Community-footer">
+              <Footer />
+            </div>}
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 }
