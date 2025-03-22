@@ -1287,6 +1287,19 @@ Movly smart contracts are developed with a focus on security and transparency:\r
 2. **OpenZeppelin Standards:** Built on battle-tested libraries to ensure best practices\r
 3. **Public Verification:** Contracts are fully verified on blockchain explorers\r
 4. **Immutable Rules:** Token supply caps and economic rules are hardcoded and unchangeable\r
+\r
+## Deployed Contracts\r
+\r
+The Movly ecosystem tokens have been deployed on the Binance Smart Chain (BSC) with the following contract addresses:\r
+\r
+### MOVLY Token\r
+- **Contract Address**: 0xb7C8969df0076bEe6922789AaB4bC73aAa8d45D2\r
+- **Block Explorer**: [View on BSCScan](https://bscscan.com/address/0xb7C8969df0076bEe6922789AaB4bC73aAa8d45D2)\r
+\r
+### MGD Token\r
+- **Contract Address**: 0x3d223ae97AA30f3b7dA4Be5b1F8a68749c37C289\r
+- **Block Explorer**: [View on BSCScan](https://bscscan.com/address/0x3d223ae97AA30f3b7dA4Be5b1F8a68749c37C289)\r
+\r
 `,Hoe=`# Getting Help\r
 \r
 If you have any questions, concerns, or need assistance with Movly, our support team is here to help.\r
