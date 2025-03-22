@@ -1,26 +1,108 @@
-.token-sale-container {
-  position: relative;
-  min-height: 100vh;
-  width: 100;
+/* Reset toàn bộ CSS về trạng thái cơ bản */
+.buy-token-fixed-container {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
   overflow-y: auto;
+  position: relative;
+
+  /* Thêm CSS cho scrollbar (webkit browsers - Chrome, Safari, Opera) */
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 215, 0, 0.3);
+    /* Gold color semi-transparent */
+    border-radius: 4px;
+  }
+
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 215, 0, 0.3) transparent;
 }
 
 .token-sale-bg {
   position: fixed;
+  /* Nền cố định */
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
-  background-attachment: fixed;
+  z-index: -1;
 }
 
 .token-sale-bg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.token-sale-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  padding: 20px 0;
+}
+
+.token-sale-main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.token-sale-card {
+  max-width: 600px;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.token-sale-footer {
+  margin-top: 6rem;
+  width: 100%;
+}
+
+.buy-token-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 0;
+}
+
+.buy-token-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 1;
+}
+
+.token-sale-container {
+  position: relative;
+  min-height: auto;
+  width: 100%;
+  overflow: visible !important;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 40px 0;
+  padding-bottom: 0;
 }
 
 .token-sale-bg-overlay {
@@ -42,6 +124,7 @@
   text-transform: uppercase;
   margin: 0;
   margin-top: 60px;
+  margin-bottom: 20px;
   font-family: 'Chakra Petch', sans-serif;
   font-weight: 700;
 }
@@ -55,24 +138,11 @@
   padding: 2rem 1rem;
   padding-bottom: 8rem;
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   flex: 1;
   margin-bottom: 5rem;
-}
-
-.token-sale-card {
-  width: 100%;
-  max-width: 470px;
-  min-height: 561px;
-  height: auto;
-  background: rgba(41, 37, 0, 0.8);
-  border: 1px solid rgba(255, 214, 0, 0.3);
-  border-radius: 12px;
-  backdrop-filter: blur(12px);
-  padding: 24px;
-  box-shadow: 0 8px 32px rgba(255, 214, 0, 0.1);
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
+  overflow: visible;
 }
 
 .token-sale-card-content {
@@ -258,7 +328,6 @@
   min-width: auto;
   flex: 2;
 }
-
 
 .token-sale-row.total {
   border-top: 1px solid rgba(255, 255, 255, 0.2);
@@ -557,7 +626,6 @@
   }
 }
 
-
 .token-sale-rate {
   color: #FFFFFF;
 }
@@ -614,13 +682,6 @@
   padding: 12px;
 }
 
-.token-sale-footer {
-  width: 100%;
-  position: relative;
-  z-index: 2;
-  background: transparent;
-}
-
 .token-sale-footer footer {
   background: transparent;
 }
@@ -654,4 +715,12 @@
     align-items: center;
     gap: 10px;
   }
+}
+
+.elevated-footer {
+  margin-top: 6rem;
+  border-top: 0.4px solid rgba(255, 215, 0, 0.5);
+  position: relative;
+  z-index: 10;
+  background-color: rgba(255, 248, 220, 0.1);
 }

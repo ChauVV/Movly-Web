@@ -351,14 +351,3 @@
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(76, 175, 80, 0.2);
 }
-
-/* Remove any styles that would conflict with WalletModals.css */
-/* The following styles are now managed by WalletModals.css */
-.modal-overlay,
-.modal-container,
-.modal-header,
-.modal-body,
-.modal-footer,
-.disconnect-button {
-  /* These styles will come from the shared WalletModals.css */
-}

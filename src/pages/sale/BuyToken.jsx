@@ -278,18 +278,20 @@ function BuyToken() {
   const isWalletConnected = !!account;
 
   return (
-    <>
-      <div className="token-sale-container">
+    <div className="buy-token-fixed-container">
+      <div className="token-sale-content-wrapper">
         <div className="token-sale-bg">
           <img src={bg} alt="background" />
           <div className="token-sale-bg-overlay" />
         </div>
-        <h1 className="token-sale-heading">Buy Movly Token</h1>
 
-        {/* Wallet connection section - now using the separate component */}
-        <ConnectWallet account={account} setAccount={setAccount} />
+        <div className="token-sale-main-content">
+          <h1 className="token-sale-heading">Buy Movly Token</h1>
 
-        <div className="token-sale-content">
+          {/* Wallet connection */}
+          <ConnectWallet account={account} setAccount={setAccount} />
+
+          {/* Card */}
           <div className="token-sale-card">
             <h2 className="token-sale-card-title">Purchase Tokens</h2>
 
@@ -395,21 +397,17 @@ function BuyToken() {
                     : `Buy with ${paymentMethod}`}
             </button>
           </div>
+
+          {/* Dialog */}
+          <DialogResult isOpen={showDialog} onClose={handleCloseDialog} result={dialogResult} />
         </div>
 
-        {/* Transaction result dialog */}
-        <DialogResult
-          isOpen={showDialog}
-          onClose={handleCloseDialog}
-          result={dialogResult}
-        />
-
-        {/* Footer với z-index cao hơn */}
-        <div className="token-sale-footer">
+        {/* Footer */}
+        <div className="token-sale-footer elevated-footer">
           <Footer />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
