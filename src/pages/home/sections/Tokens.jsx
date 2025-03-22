@@ -98,7 +98,7 @@ export default function Tokens() {
                   <ul>
                     {token.features.map((feature, index) => {
                       const isHighlight = [
-                        'Fixed max supply: 3B tokens (Unchangeable)',
+                        'Fixed max supply: 5B tokens (Unchangeable)',
                         'Fixed max supply: 10B tokens (Unchangeable)',
                         'Unique halving mechanism:',
                         'Anti-inflation features:'
@@ -164,7 +164,7 @@ export default function Tokens() {
                   <ul>
                     {token.features.map((feature, index) => {
                       const isHighlight = [
-                        'Fixed max supply: 3B tokens (Unchangeable)',
+                        'Fixed max supply: 5B tokens (Unchangeable)',
                         'Fixed max supply: 10B tokens (Unchangeable)',
                         'Unique halving mechanism:',
                         'Anti-inflation features:'
