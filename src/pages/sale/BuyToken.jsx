@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import { useAccount } from 'wagmi';
 import { DEPLOYER_ADDRESS, DEPLOYER_ABI, USDT_ADDRESS } from '../../config/BNBcontracts';
-import { FaExclamationCircle } from 'react-icons/fa';
+import { FaExclamationCircle, FaExternalLinkAlt } from 'react-icons/fa';
 import { SiTether } from 'react-icons/si';
 import { SiBinance } from 'react-icons/si';
 import bg from '@assets/images/mm5.jpg';
 import silverCoin from '@assets/tokens/silverSmall.png';
 import './BuyToken.css';
 import { toast } from 'react-hot-toast';
+import DialogResult from './DialogResult';
 
 function BuyToken() {
   const { address, isConnected } = useAccount();
@@ -19,9 +20,28 @@ function BuyToken() {
   const [loading, setLoading] = useState(false);
   const [bnbPrice, setBnbPrice] = useState(0);
   const [isTooltipActive, setIsTooltipActive] = useState(false);
+  const [lastTxHash, setLastTxHash] = useState('');
+
+  // State cho dialog
+  const [showDialog, setShowDialog] = useState(false);
+  const [dialogResult, setDialogResult] = useState(null);
 
   const MOVLY_PER_USDT = 25;
   const BONUS_PERCENT = 15;
+
+  // Kiểm tra nếu đang ở mainnet hay testnet để lấy URL explorer phù hợp
+  const getExplorerUrl = (txHash) => {
+    // Thay đổi network ID tùy theo mạng bạn đang kết nối
+    // Chain ID của BSC Mainnet là 56, BSC Testnet là 97
+    const networkId = window.ethereum ? window.ethereum.networkVersion : null;
+    const isMainnet = networkId === '56';
+
+    const baseUrl = isMainnet
+      ? 'https://bscscan.com/tx/'
+      : 'https://testnet.bscscan.com/tx/';
+
+    return `${baseUrl}${txHash}`;
+  };
 
   const fetchPrices = async () => {
     try {
@@ -106,7 +126,7 @@ function BuyToken() {
 
   const handleBuy = async () => {
     if (!amount || parseFloat(amount) <= 0) {
-      toast.error("Please enter a valid amount");
+      toast.error("Vui lòng nhập số lượng hợp lệ");
       return;
     }
 
@@ -119,7 +139,19 @@ function BuyToken() {
       if (paymentMethod === "BNB") {
         const amountInWei = ethers.utils.parseEther(amount);
         const tx = await tokenDeployer.buyWithBNB({ value: amountInWei });
+        console.log("Buy tx sent:", tx.hash);
         await tx.wait();
+
+        // Hiển thị dialog thành công
+        setDialogResult({
+          success: true,
+          txHash: tx.hash,
+          tokenAmount: estimatedTokens.totalTokens,
+          paymentMethod: "BNB",
+          paymentAmount: amount
+        });
+        setShowDialog(true);
+
       } else if (paymentMethod === "USDT") {
         try {
           const amountInWei = ethers.utils.parseUnits(amount.toString(), 18);
@@ -146,7 +178,7 @@ function BuyToken() {
           console.log("USDT balance:", ethers.utils.formatUnits(usdtBalance, 18));
 
           if (usdtBalance.lt(amountInWei)) {
-            throw new Error(`Insufficient USDT balance. You have ${ethers.utils.formatUnits(usdtBalance, 18)} USDT`);
+            throw new Error(`Số dư USDT không đủ. Bạn có ${ethers.utils.formatUnits(usdtBalance, 18)} USDT`);
           }
 
           // Kiểm tra và xử lý approve
@@ -168,20 +200,63 @@ function BuyToken() {
           await tx.wait();
           console.log("Purchase confirmed");
 
+          // Hiển thị dialog thành công
+          setDialogResult({
+            success: true,
+            txHash: tx.hash,
+            tokenAmount: estimatedTokens.totalTokens,
+            paymentMethod: "USDT",
+            paymentAmount: amount
+          });
+          setShowDialog(true);
+
         } catch (error) {
           console.error("Detailed USDT error:", error);
           throw error;
         }
       }
 
-      toast.success("Purchase successful!");
       setAmount("");
 
     } catch (error) {
       console.error("Purchase failed:", error);
-      toast.error(error.message || "Purchase failed. Please try again.");
+
+      // Phân tích lỗi để hiển thị thông báo phù hợp
+      let errorMessage = "Giao dịch thất bại. Vui lòng thử lại.";
+
+      if (error.message) {
+        if (error.message.includes("user rejected transaction")) {
+          errorMessage = "Bạn đã hủy giao dịch.";
+        } else if (error.message.includes("insufficient funds")) {
+          errorMessage = "Số dư không đủ để thực hiện giao dịch.";
+        } else if (error.message.includes("Presale completed")) {
+          errorMessage = "Giai đoạn Presale đã kết thúc. Vui lòng thử lại với giai đoạn Public Sale.";
+        } else if (error.message.includes("Sale ended")) {
+          errorMessage = "Đợt bán token đã kết thúc.";
+        } else {
+          errorMessage = error.message;
+        }
+      }
+
+      // Hiển thị dialog lỗi
+      setDialogResult({
+        success: false,
+        error: errorMessage,
+        // Nếu có txHash (ví dụ từ approve thành công nhưng mua thất bại)
+        txHash: error.transactionHash || null
+      });
+      setShowDialog(true);
+
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleCloseDialog = () => {
+    setShowDialog(false);
+    // Fetch lại thông tin giao dịch nếu thành công
+    if (dialogResult?.success) {
+      fetchPrices();
     }
   };
 
@@ -301,8 +376,28 @@ function BuyToken() {
                 ? 'Processing...'
                 : `Buy with ${paymentMethod}`}
           </button>
+
+          {lastTxHash && (
+            <div className="last-transaction">
+              <a
+                href={getExplorerUrl(lastTxHash)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transaction-link-small"
+              >
+                Giao dịch gần nhất <FaExternalLinkAlt size={10} />
+              </a>
+            </div>
+          )}
         </div>
       </div>
+
+      {/* Dialog kết quả giao dịch */}
+      <DialogResult
+        isOpen={showDialog}
+        onClose={handleCloseDialog}
+        result={dialogResult}
+      />
     </div>
   );
 }

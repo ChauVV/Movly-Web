@@ -1,0 +1,239 @@
+/* Dialog Overlay - full screen background */
+.sale-dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(3px);
+}
+
+/* Dialog Container */
+.sale-dialog-container {
+  background-color: rgba(16, 16, 20, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  max-width: 500px;
+  width: 90%;
+  overflow: hidden;
+  animation: dialogFadeIn 0.3s ease-out;
+  border: 2px solid #ffb901;
+}
+
+@keyframes dialogFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dialog Header */
+.sale-dialog-header {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 185, 1, 0.3);
+  background-color: rgba(255, 185, 1, 0.1);
+}
+
+.sale-dialog-header.success {
+  background-color: rgba(255, 185, 1, 0.1);
+}
+
+.sale-dialog-header.error {
+  background-color: rgba(234, 57, 67, 0.1);
+}
+
+.sale-dialog-header h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+  color: #ffb901;
+}
+
+.sale-dialog-icon {
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.sale-dialog-icon.success {
+  background-color: rgba(255, 185, 1, 0.2);
+  color: #ffb901;
+}
+
+.sale-dialog-icon.error {
+  background-color: rgba(234, 57, 67, 0.2);
+  color: #ea3943;
+}
+
+/* Dialog Content */
+.sale-dialog-content {
+  padding: 20px;
+  background-color: rgba(16, 16, 20, 0.95);
+}
+
+.sale-dialog-message {
+  font-size: 14px;
+  margin-bottom: 16px;
+  color: #e5e5e5;
+  line-height: 1.5;
+}
+
+.sale-dialog-details {
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(255, 185, 1, 0.15);
+}
+
+.sale-detail-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.sale-detail-row:last-child {
+  margin-bottom: 0;
+}
+
+.sale-detail-label {
+  color: #b0b0b0;
+}
+
+.sale-detail-value {
+  color: #ffb901;
+  font-weight: 500;
+  text-align: right;
+  word-break: break-all;
+}
+
+.sale-hash-container {
+  display: flex;
+  align-items: center;
+}
+
+.sale-hash-text {
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #ffb901;
+}
+
+.sale-copy-icon {
+  cursor: pointer;
+  margin-left: 8px;
+  color: #ffb901;
+  transition: color 0.2s;
+}
+
+.sale-copy-icon:hover {
+  color: #ffce66;
+}
+
+.sale-copy-message {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  margin-top: -30px;
+  animation: fadeOut 1.5s forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Dialog Footer */
+.sale-dialog-footer {
+  padding: 16px 20px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  border-top: 1px solid rgba(255, 185, 1, 0.3);
+  background-color: rgba(16, 16, 20, 0.95);
+}
+
+.sale-dialog-btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s all;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.sale-dialog-btn-explorer {
+  background-color: rgba(255, 185, 1, 0.1);
+  border: 1px solid rgba(255, 185, 1, 0.5);
+  color: #ffb901;
+}
+
+.sale-dialog-btn-explorer:hover {
+  background-color: rgba(255, 185, 1, 0.2);
+}
+
+.sale-dialog-btn-close {
+  background-color: #ffb901;
+  border: none;
+  color: #121212;
+  font-weight: 700;
+}
+
+.sale-dialog-btn-close:hover {
+  background-color: #ffce66;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+  .sale-dialog-container {
+    width: 95%;
+    max-width: none;
+  }
+
+  .sale-dialog-footer {
+    flex-direction: column;
+  }
+
+  .sale-dialog-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .sale-hash-text {
+    max-width: 120px;
+  }
+}
