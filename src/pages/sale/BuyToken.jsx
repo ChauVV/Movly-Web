@@ -11,6 +11,7 @@ import { toast } from 'react-hot-toast';
 import DialogResult from './DialogResult';
 import ConnectWallet from './ConnectWallet';
 import Footer from '../../components/Footer';
+import Header from '@/components/Header';
 
 function BuyToken() {
   const [amount, setAmount] = useState('');
@@ -279,6 +280,7 @@ function BuyToken() {
 
   return (
     <div className="buy-token-fixed-container">
+      <Header />
       <div className="token-sale-content-wrapper">
         <div className="token-sale-bg">
           <img src={bg} alt="background" />

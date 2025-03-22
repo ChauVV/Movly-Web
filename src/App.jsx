@@ -60,6 +60,7 @@ function App() {
             <Route path="/mail-request" element={<MailRequest />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
+            <Route path="sale" element={<BuyToken />} />
 
             {/* Routes with header */}
             <Route path="/" element={
@@ -71,7 +72,6 @@ function App() {
               </div>
             }>
               <Route index element={<Main />} />
-              <Route path="sale" element={<BuyToken />} />
             </Route>
 
             {/* Redirect invalid URLs to home */}
