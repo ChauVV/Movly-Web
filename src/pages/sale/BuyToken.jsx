@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
-import { useAccount } from 'wagmi';
 import { DEPLOYER_ADDRESS, DEPLOYER_ABI, USDT_ADDRESS } from '../../config/BNBcontracts';
-import { FaExclamationCircle, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaExclamationCircle } from 'react-icons/fa';
 import { SiTether } from 'react-icons/si';
 import { SiBinance } from 'react-icons/si';
 import bg from '@assets/images/mm5.jpg';
@@ -10,9 +9,10 @@ import silverCoin from '@assets/tokens/silverSmall.png';
 import './BuyToken.css';
 import { toast } from 'react-hot-toast';
 import DialogResult from './DialogResult';
+import ConnectWallet from './ConnectWallet';
+import Footer from '../../components/Footer';
 
 function BuyToken() {
-  const { address, isConnected } = useAccount();
   const [amount, setAmount] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('BNB');
   const [estimatedTokens, setEstimatedTokens] = useState({ baseTokens: 0, bonusTokens: 0, totalTokens: 0 });
@@ -20,19 +20,19 @@ function BuyToken() {
   const [loading, setLoading] = useState(false);
   const [bnbPrice, setBnbPrice] = useState(0);
   const [isTooltipActive, setIsTooltipActive] = useState(false);
-  const [lastTxHash, setLastTxHash] = useState('');
 
-  // State cho dialog
+  // Dialog states
   const [showDialog, setShowDialog] = useState(false);
   const [dialogResult, setDialogResult] = useState(null);
+
+  // Manual wallet management - now shared with ConnectWallet component
+  const [account, setAccount] = useState(null);
 
   const MOVLY_PER_USDT = 25;
   const BONUS_PERCENT = 15;
 
-  // Kiểm tra nếu đang ở mainnet hay testnet để lấy URL explorer phù hợp
+  // Check if we're on mainnet or testnet to get the appropriate explorer URL
   const getExplorerUrl = (txHash) => {
-    // Thay đổi network ID tùy theo mạng bạn đang kết nối
-    // Chain ID của BSC Mainnet là 56, BSC Testnet là 97
     const networkId = window.ethereum ? window.ethereum.networkVersion : null;
     const isMainnet = networkId === '56';
 
@@ -63,7 +63,7 @@ function BuyToken() {
 
     let baseTokens;
     if (paymentMethod === 'BNB') {
-      // Chuyển đổi giá BNB từ wei sang USD (8 số thập phân)
+      // Convert BNB price from wei to USD (8 decimal places)
       const bnbPriceUSD = bnbPrice ? parseFloat(ethers.utils.formatUnits(bnbPrice, 8)) : 0;
       baseTokens = parseFloat(inputAmount) * bnbPriceUSD * MOVLY_PER_USDT;
     } else {
@@ -89,12 +89,12 @@ function BuyToken() {
   };
 
   useEffect(() => {
-    if (isConnected) {
+    if (account) {
       fetchPrices();
       const interval = setInterval(fetchPrices, 30000); // Update every 30 seconds
       return () => clearInterval(interval);
     }
-  }, [isConnected]);
+  }, [account]);
 
   useEffect(() => {
     const fetchSaleStatus = async () => {
@@ -119,14 +119,14 @@ function BuyToken() {
       }
     };
 
-    if (isConnected) {
+    if (account) {
       fetchSaleStatus();
     }
-  }, [isConnected]);
+  }, [account]);
 
   const handleBuy = async () => {
     if (!amount || parseFloat(amount) <= 0) {
-      toast.error("Vui lòng nhập số lượng hợp lệ");
+      toast.error("Please enter a valid amount");
       return;
     }
 
@@ -142,7 +142,7 @@ function BuyToken() {
         console.log("Buy tx sent:", tx.hash);
         await tx.wait();
 
-        // Hiển thị dialog thành công
+        // Show success dialog
         setDialogResult({
           success: true,
           txHash: tx.hash,
@@ -157,10 +157,10 @@ function BuyToken() {
           const amountInWei = ethers.utils.parseUnits(amount.toString(), 18);
           console.log("Amount in Wei:", amountInWei.toString());
 
-          // Sử dụng USDT_ADDRESS từ config thay vì gọi usdt()
+          // Use USDT_ADDRESS from config
           console.log("USDT address:", USDT_ADDRESS);
 
-          // Tạo USDT contract instance
+          // Create USDT contract instance
           const usdtContract = new ethers.Contract(
             USDT_ADDRESS,
             [
@@ -173,15 +173,15 @@ function BuyToken() {
 
           const userAddress = await signer.getAddress();
 
-          // Kiểm tra balance USDT
+          // Check USDT balance
           const usdtBalance = await usdtContract.balanceOf(userAddress);
           console.log("USDT balance:", ethers.utils.formatUnits(usdtBalance, 18));
 
           if (usdtBalance.lt(amountInWei)) {
-            throw new Error(`Số dư USDT không đủ. Bạn có ${ethers.utils.formatUnits(usdtBalance, 18)} USDT`);
+            throw new Error(`Insufficient USDT balance. You have ${ethers.utils.formatUnits(usdtBalance, 18)} USDT`);
           }
 
-          // Kiểm tra và xử lý approve
+          // Check and handle approval
           const allowance = await usdtContract.allowance(userAddress, DEPLOYER_ADDRESS);
           console.log("Current allowance:", ethers.utils.formatUnits(allowance, 18));
 
@@ -193,14 +193,14 @@ function BuyToken() {
             console.log("Approve confirmed");
           }
 
-          // Thực hiện mua token
+          // Purchase tokens
           console.log("Buying tokens with USDT...");
           const tx = await tokenDeployer.buyWithUSDT(amountInWei);
           console.log("Buy tx sent:", tx.hash);
           await tx.wait();
           console.log("Purchase confirmed");
 
-          // Hiển thị dialog thành công
+          // Show success dialog
           setDialogResult({
             success: true,
             txHash: tx.hash,
@@ -221,28 +221,28 @@ function BuyToken() {
     } catch (error) {
       console.error("Purchase failed:", error);
 
-      // Phân tích lỗi để hiển thị thông báo phù hợp
-      let errorMessage = "Giao dịch thất bại. Vui lòng thử lại.";
+      // Analyze error to display appropriate message
+      let errorMessage = "Transaction failed. Please try again.";
 
       if (error.message) {
         if (error.message.includes("user rejected transaction")) {
-          errorMessage = "Bạn đã hủy giao dịch.";
+          errorMessage = "You canceled the transaction.";
         } else if (error.message.includes("insufficient funds")) {
-          errorMessage = "Số dư không đủ để thực hiện giao dịch.";
+          errorMessage = "Insufficient balance to complete the transaction.";
         } else if (error.message.includes("Presale completed")) {
-          errorMessage = "Giai đoạn Presale đã kết thúc. Vui lòng thử lại với giai đoạn Public Sale.";
+          errorMessage = "Presale phase has ended. Please try again with Public Sale phase.";
         } else if (error.message.includes("Sale ended")) {
-          errorMessage = "Đợt bán token đã kết thúc.";
+          errorMessage = "Token sale has ended.";
         } else {
           errorMessage = error.message;
         }
       }
 
-      // Hiển thị dialog lỗi
+      // Show error dialog
       setDialogResult({
         success: false,
         error: errorMessage,
-        // Nếu có txHash (ví dụ từ approve thành công nhưng mua thất bại)
+        // If there's a txHash (e.g., from a successful approve but failed purchase)
         txHash: error.transactionHash || null
       });
       setShowDialog(true);
@@ -254,7 +254,7 @@ function BuyToken() {
 
   const handleCloseDialog = () => {
     setShowDialog(false);
-    // Fetch lại thông tin giao dịch nếu thành công
+    // Fetch transaction info again if successful
     if (dialogResult?.success) {
       fetchPrices();
     }
@@ -274,131 +274,142 @@ function BuyToken() {
     { value: 'USDT', label: 'USDT', icon: <SiTether size={20} /> }
   ];
 
+  // Use account instead of address and isConnected
+  const isWalletConnected = !!account;
+
   return (
-    <div className="token-sale-container">
-      <div className="token-sale-bg">
-        <img src={bg} alt="background" />
-        <div className="token-sale-bg-overlay" />
-      </div>
-      <h1 className="token-sale-heading">Buy Movly Token</h1>
-      <div className="token-sale-content">
-        <div className="token-sale-card">
-          <h2 className="token-sale-card-title">Purchase Tokens</h2>
+    <>
+      <div className="token-sale-container">
+        <div className="token-sale-bg">
+          <img src={bg} alt="background" />
+          <div className="token-sale-bg-overlay" />
+        </div>
+        <h1 className="token-sale-heading">Buy Movly Token</h1>
 
-          <div className="token-sale-form-group">
-            <p className="info-label">Payment Method</p>
-            <div className="token-sale-select-wrapper">
-              <select
-                value={paymentMethod}
-                onChange={(e) => setPaymentMethod(e.target.value)}
-                className="token-sale-select"
-              >
-                {paymentOptions.map(option => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-              <div className="token-sale-select-icon">
-                {paymentOptions.find(opt => opt.value === paymentMethod)?.icon}
-              </div>
-            </div>
-          </div>
+        {/* Wallet connection section - now using the separate component */}
+        <ConnectWallet account={account} setAccount={setAccount} />
 
-          <div className="token-sale-form-group">
-            <p className="info-label">Amount ({paymentMethod})</p>
-            <div className="token-sale-input-group">
-              <input
-                type="number"
-                className="token-sale-input"
-                value={amount}
-                onChange={handleAmountChange}
-                placeholder={`Enter amount in ${paymentMethod}`}
-                min="0"
-                step="any"
-              />
-              <div className="token-sale-input-icon">
-                {paymentOptions.find(opt => opt.value === paymentMethod)?.icon}
-              </div>
-            </div>
-          </div>
+        <div className="token-sale-content">
+          <div className="token-sale-card">
+            <h2 className="token-sale-card-title">Purchase Tokens</h2>
 
-          <div className="info-item">
-            <div className="token-sale-calc">
-              <div className="token-sale-row">
-                <span>BASE Movly:</span>
-                <span className="token-sale-amount">
-                  <span>{Number(estimatedTokens.baseTokens).toLocaleString()}</span>
-                  <span className="token-sale-unit">Movly</span>
-                  <img src={silverCoin} alt="Movly" className="token-sale-icon" />
-                </span>
-              </div>
-              <div className="token-sale-row">
-                <span>BONUS ({BONUS_PERCENT}%):</span>
-                <span className="token-sale-amount">
-                  <span>{Number(estimatedTokens.bonusTokens).toLocaleString()}</span>
-                  <span className="token-sale-unit">Movly</span>
-                  <img src={silverCoin} alt="Movly" className="token-sale-icon" />
-                </span>
-              </div>
-              <div className="token-sale-row total">
-                <span>You will receive:</span>
-                <span className="token-sale-amount">
-                  <span>{Number(estimatedTokens.totalTokens).toLocaleString()}</span>
-                  <span className="token-sale-unit">Movly</span>
-                  <img src={silverCoin} alt="Movly" className="token-sale-icon" />
-                </span>
-              </div>
-
-              <div className="token-sale-rate">
-                <div className="rate-with-info">
-                  <span className="rate-text">Rate: 1 USDT = 25 Movly</span>
-                  <FaExclamationCircle
-                    className="info-icon"
-                    title="* The displayed Movly amount is an estimate
-* Actual amount will be calculated based on market price at transaction time
-* Price updates every 30 seconds"
-                  />
+            <div className="token-sale-form-group">
+              <p className="info-label">Payment Method</p>
+              <div className="token-sale-select-wrapper">
+                <select
+                  value={paymentMethod}
+                  onChange={(e) => setPaymentMethod(e.target.value)}
+                  className="token-sale-select"
+                >
+                  {paymentOptions.map(option => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+                <div className="token-sale-select-icon">
+                  {paymentOptions.find(opt => opt.value === paymentMethod)?.icon}
                 </div>
               </div>
             </div>
 
-          </div>
-
-          <button
-            onClick={handleBuy}
-            disabled={!isConnected || !amount || parseFloat(amount) <= 0 || loading}
-            className="token-sale-buy-btn"
-          >
-            {!isConnected
-              ? 'Connect Wallet to Buy'
-              : loading
-                ? 'Processing...'
-                : `Buy with ${paymentMethod}`}
-          </button>
-
-          {lastTxHash && (
-            <div className="last-transaction">
-              <a
-                href={getExplorerUrl(lastTxHash)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transaction-link-small"
-              >
-                Giao dịch gần nhất <FaExternalLinkAlt size={10} />
-              </a>
+            <div className="token-sale-form-group">
+              <p className="info-label">Amount ({paymentMethod})</p>
+              <div className="token-sale-input-group">
+                <input
+                  type="number"
+                  className="token-sale-input"
+                  value={amount}
+                  onChange={handleAmountChange}
+                  placeholder={`Enter amount in ${paymentMethod}`}
+                  min="0"
+                  step="any"
+                />
+                <div className="token-sale-input-icon">
+                  {paymentOptions.find(opt => opt.value === paymentMethod)?.icon}
+                </div>
+              </div>
             </div>
-          )}
+
+            <div className="info-item">
+              <div className="token-sale-calc">
+                <div className="token-sale-row">
+                  <span>BASE Movly:</span>
+                  <span className="token-sale-amount">
+                    <span>{Number(estimatedTokens.baseTokens).toLocaleString()}</span>
+                    <span className="token-sale-unit">Movly</span>
+                    <img src={silverCoin} alt="Movly" className="token-sale-icon" />
+                  </span>
+                </div>
+                <div className="token-sale-row">
+                  <span>BONUS ({BONUS_PERCENT}%):</span>
+                  <span className="token-sale-amount">
+                    <span>{Number(estimatedTokens.bonusTokens).toLocaleString()}</span>
+                    <span className="token-sale-unit">Movly</span>
+                    <img src={silverCoin} alt="Movly" className="token-sale-icon" />
+                  </span>
+                </div>
+                <div className="token-sale-row total">
+                  <span>You will receive:</span>
+                  <span className="token-sale-amount">
+                    <span>{Number(estimatedTokens.totalTokens).toLocaleString()}</span>
+                    <span className="token-sale-unit">Movly</span>
+                    <img src={silverCoin} alt="Movly" className="token-sale-icon" />
+                  </span>
+                </div>
+
+                <div className="token-sale-rate">
+                  <div className="rate-with-info">
+                    <span className="rate-text">Rate: 1 USDT = 25 Movly</span>
+                    <FaExclamationCircle
+                      className="info-icon"
+                      title="* The displayed Movly amount is an estimate
+* Actual amount will be calculated based on market price at transaction time
+* Price updates every 30 seconds"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button
+              onClick={handleBuy}
+              disabled={!isWalletConnected || !amount || parseFloat(amount) <= 0 || loading}
+              className="token-sale-buy-btn"
+              title={
+                !isWalletConnected
+                  ? 'Please connect your wallet first'
+                  : !amount || parseFloat(amount) <= 0
+                    ? 'Please enter a valid amount'
+                    : loading
+                      ? 'Transaction in progress'
+                      : `Buy Movly with ${paymentMethod}`
+              }
+            >
+              {!isWalletConnected
+                ? 'Connect Wallet to Buy'
+                : loading
+                  ? 'Processing...'
+                  : !amount || parseFloat(amount) <= 0
+                    ? 'Enter Amount to Buy'
+                    : `Buy with ${paymentMethod}`}
+            </button>
+          </div>
+        </div>
+
+        {/* Transaction result dialog */}
+        <DialogResult
+          isOpen={showDialog}
+          onClose={handleCloseDialog}
+          result={dialogResult}
+        />
+
+        {/* Footer với z-index cao hơn */}
+        <div className="token-sale-footer">
+          <Footer />
         </div>
       </div>
-
-      {/* Dialog kết quả giao dịch */}
-      <DialogResult
-        isOpen={showDialog}
-        onClose={handleCloseDialog}
-        result={dialogResult}
-      />
-    </div>
+    </>
   );
 }
 

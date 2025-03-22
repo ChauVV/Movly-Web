@@ -1,0 +1,222 @@
+/* Wallet connect prompt styling */
+.wallet-connect-container {
+  margin: 5rem auto 2rem;
+  padding: 1.5rem;
+  border: 2px dashed rgba(255, 185, 1, 0.5);
+  border-radius: 12px;
+  text-align: center;
+  max-width: 400px;
+  background-color: rgba(255, 185, 1, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+.wallet-connect-title {
+  font-size: 1.2rem;
+  color: #ffb901;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.wallet-icon-container {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.wallet-icon {
+  width: 50px;
+  height: 50px;
+}
+
+.wallet-connect-desc {
+  color: #e5e5e5;
+  font-size: 0.65rem;
+  width: 100%;
+  margin: 0 auto;
+  word-break: break-all;
+  text-align: center;
+  padding: 0 10px;
+}
+
+/* Style for connecting state */
+.wallet-icon-container.connecting {
+  background-color: rgba(255, 185, 1, 0.1);
+  border: 2px dashed rgba(255, 185, 1, 0.5);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.6;
+  }
+}
+
+/* Thêm style cho trạng thái đã kết nối */
+.wallet-icon-container.connected {
+  background-color: rgba(255, 185, 1, 0.2);
+  border: 2px solid rgba(255, 185, 1, 0.7);
+}
+
+/* Hiệu ứng hover chỉ khi chưa kết nối */
+.wallet-icon-container:not(.connected):hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+  transition: all 0.2s ease;
+}
+
+/* Style cho địa chỉ ví khi đã kết nối */
+.connected+.wallet-connect-desc {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  font-size: 0.6rem;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+/* Disconnect Modal Styles */
+.disconnect-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.disconnect-modal {
+  background: rgba(41, 37, 0, 0.95);
+  border: 1px solid rgba(255, 185, 1, 0.3);
+  border-radius: 12px;
+  width: 90%;
+  max-width: 450px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.disconnect-modal-header {
+  background: rgba(255, 185, 1, 0.1);
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255, 185, 1, 0.2);
+}
+
+.disconnect-modal-header h3 {
+  color: #ffb901;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.disconnect-modal-body {
+  padding: 20px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.disconnect-modal-body p {
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+
+.connected-address {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  word-break: break-all;
+}
+
+.address-label {
+  color: #ccc;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.address-value {
+  color: #ffb901;
+  font-size: 13px;
+  font-weight: 500;
+  max-width: 100%;
+}
+
+.disconnect-modal-footer {
+  padding: 16px 20px;
+  border-top: 1px solid rgba(255, 185, 1, 0.2);
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.cancel-button,
+.disconnect-button {
+  flex: 1;
+  padding: 10px 0;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+  border: none;
+}
+
+.cancel-button {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.disconnect-button {
+  background: linear-gradient(to right, #FFD700, #FFA500);
+  color: #ffffff;
+}
+
+.cancel-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.disconnect-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(255, 214, 0, 0.2);
+}
+
+/* Responsive styles for modal */
+@media (max-width: 540px) {
+  .disconnect-modal {
+    width: 95%;
+  }
+
+  .disconnect-modal-footer {
+    flex-direction: column-reverse;
+  }
+
+  .cancel-button,
+  .disconnect-button {
+    width: 100%;
+  }
+}

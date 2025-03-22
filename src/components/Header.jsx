@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { IoMenu, IoClose } from 'react-icons/io5';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Header.css';
-import ConnectWallet from './ConnectWallet';
 import logo from '@assets/icons/logo2.jpeg';
 
 export default function Header() {
@@ -56,6 +55,14 @@ export default function Header() {
         </Link>
 
         <Link
+          to="/sale"
+          className={location.pathname === '/sale' ? 'active' : ''}
+          onClick={handleNavigation('/sale')}
+        >
+          Pre-Sale
+        </Link>
+
+        <Link
           to="/whitepaper"
           className={location.pathname === '/whitepaper' ? 'active' : ''}
           onClick={handleNavigation('/whitepaper')}
@@ -70,17 +77,6 @@ export default function Header() {
         >
           Earn Calculator
         </Link>
-
-        <Link
-          to="/sale"
-          className={location.pathname === '/sale' ? 'active' : ''}
-          onClick={handleNavigation('/sale')}
-        >
-          Buy Token
-        </Link>
-        <div className='connect-wallet-btn'>
-          <ConnectWallet />
-        </div>
       </div>
     </>
   );
@@ -89,6 +85,13 @@ export default function Header() {
     <>
       <div className="nav-links">
         <Link
+          to="/sale"
+          className={location.pathname === '/sale' ? 'active' : ''}
+          onClick={handleNavigation('/sale')}
+        >
+          Pre-Sale
+        </Link>
+        <Link
           to="/whitepaper"
           className={location.pathname === '/whitepaper' ? 'active' : ''}
           onClick={handleNavigation('/whitepaper')}
@@ -103,15 +106,6 @@ export default function Header() {
         >
           Earn Calculator
         </Link>
-
-        <Link
-          to="/sale"
-          className={location.pathname === '/sale' ? 'active' : ''}
-          onClick={handleNavigation('/sale')}
-        >
-          Buy Token
-        </Link>
-        <ConnectWallet />
       </div>
     </>
   );

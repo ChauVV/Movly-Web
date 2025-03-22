@@ -1,10 +1,10 @@
 .token-sale-container {
   position: relative;
   min-height: 100vh;
-  width: 100%;
+  width: 100;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .token-sale-bg {
@@ -14,6 +14,7 @@
   width: 100%;
   height: 100%;
   z-index: 1;
+  background-attachment: fixed;
 }
 
 .token-sale-bg img {
@@ -52,14 +53,17 @@
   justify-content: center;
   align-items: center;
   padding: 2rem 1rem;
+  padding-bottom: 8rem;
   width: 100%;
   flex: 1;
+  margin-bottom: 5rem;
 }
 
 .token-sale-card {
   width: 100%;
   max-width: 470px;
-  height: 561px;
+  min-height: 561px;
+  height: auto;
   background: rgba(41, 37, 0, 0.8);
   border: 1px solid rgba(255, 214, 0, 0.3);
   border-radius: 12px;
@@ -219,8 +223,12 @@
 }
 
 .token-sale-buy-btn:disabled {
-  opacity: 0.8;
+  opacity: 0.5;
   cursor: not-allowed;
+  background: linear-gradient(to right, #a3a3a3, #7a7a7a);
+  color: #e0e0e0;
+  box-shadow: none;
+  border: 1px dashed rgba(255, 255, 255, 0.3);
 }
 
 .token-sale-buy-btn:not(:disabled):hover {
@@ -604,4 +612,46 @@
   background-color: rgba(51, 46, 0, 0.95);
   color: rgba(255, 214, 0, 0.9);
   padding: 12px;
+}
+
+.token-sale-footer {
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  background: transparent;
+}
+
+.token-sale-footer footer {
+  background: transparent;
+}
+
+.token-sale-footer .Footer-content {
+  padding: 0 20px;
+}
+
+.token-sale-footer .Footer-email,
+.token-sale-footer .Footer-links a {
+  color: #FFD700;
+}
+
+.token-sale-footer .Footer-copyright {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.token-sale-footer .Footer-links a:hover {
+  color: #FFA500;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .token-sale-footer {
+    padding: 15px 0;
+  }
+
+  .token-sale-footer .Footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
 }

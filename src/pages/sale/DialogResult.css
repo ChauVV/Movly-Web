@@ -237,3 +237,128 @@
     max-width: 120px;
   }
 }
+
+/* Transaction Result Modal Specific Styles */
+.transaction-result-modal {
+  max-width: 500px;
+}
+
+.success-header-text,
+.error-header-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.success-icon {
+  color: #4CAF50;
+}
+
+.error-icon {
+  color: #F44336;
+}
+
+.success-message {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.highlight {
+  color: #ffb901;
+  font-weight: 600;
+}
+
+.transaction-info {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  color: #ccc;
+  font-size: 14px;
+}
+
+.info-value {
+  color: #ffb901;
+  font-weight: 500;
+}
+
+.follow-up-message {
+  background: rgba(255, 185, 1, 0.05);
+  border-left: 3px solid #ffb901;
+  border-radius: 4px;
+  padding: 12px;
+  margin-top: 16px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.follow-up-message.error {
+  background: rgba(244, 67, 54, 0.05);
+  border-left: 3px solid #F44336;
+}
+
+.tx-link {
+  color: #2196F3;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+}
+
+.tx-link:hover {
+  text-decoration: underline;
+}
+
+.error-message {
+  color: #F44336;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.success-button {
+  flex: 1;
+  padding: 10px 0;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+  border: none;
+  background: linear-gradient(to right, #4CAF50, #2E7D32);
+  color: white;
+}
+
+.success-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(76, 175, 80, 0.2);
+}
+
+/* Remove any styles that would conflict with WalletModals.css */
+/* The following styles are now managed by WalletModals.css */
+.modal-overlay,
+.modal-container,
+.modal-header,
+.modal-body,
+.modal-footer,
+.disconnect-button {
+  /* These styles will come from the shared WalletModals.css */
+}
