@@ -120,16 +120,7 @@ export default function Community() {
               </div>
             </div>
             <div className="Community-footer">
-              <div className="Community-Footer-content">
-                <a href="mailto:support@movly.run" className="Community-Footer-email">support@movly.run</a>
-                {/* <div className="Community-Footer-links">
-                  <Link to="/terms">Terms & Conditions</Link>
-                  <Link to="/privacy">Privacy Policy</Link>
-                </div>
-                <div className="Community-Footer-copyright">
-                  COPYRIGHT 2024 MOVLY TECHNOLOGY LIMITED. ALL RIGHTS RESERVED | POWERED BY MOVLY TECHNOLOGY LTD.
-                </div> */}
-              </div>
+              <Footer />
             </div>
           </div>
         </div>

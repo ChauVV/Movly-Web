@@ -10,6 +10,7 @@ import AppPreview from './sections/AppPreview';
 import AppPreviewWatch from './sections/AppPreviewWatch';
 import Community from './sections/Community';
 import './Main.css';
+import Header from '@/components/Header';
 
 function Main() {
   const containerRef = useRef(null);
@@ -73,6 +74,7 @@ function Main() {
       ref={containerRef}
       onScroll={handleScroll}
     >
+      <Header />
       <ParticlesBackground type={currentSection === 'tokenomics' ? 'tokenomics' : 'hero'} />
 
       <Hero onScroll={scrollToHowItWorks} />

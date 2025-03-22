@@ -60,10 +60,13 @@ function App() {
             <Route path="/mail-request" element={<MailRequest />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
-            <Route path="sale" element={<BuyToken />} />
+            <Route path="/sale" element={<BuyToken />} />
 
+
+            <Route path="/" index element={<Main />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
             {/* Routes with header */}
-            <Route path="/" element={
+            {/* <Route path="/" element={
               <div className="App">
                 <Header />
                 <main className="main-content">
@@ -72,10 +75,10 @@ function App() {
               </div>
             }>
               <Route index element={<Main />} />
-            </Route>
+            </Route> */}
 
             {/* Redirect invalid URLs to home */}
-            <Route path="*" element={<Navigate to="/" replace />} />
+            {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
           </Routes>
         </Router>
       </QueryClientProvider>
