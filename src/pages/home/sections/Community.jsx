@@ -112,15 +112,26 @@ export default function Community() {
         <div className="Community-main">
           <h2 className="Community-title">Join Our Community</h2>
           <div className="Community-content">
-            <div className="Community-container">
-              {socialLinks.map((social, index) => (
-                <SocialCard key={social.name} social={social} index={index} />
-              ))}
+            <div className="Community-wrap-content">
+              <div className="Community-container">
+                {socialLinks.map((social, index) => (
+                  <SocialCard key={social.name} social={social} index={index} />
+                ))}
+              </div>
+            </div>
+            <div className="Community-footer">
+              <div className="Community-Footer-content">
+                <a href="mailto:support@movly.run" className="Community-Footer-email">support@movly.run</a>
+                {/* <div className="Community-Footer-links">
+                  <Link to="/terms">Terms & Conditions</Link>
+                  <Link to="/privacy">Privacy Policy</Link>
+                </div>
+                <div className="Community-Footer-copyright">
+                  COPYRIGHT 2024 MOVLY TECHNOLOGY LIMITED. ALL RIGHTS RESERVED | POWERED BY MOVLY TECHNOLOGY LTD.
+                </div> */}
+              </div>
             </div>
           </div>
-        </div>
-        <div className="Community-footer">
-          <Footer />
         </div>
       </section>
     </div>
