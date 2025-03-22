@@ -65,13 +65,14 @@ export default function Community() {
           href={social.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="Community-card Community-card-mobile"
+          className="Community-card"
         >
-          <div className="Community-icon Community-icon-mobile" style={{ color: social.color }}>
+          <div className="Community-icon" style={{ color: social.color }}>
             {social.icon}
           </div>
-          <div className="Community-info Community-info-mobile">
+          <div className="Community-info">
             <h3>{social.name}</h3>
+            <span className="Community-type">{social.type}</span>
             <p>{social.description}</p>
           </div>
         </a>
@@ -102,24 +103,26 @@ export default function Community() {
   };
 
   return (
-    <section className="Community-section">
-      <div className="Community-background blur-img1">
-        <img src={bg} alt="background" />
-        <div className="Community-blur-overlay" />
-      </div>
-      <div className="Community-main">
-        <h2 className="Community-title">Join Our Community</h2>
-        <div className="Community-content">
-          <div className="Community-container">
-            {socialLinks.map((social, index) => (
-              <SocialCard key={social.name} social={social} index={index} />
-            ))}
+    <div className="Community-wrapper">
+      <section className="Community-section">
+        <div className="Community-background blur-img1">
+          <img src={bg} alt="background" />
+          <div className="Community-blur-overlay" />
+        </div>
+        <div className="Community-main">
+          <h2 className="Community-title">Join Our Community</h2>
+          <div className="Community-content">
+            <div className="Community-container">
+              {socialLinks.map((social, index) => (
+                <SocialCard key={social.name} social={social} index={index} />
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-      <div className="Community-footer">
-        <Footer />
-      </div>
-    </section>
+        <div className="Community-footer">
+          <Footer />
+        </div>
+      </section>
+    </div>
   );
 }

@@ -1,7 +1,14 @@
+.Community-wrapper {
+  position: relative;
+  min-height: 100vh;
+}
+
 .Community-section {
-  height: 100vh !important;
-  max-height: 100vh !important;
+  position: relative;
+  min-height: 100vh;
   display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .Community-background {
@@ -74,6 +81,7 @@
   text-decoration: none;
   color: #fff;
   transition: transform 0.3s ease, background-color 0.3s ease;
+  height: 180px;
 }
 
 .Community-card:hover {
@@ -122,14 +130,14 @@
 .Community-footer :global(.Footer-content) {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
   align-items: center;
   justify-content: center;
 }
 
 .Community-footer :global(.Footer-links) {
   display: flex;
-  gap: 5px;
+  gap: 20px;
   margin-bottom: 5px;
 }
 
@@ -145,15 +153,16 @@
 
   .Community-container {
     grid-template-columns: 1fr;
-    gap: 10px;
+    gap: 20px;
     padding: 0 15px;
     margin-top: 0;
   }
 
   .Community-card {
     height: auto;
-    padding: 14px;
-    gap: 14px;
+    min-height: 100px;
+    padding: 15px;
+    gap: 12px;
   }
 
   .Community-icon {
@@ -177,11 +186,11 @@
   }
 
   .Community-footer :global(.Footer-content) {
-    gap: 2px;
+    gap: 5px;
   }
 
   .Community-footer :global(.Footer-links) {
-    gap: 5px;
+    gap: 15px;
     flex-wrap: wrap;
     justify-content: center;
   }
@@ -190,8 +199,11 @@
 @media (min-width: 769px) and (max-width: 1024px) {
   .Community-container {
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    gap: 25px;
     margin-top: 0;
   }
 
+  .Community-card {
+    height: 160px;
+  }
 }
