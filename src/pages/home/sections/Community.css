@@ -1,11 +1,6 @@
-.Community-wrapper {
-  position: relative;
-  min-height: 100vh;
-}
-
 .Community-section {
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -81,7 +76,6 @@
   text-decoration: none;
   color: #fff;
   transition: transform 0.3s ease, background-color 0.3s ease;
-  height: 180px;
 }
 
 .Community-card:hover {
@@ -130,14 +124,14 @@
 .Community-footer :global(.Footer-content) {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
   align-items: center;
   justify-content: center;
 }
 
 .Community-footer :global(.Footer-links) {
   display: flex;
-  gap: 20px;
+  gap: 5px;
   margin-bottom: 5px;
 }
 
@@ -153,15 +147,14 @@
 
   .Community-container {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 10px;
     padding: 0 15px;
     margin-top: 0;
   }
 
   .Community-card {
     height: auto;
-    min-height: 100px;
-    padding: 15px;
+    padding: 10px;
     gap: 12px;
   }
 
@@ -186,11 +179,11 @@
   }
 
   .Community-footer :global(.Footer-content) {
-    gap: 5px;
+    gap: 2px;
   }
 
   .Community-footer :global(.Footer-links) {
-    gap: 15px;
+    gap: 5px;
     flex-wrap: wrap;
     justify-content: center;
   }
@@ -199,11 +192,8 @@
 @media (min-width: 769px) and (max-width: 1024px) {
   .Community-container {
     grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
+    gap: 10px;
     margin-top: 0;
   }
 
-  .Community-card {
-    height: 160px;
-  }
 }
