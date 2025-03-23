@@ -28,7 +28,7 @@ export default function Community() {
       name: 'Telegram',
       icon: <FaTelegram />,
       type: 'Community',
-      url: 'https://t.me/healthstep',
+      url: 'https://t.me/movlyRun',
       description: 'Join our main community channel for updates & discussions',
       color: '#0088cc'
     },
@@ -36,7 +36,7 @@ export default function Community() {
       name: 'X (Twitter)',
       icon: <FaXTwitter />,
       type: 'Social',
-      url: 'https://x.com/healthstep',
+      url: 'https://x.com/MovlyRun',
       description: 'Follow us for official announcements & project updates',
       color: '#000000'
     },
@@ -53,7 +53,7 @@ export default function Community() {
       icon: <MdEmail />,
       type: 'Support',
       url: 'mailto:support@movly.run',
-      description: 'Submit a request or get help from our support team: support@movly.run',
+      description: 'Submit a request or get help from our support team',
       color: '#00ffd1'
     }
   ];
@@ -118,10 +118,9 @@ export default function Community() {
               ))}
             </div>
           </div>
-          {!isMobile &&
-            <div className="Community-footer">
-              <Footer />
-            </div>}
+          <div className="Community-footer">
+            <Footer />
+          </div>
         </div>
       </div>
     </section>
