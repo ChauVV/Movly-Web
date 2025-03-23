@@ -2,6 +2,7 @@ import { motion, useScroll, AnimatePresence, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import './Hero.css';
 import logo from '@assets/images/logo512.png';
+import { useNavigate } from 'react-router-dom';
 
 export default function Hero({ onScroll }) {
   const { scrollY } = useScroll();
@@ -10,6 +11,7 @@ export default function Hero({ onScroll }) {
     amount: 0.3,
     once: false
   });
+  const navigate = useNavigate();
 
   const contentVariants = {
     hidden: {
@@ -97,11 +99,11 @@ export default function Hero({ onScroll }) {
               </motion.button>
               <motion.button
                 className="secondary-button"
-                onClick={onScroll}
+                onClick={() => navigate('/whitepaper')}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Join Us
+                Read Whitepaper
               </motion.button>
             </motion.div>
           </motion.div>

@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import Footer from '@/components/Footer';
 
 // Import icons
-import { FaTelegram, FaDiscord, FaMedium, FaGithub } from 'react-icons/fa';
+import { FaTelegram, FaDiscord } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import { MdEmail } from 'react-icons/md';
 
@@ -44,18 +44,10 @@ export default function Community() {
       name: 'Discord',
       icon: <FaDiscord />,
       type: 'Community',
-      url: 'https://discord.gg/healthstep',
+      url: 'https://discord.gg/BymvTeh5',
       description: 'Join our Discord server for community events & support',
       color: '#5865F2'
     },
-    {
-      name: 'Email Support',
-      icon: <MdEmail />,
-      type: 'Support',
-      url: 'mailto:support@movly.run',
-      description: 'Submit a request or get help from our support team',
-      color: '#00ffd1'
-    }
   ];
 
   const SocialCard = ({ social, index }) => {
