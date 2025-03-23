@@ -5,7 +5,7 @@ import { FaExclamationCircle } from 'react-icons/fa';
 import { SiTether } from 'react-icons/si';
 import { SiBinance } from 'react-icons/si';
 import bg from '@assets/images/mm5.jpg';
-import silverCoin from '@assets/tokens/silverSmall.png';
+import goldCoin from '@assets/tokens/gold200x200.png';
 import './BuyToken.css';
 import { toast } from 'react-hot-toast';
 import DialogResult from './DialogResult';
@@ -351,7 +351,7 @@ function BuyToken() {
                   <span className="token-sale-amount">
                     <span>{Number(estimatedTokens.baseTokens).toLocaleString()}</span>
                     <span className="token-sale-unit">Movly</span>
-                    <img src={silverCoin} alt="Movly" className="token-sale-icon" />
+                    <img src={goldCoin} alt="Movly" className="token-sale-icon" />
                   </span>
                 </div>
                 <div className="token-sale-row">
@@ -359,7 +359,7 @@ function BuyToken() {
                   <span className="token-sale-amount">
                     <span>{Number(estimatedTokens.bonusTokens).toLocaleString()}</span>
                     <span className="token-sale-unit">Movly</span>
-                    <img src={silverCoin} alt="Movly" className="token-sale-icon" />
+                    <img src={goldCoin} alt="Movly" className="token-sale-icon" />
                   </span>
                 </div>
                 <div className="token-sale-row total">
@@ -367,7 +367,7 @@ function BuyToken() {
                   <span className="token-sale-amount">
                     <span>{Number(estimatedTokens.totalTokens).toLocaleString()}</span>
                     <span className="token-sale-unit">Movly</span>
-                    <img src={silverCoin} alt="Movly" className="token-sale-icon" />
+                    <img src={goldCoin} alt="Movly" className="token-sale-icon" />
                   </span>
                 </div>
 

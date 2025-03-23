@@ -24,7 +24,7 @@ export default function Tokens() {
   const tokens = [
     {
       symbol: 'Movly',
-      icon: silverIcon,
+      icon: goldIcon,
       name: 'Movly',
       description: 'The governance token of the Movly ecosystem. Total supply is limited to 5,000,000,000 Movly.',
       features: [
@@ -37,7 +37,7 @@ export default function Tokens() {
     },
     {
       symbol: 'MGD',
-      icon: goldIcon,
+      icon: silverIcon,
       name: 'Movly Gold (Earn Token)',
       description: 'The earning token (MGD) of the Movly ecosystem. Users earn MGD through physical activities with a unique halving mechanism. Total supply is limited to 10,000,000,000 MGD.',
       features: [
