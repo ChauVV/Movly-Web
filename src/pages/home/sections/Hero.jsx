@@ -103,7 +103,7 @@ export default function Hero({ onScroll }) {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Read Whitepaper
+                More Info
               </motion.button>
             </motion.div>
           </motion.div>

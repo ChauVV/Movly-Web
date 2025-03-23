@@ -33,7 +33,7 @@ function BuyToken() {
   const [showInfoModal, setShowInfoModal] = useState(false);
 
   const MOVLY_PER_USDT = 25;
-  const BONUS_PERCENT = 15;
+  const [bonusPercent, setBonusPercent] = useState(15);
 
   // Check if we're on mainnet or testnet to get the appropriate explorer URL
   const getExplorerUrl = (txHash) => {
@@ -74,8 +74,8 @@ function BuyToken() {
       baseTokens = parseFloat(inputAmount) * MOVLY_PER_USDT;
     }
 
-    // Calculate bonus tokens
-    const bonusTokens = baseTokens * (BONUS_PERCENT / 100);
+    // Calculate bonus tokens using dynamic bonusPercent
+    const bonusTokens = baseTokens * (bonusPercent / 100);
     const totalTokens = baseTokens + bonusTokens;
 
     return {
@@ -118,6 +118,9 @@ function BuyToken() {
           publicSaleRemaining: ethers.utils.formatEther(status[4]),
           currentBonus: status[5].toNumber()
         });
+
+        // Cập nhật bonus dựa trên kết quả từ contract
+        setBonusPercent(status[5].toNumber());
       } catch (error) {
         console.error("Error fetching sale status:", error);
       }
@@ -304,7 +307,7 @@ function BuyToken() {
 
           {/* Card */}
           <div className="token-sale-card">
-            <h2 className="token-sale-card-title">Purchase Tokens</h2>
+            <h2 className="token-sale-card-title">{`Purchase Tokens${bonusPercent > 0 ? ` - Presale (Bonus ${bonusPercent}%)` : ''}`}</h2>
 
             <div className="token-sale-form-group">
               <p className="info-label">Payment Method</p>
@@ -355,7 +358,7 @@ function BuyToken() {
                   </span>
                 </div>
                 <div className="token-sale-row">
-                  <span>BONUS ({BONUS_PERCENT}%):</span>
+                  <span>BONUS ({bonusPercent}%):</span>
                   <span className="token-sale-amount">
                     <span>{Number(estimatedTokens.bonusTokens).toLocaleString()}</span>
                     <span className="token-sale-unit">Movly</span>

@@ -90,7 +90,7 @@ const ConnectWallet = ({ account, setAccount }) => {
       <div className="wallet-connect-container">
         <h3 className="wallet-connect-title">
           {isWalletConnected
-            ? 'Your Wallet'
+            ? 'Wallet Connected'
             : isConnecting
               ? 'Connecting...'
               : 'Connect Your Wallet'}

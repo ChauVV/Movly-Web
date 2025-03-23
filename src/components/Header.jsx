@@ -59,7 +59,7 @@ export default function Header() {
           className={location.pathname === '/sale' ? 'active' : ''}
           onClick={handleNavigation('/sale')}
         >
-          Pre-Sale
+          Buy Token
         </Link>
 
         <Link
@@ -89,7 +89,7 @@ export default function Header() {
           className={location.pathname === '/sale' ? 'active' : ''}
           onClick={handleNavigation('/sale')}
         >
-          Pre-Sale
+          Buy Token
         </Link>
         <Link
           to="/whitepaper"
