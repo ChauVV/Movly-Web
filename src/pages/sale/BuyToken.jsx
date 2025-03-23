@@ -5,7 +5,7 @@ import { FaExclamationCircle } from 'react-icons/fa';
 import { SiTether } from 'react-icons/si';
 import { SiBinance } from 'react-icons/si';
 import bg from '@assets/images/mm5.jpg';
-import goldCoin from '@assets/tokens/gold200x200.png';
+import goldCoin from '@assets/tokens/m200.png'
 import './BuyToken.css';
 import { toast } from 'react-hot-toast';
 import DialogResult from './DialogResult';
