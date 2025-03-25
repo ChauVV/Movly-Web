@@ -30,7 +30,7 @@ export default function Community() {
       type: 'Community',
       url: 'https://t.me/movlyRun',
       description: 'Join our main community channel for updates & discussions',
-      color: '#0088cc'
+      color: '#fff'
     },
     {
       name: 'X (Twitter)',

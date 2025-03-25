@@ -131,7 +131,7 @@ export default function Tokens() {
               <motion.div
                 key={token.symbol}
                 className="token-card"
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 1, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2 }}
