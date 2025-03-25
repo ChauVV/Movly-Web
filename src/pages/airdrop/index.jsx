@@ -38,10 +38,13 @@ const Airdrop = () => {
           <div className={styles.headerSection}>
             <img src={s3} alt="Header" className={styles.headerBackground} />
             <div className={styles.headerOverlay}></div>
-            <Link to="/" className={styles.logoContainer}>
-              <img src={logo} alt="Movly Logo" className={styles.logo} />
-              <span className={styles.logoText}>Movly</span>
-            </Link>
+            <header className={styles.airdropHeader}>
+              <Link to="/" className={styles.logoContainer}>
+                <img src={logo} alt="Movly Logo" className={styles.logo} />
+                <span className={styles.logoText}>Movly</span>
+              </Link>
+              <h1 className={styles.headerTitle}>Join our community to get more rewards</h1>
+            </header>
           </div>
 
           {/* Breadcrumb */}
@@ -81,7 +84,7 @@ const Airdrop = () => {
 
               {/* Tasks List */}
               <div className={styles.tasksList}>
-                <div className={styles.taskItem}>
+                <div className={`${styles.taskItem} ${tasks.twitterFollow ? styles.completed : ''}`}>
                   <div className={styles.taskInfo}>
                     <FaTwitter className={`${styles.taskIcon} ${styles.twitter}`} />
                     <span className={styles.taskText}>Follow Twitter</span>
@@ -89,13 +92,13 @@ const Airdrop = () => {
                   <button
                     onClick={() => checkTask("twitterFollow")}
                     disabled={tasks.twitterFollow}
-                    className={styles.button}
+                    className={`${styles.button} ${tasks.twitterFollow ? styles.completedTask : ''}`}
                   >
                     {tasks.twitterFollow ? <FaCheck className={styles.checkIcon} /> : "Check"}
                   </button>
                 </div>
 
-                <div className={styles.taskItem}>
+                <div className={`${styles.taskItem} ${tasks.twitterLikeRetweet ? styles.completed : ''}`}>
                   <div className={styles.taskInfo}>
                     <FaTwitter className={`${styles.taskIcon} ${styles.twitter}`} />
                     <span className={styles.taskText}>Like & Retweet</span>
@@ -103,13 +106,13 @@ const Airdrop = () => {
                   <button
                     onClick={() => checkTask("twitterLikeRetweet")}
                     disabled={tasks.twitterLikeRetweet}
-                    className={styles.button}
+                    className={`${styles.button} ${tasks.twitterLikeRetweet ? styles.completedTask : ''}`}
                   >
                     {tasks.twitterLikeRetweet ? <FaCheck className={styles.checkIcon} /> : "Check"}
                   </button>
                 </div>
 
-                <div className={styles.taskItem}>
+                <div className={`${styles.taskItem} ${tasks.telegramFollow ? styles.completed : ''}`}>
                   <div className={styles.taskInfo}>
                     <FaTelegram className={`${styles.taskIcon} ${styles.telegram}`} />
                     <span className={styles.taskText}>Join Telegram</span>
@@ -117,13 +120,13 @@ const Airdrop = () => {
                   <button
                     onClick={() => checkTask("telegramFollow")}
                     disabled={tasks.telegramFollow}
-                    className={styles.button}
+                    className={`${styles.button} ${tasks.telegramFollow ? styles.completedTask : ''}`}
                   >
                     {tasks.telegramFollow ? <FaCheck className={styles.checkIcon} /> : "Check"}
                   </button>
                 </div>
 
-                <div className={styles.taskItem}>
+                <div className={`${styles.taskItem} ${tasks.discordFollow ? styles.completed : ''}`}>
                   <div className={styles.taskInfo}>
                     <FaDiscord className={`${styles.taskIcon} ${styles.discord}`} />
                     <span className={styles.taskText}>Join Discord</span>
@@ -131,7 +134,7 @@ const Airdrop = () => {
                   <button
                     onClick={() => checkTask("discordFollow")}
                     disabled={tasks.discordFollow}
-                    className={styles.button}
+                    className={`${styles.button} ${tasks.discordFollow ? styles.completedTask : ''}`}
                   >
                     {tasks.discordFollow ? <FaCheck className={styles.checkIcon} /> : "Check"}
                   </button>

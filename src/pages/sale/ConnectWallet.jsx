@@ -93,7 +93,7 @@ const ConnectWallet = ({ account, setAccount }) => {
             ? 'Wallet Connected'
             : isConnecting
               ? 'Connecting...'
-              : 'Connect Your Wallet'}
+              : 'Connect Your BNB Wallet'}
         </h3>
         <div
           className={`wallet-icon-container ${isWalletConnected ? 'connected' : ''} ${isConnecting ? 'connecting' : ''}`}
