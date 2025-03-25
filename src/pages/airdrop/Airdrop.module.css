@@ -1,0 +1,316 @@
+.pageWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.airdropContainer {
+  min-height: 100vh;
+  height: 100%;
+  background: linear-gradient(to bottom, #000000, #111827, #000000);
+  width: 100vw;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  position: relative;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 215, 0, 0.3);
+    /* Gold color semi-transparent */
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 215, 0, 0.5);
+  }
+
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 215, 0, 0.3) transparent;
+}
+
+.contentContainer {
+  margin: 0 auto;
+  padding-bottom: 100px;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.headerSection {
+  position: relative;
+  height: 200px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.headerBackground {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.headerOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 100%);
+  backdrop-filter: blur(4px);
+}
+
+.airdropFooter {
+  position: relative;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(234, 179, 8, 0.3);
+  z-index: 10;
+}
+
+.logoContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  text-decoration: none;
+}
+
+.logo {
+  height: 80px;
+  width: auto;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+}
+
+.logoText {
+  font-size: 3.5rem;
+  font-weight: 800;
+  background: linear-gradient(to right,
+      #ff3d00 0%,
+      /* Orange/Red */
+      #ff9100 20%,
+      /* Orange */
+      #ffea00 40%,
+      /* Yellow */
+      #00e676 60%,
+      /* Green */
+      #2979ff 80%,
+      /* Blue */
+      #651fff 100%
+      /* Purple */
+    );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  letter-spacing: -1px;
+}
+
+.breadcrumb {
+  padding: 1rem 2rem;
+  background: rgba(17, 24, 39, 0.8);
+  border-bottom: 1px solid rgba(234, 179, 8, 0.2);
+}
+
+.breadcrumbLink {
+  color: #eab308;
+  text-decoration: none;
+}
+
+.breadcrumbSeparator {
+  color: #6b7280;
+  margin: 0 0.5rem;
+}
+
+.breadcrumbCurrent {
+  color: #9ca3af;
+}
+
+.wrapper {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+}
+
+.contentHeader {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, #eab308, #f59e0b, #eab308);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.subtitle {
+  color: rgba(254, 243, 199, 0.8);
+}
+
+.card {
+  background: rgba(17, 24, 39, 0.5);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(234, 179, 8, 0.2);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 25px 50px -12px rgba(234, 179, 8, 0.1);
+}
+
+.progressSection {
+  margin-bottom: 2rem;
+}
+
+.progressHeader {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.progressLabel {
+  color: rgba(254, 243, 199, 0.8);
+}
+
+.progressCount {
+  color: #eab308;
+}
+
+.progressBar {
+  height: 0.5rem;
+  background-color: #1f2937;
+  border-radius: 9999px;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(to right, #eab308, #f59e0b);
+  border-radius: 9999px;
+  transition: width 0.5s ease;
+}
+
+.tasksList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.taskItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background: rgba(31, 41, 55, 0.5);
+  border-radius: 0.75rem;
+  border: 1px solid rgba(234, 179, 8, 0.1);
+  transition: all 0.3s ease;
+}
+
+.taskItem:hover {
+  border-color: rgba(234, 179, 8, 0.3);
+}
+
+.taskInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.taskIcon {
+  font-size: 1.25rem;
+}
+
+.taskIcon.twitter,
+.taskIcon.telegram {
+  color: #60a5fa;
+}
+
+.taskIcon.discord {
+  color: #818cf8;
+}
+
+.taskText {
+  color: rgba(254, 243, 199, 0.9);
+}
+
+.button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  background: linear-gradient(to right, #eab308, #f59e0b);
+  color: black;
+  box-shadow: 0 10px 15px -3px rgba(234, 179, 8, 0.2);
+}
+
+.button:hover:not(:disabled) {
+  background: linear-gradient(to right, #fcd34d, #fbbf24);
+}
+
+.button:disabled {
+  background: linear-gradient(to right, #4b5563, #374151);
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.walletSection {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.walletButton {
+  composes: button;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+}
+
+.claimButton {
+  composes: button;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(to right, #ca8a04, #d97706);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.claimButton:hover:not(:disabled) {
+  background: linear-gradient(to right, #eab308, #f59e0b);
+}
+
+.claimButton:disabled {
+  background: linear-gradient(to right, #1f2937, #1f2937);
+  color: #6b7280;
+}
+
+.checkIcon {
+  color: #065f46;
+}
+
+.giftIcon {
+  color: currentColor;
+}

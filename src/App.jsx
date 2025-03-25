@@ -11,6 +11,7 @@ import Whitepaper from './pages/whitepaper';
 import MailRequest from './pages/mailRequest/MailRequest';
 import Privacy from './pages/privacy';
 import Terms from './pages/terms';
+import Airdrop from './pages/airdrop';
 import './App.css';
 
 // Define Ganache chain
@@ -61,7 +62,7 @@ function App() {
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/sale" element={<BuyToken />} />
-
+            <Route path="/airdrop" element={<Airdrop />} />
 
             <Route path="/" index element={<Main />} />
             <Route path="*" element={<Navigate to="/" replace />} />

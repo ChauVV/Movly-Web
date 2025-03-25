@@ -28,7 +28,8 @@
     "rehype-raw": "^7.0.0",
     "remark-gfm": "^4.0.1",
     "tsparticles": "^2.12.0",
-    "wagmi": "^2.14.13"
+    "wagmi": "^2.14.13",
+    "web3": "^4.16.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.55",

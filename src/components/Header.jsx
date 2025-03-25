@@ -77,6 +77,14 @@ export default function Header() {
         >
           Earn Calculator
         </Link>
+
+        <Link
+          to="/airdrop"
+          className={location.pathname === '/airdrop' ? 'active' : ''}
+          onClick={handleNavigation('/airdrop')}
+        >
+          Airdrop
+        </Link>
       </div>
     </>
   );
@@ -105,6 +113,13 @@ export default function Header() {
           onClick={handleNavigation('/calculator')}
         >
           Earn Calculator
+        </Link>
+        <Link
+          to="/airdrop"
+          className={location.pathname === '/airdrop' ? 'active' : ''}
+          onClick={handleNavigation('/airdrop')}
+        >
+          Airdrop
         </Link>
       </div>
     </>
