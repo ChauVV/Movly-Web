@@ -5,6 +5,7 @@ import { FaExclamationCircle } from 'react-icons/fa';
 import { SiTether } from 'react-icons/si';
 import { SiBinance } from 'react-icons/si';
 import bg from '@assets/images/mm5.jpg';
+import bgm from '@assets/images/mm5m.jpg';
 import goldCoin from '@assets/tokens/m200.png'
 import './BuyToken.css';
 import { toast } from 'react-hot-toast';
@@ -20,11 +21,11 @@ function BuyToken() {
   const [saleInfo, setSaleInfo] = useState(null);
   const [loading, setLoading] = useState(false);
   const [bnbPrice, setBnbPrice] = useState(0);
-  const [isTooltipActive, setIsTooltipActive] = useState(false);
 
   // Dialog states
   const [showDialog, setShowDialog] = useState(false);
   const [dialogResult, setDialogResult] = useState(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   // Manual wallet management - now shared with ConnectWallet component
   const [account, setAccount] = useState(null);
@@ -91,6 +92,15 @@ function BuyToken() {
     const tokens = calculateTokens(value);
     setEstimatedTokens(tokens);
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     if (account) {
@@ -295,7 +305,7 @@ function BuyToken() {
       <Header />
       <div className="token-sale-content-wrapper">
         <div className="token-sale-bg">
-          <img src={bg} alt="background" />
+          <img src={isMobile ? bgm : bg} alt="background" />
           <div className="token-sale-bg-overlay" />
         </div>
 

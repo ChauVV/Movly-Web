@@ -6,6 +6,8 @@ import styles from "./Airdrop.module.css";
 import s3 from "@assets/images/s3.jpg";
 import logo from "@assets/icons/logo2.jpeg";
 import tokenImage from "@assets/tokens/m200.png";
+import gift1 from "@assets/images/gifts/gift1.png";
+import gift2 from "@assets/images/gifts/gift2.png";
 import Footer from '@/components/Footer';
 import ConnectWallet from '../sale/ConnectWallet';
 
@@ -56,30 +58,18 @@ const Airdrop = () => {
           </div>
 
           <div className={styles.wrapper}>
-            {/* Left Decorations */}
+            {/* Left Decorations - Tokens and Gift */}
             <div className={styles.leftDecoration}>
-              <img src={tokenImage} alt="Movly Token" className={styles.tokenImageLarge} />
-
-              <div className={`${styles.giftBox} ${styles.red}`}></div>
-
+              <img src={tokenImage} alt="Movly Token" className={styles.tokenImageLarge1} />
+              <img src={gift1} alt="Gift Box" className={styles.giftImage1} />
               <img src={tokenImage} alt="Movly Token" className={styles.tokenImageSmall} />
-
-              <div className={styles.giftBoxLarge}></div>
-              <div className={`${styles.confetti} ${styles.confetti1}`}></div>
-              <div className={`${styles.confetti} ${styles.confetti2}`}></div>
             </div>
 
-            {/* Right Decorations */}
+            {/* Right Decorations - Tokens and Gift */}
             <div className={styles.rightDecoration}>
-              <img src={tokenImage} alt="Movly Token" className={styles.tokenImageLarge} />
-
-              <div className={`${styles.giftBox} ${styles.blue}`}></div>
-
+              <img src={gift2} alt="Gift Box" className={styles.giftImage2} />
+              <img src={tokenImage} alt="Movly Token" className={styles.tokenImageLarge2} />
               <img src={tokenImage} alt="Movly Token" className={styles.tokenImageSmall} />
-
-              <div className={`${styles.giftBoxLarge} ${styles.red}`}></div>
-              <div className={`${styles.confetti} ${styles.confetti3}`}></div>
-              <div className={`${styles.confetti} ${styles.confetti4}`}></div>
             </div>
 
             {/* Content Header */}
