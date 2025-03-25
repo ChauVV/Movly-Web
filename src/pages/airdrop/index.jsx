@@ -5,6 +5,7 @@ import Web3 from "web3";
 import styles from "./Airdrop.module.css";
 import s3 from "@assets/images/s3.jpg";
 import logo from "@assets/icons/logo2.jpeg";
+import tokenImage from "@assets/tokens/m200.png";
 import Footer from '@/components/Footer';
 import ConnectWallet from '../sale/ConnectWallet';
 
@@ -55,6 +56,32 @@ const Airdrop = () => {
           </div>
 
           <div className={styles.wrapper}>
+            {/* Left Decorations */}
+            <div className={styles.leftDecoration}>
+              <img src={tokenImage} alt="Movly Token" className={styles.tokenImageLarge} />
+
+              <div className={`${styles.giftBox} ${styles.red}`}></div>
+
+              <img src={tokenImage} alt="Movly Token" className={styles.tokenImageSmall} />
+
+              <div className={styles.giftBoxLarge}></div>
+              <div className={`${styles.confetti} ${styles.confetti1}`}></div>
+              <div className={`${styles.confetti} ${styles.confetti2}`}></div>
+            </div>
+
+            {/* Right Decorations */}
+            <div className={styles.rightDecoration}>
+              <img src={tokenImage} alt="Movly Token" className={styles.tokenImageLarge} />
+
+              <div className={`${styles.giftBox} ${styles.blue}`}></div>
+
+              <img src={tokenImage} alt="Movly Token" className={styles.tokenImageSmall} />
+
+              <div className={`${styles.giftBoxLarge} ${styles.red}`}></div>
+              <div className={`${styles.confetti} ${styles.confetti3}`}></div>
+              <div className={`${styles.confetti} ${styles.confetti4}`}></div>
+            </div>
+
             {/* Content Header */}
             <div className={styles.contentHeader}>
               <h1 className={styles.title}>Token Airdrop</h1>
