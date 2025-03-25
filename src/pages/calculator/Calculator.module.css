@@ -270,13 +270,22 @@
 }
 
 .calc_sneakerBg {
+  position: relative;
   width: 100%;
   height: 100%;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: contain;
-  transition: all 0.3s ease;
-  position: relative;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000;
+  -webkit-perspective: 1000;
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
 }
 
 .calc_flameAnimation {
@@ -335,23 +344,73 @@
 
 /* Quality Backgrounds */
 .calc_warriorBg {
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ccircle cx='50' cy='50' r='30' fill='%23808080' fill-opacity='.2'/%3E%3Ccircle cx='50' cy='50' r='40' fill='%23808080' fill-opacity='.2'/%3E%3Ccircle cx='50' cy='50' r='50' fill='%23808080' fill-opacity='.2'/%3E%3C/svg%3E");
+  background-image: url('@assets/svgs/warrior-bg.svg');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000;
+  -webkit-perspective: 1000;
+  will-change: transform;
 }
 
 .calc_generalBg {
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ccircle cx='50' cy='50' r='30' fill='%2340A040' fill-opacity='.2'/%3E%3Ccircle cx='50' cy='50' r='40' fill='%2340A040' fill-opacity='.2'/%3E%3Ccircle cx='50' cy='50' r='50' fill='%2340A040' fill-opacity='.2'/%3E%3C/svg%3E");
+  background-image: url('@assets/svgs/general-bg.svg');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000;
+  -webkit-perspective: 1000;
+  will-change: transform;
 }
 
 .calc_knightBg {
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ccircle cx='50' cy='50' r='30' fill='%234040FF' fill-opacity='.2'/%3E%3Ccircle cx='50' cy='50' r='40' fill='%234040FF' fill-opacity='.2'/%3E%3Ccircle cx='50' cy='50' r='50' fill='%234040FF' fill-opacity='.2'/%3E%3C/svg%3E");
+  background-image: url('@assets/svgs/knight-bg.svg');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000;
+  -webkit-perspective: 1000;
+  will-change: transform;
 }
 
 .calc_lordBg {
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ccircle cx='50' cy='50' r='30' fill='%23A040A0' fill-opacity='.2'/%3E%3Ccircle cx='50' cy='50' r='40' fill='%23A040A0' fill-opacity='.2'/%3E%3Ccircle cx='50' cy='50' r='50' fill='%23A040A0' fill-opacity='.2'/%3E%3C/svg%3E");
+  background-image: url('@assets/svgs/lord-bg.svg');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000;
+  -webkit-perspective: 1000;
+  will-change: transform;
 }
 
 .calc_sovereignBg {
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ccircle cx='50' cy='50' r='30' fill='%23f5a836' fill-opacity='.2'/%3E%3Ccircle cx='50' cy='50' r='40' fill='%23f5a836' fill-opacity='.2'/%3E%3Ccircle cx='50' cy='50' r='50' fill='%23f5a836' fill-opacity='.2'/%3E%3C/svg%3E");
+  background-image: url('@assets/svgs/sovereign-bg.svg');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000;
+  -webkit-perspective: 1000;
+  will-change: transform;
 }
 
 .calc_attributesSection {
