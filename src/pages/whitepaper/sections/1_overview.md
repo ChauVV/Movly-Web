@@ -16,8 +16,8 @@ While movement is essential, Movly expands beyond the traditional move-to-earn m
 - **Health Education**: Learn and earn through wellness workshops and health knowledge sharing
 
 ### Token Ecosystem
-- **Movly**: The platform's governance and utility token with a maximum supply of 3 billion tokens. Movly is used for platform governance, staking, and accessing premium features.
-- **MGD (Movly Gold)**: The earning token with a maximum supply of 6.9 billion tokens that users receive as rewards for their physical activities and health achievements in the Movly ecosystem. MGD implements a unique halving mechanism:
+- **Movly**: The platform's governance and utility token with a maximum supply of 5 billion tokens. Movly is used for platform governance, staking, and accessing premium features.
+- **MGD (Movly Gold)**: The earning token with a maximum supply of 10 billion tokens that users receive as rewards for their physical activities and health achievements in the Movly ecosystem. MGD implements a unique halving mechanism:
   - When 25% of the remaining supply is earned, the earning rate decreases by 25%
   - This halving mechanism continues throughout the token's lifecycle
   - This ensures long-term sustainability and rewards early adopters while maintaining token value
