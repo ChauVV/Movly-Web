@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { FaTwitter, FaTelegram, FaDiscord, FaCheck, FaGift } from "react-icons/fa";
-import Web3 from "web3";
 import styles from "./Airdrop.module.css";
 import s3 from "@assets/images/s3.jpg";
 import logo from "@assets/icons/logo2.jpeg";
