@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { FaTwitter, FaTelegram, FaDiscord, FaCheck, FaGift } from "react-icons/fa";
 import Web3 from "web3";
 import styles from "./Airdrop.module.css";
@@ -10,6 +10,21 @@ import gift1 from "@assets/images/gifts/gift1.png";
 import gift2 from "@assets/images/gifts/gift2.png";
 import Footer from '@/components/Footer';
 import ConnectWallet from '../sale/ConnectWallet';
+import {
+  redirectToTwitterAuth,
+  checkTwitterFollow,
+  isTwitterAuthenticated,
+  handleTwitterAuthFromURL
+} from '@/services/twitterService';
+import {
+  saveUserWallet,
+  getUserTasks,
+  updateTaskStatus,
+  hasUserClaimed,
+  updateClaimStatus,
+  linkTwitterToWallet
+} from '@/services/userService';
+import { toast } from "react-hot-toast";
 
 const Airdrop = () => {
   const [tasks, setTasks] = useState({
@@ -20,17 +35,175 @@ const Airdrop = () => {
   });
   const [account, setAccount] = useState(null);
   const [eligible, setEligible] = useState(false);
+  const [loading, setLoading] = useState({});
+  const [alreadyClaimed, setAlreadyClaimed] = useState(false);
+  const [claimLoading, setClaimLoading] = useState(false);
+  const [searchParams] = useSearchParams();
+
+  // Khi account thay đổi, lấy thông tin user và task từ Firebase
+  useEffect(() => {
+    const loadUserData = async () => {
+      if (!account) return;
+
+      try {
+        // Lưu thông tin ví
+        await saveUserWallet(account);
+
+        // Kiểm tra nếu đã claim
+        const claimed = await hasUserClaimed(account);
+        setAlreadyClaimed(claimed);
+
+        // Lấy thông tin nhiệm vụ đã hoàn thành
+        const userTasks = await getUserTasks(account);
+        if (userTasks) {
+          setTasks(userTasks);
+        }
+      } catch (error) {
+        console.error('Error loading user data:', error);
+      }
+    };
+
+    loadUserData();
+  }, [account]);
+
+  // Handle Twitter auth params if they exist
+  useEffect(() => {
+    // Handle Twitter auth from URL params
+    if (handleTwitterAuthFromURL(searchParams) && account) {
+      // Lưu thông tin Twitter vào Firebase
+      const twitterUsername = localStorage.getItem('twitterUsername');
+      const twitterId = localStorage.getItem('twitterId');
+
+      if (twitterUsername && twitterId) {
+        linkTwitterToWallet(account, {
+          username: twitterUsername,
+          id: twitterId
+        });
+      }
+
+      // After successful Twitter auth, check follow status
+      checkTaskStatus('twitterFollow');
+    } else {
+      // Check if Twitter follow is already completed
+      const checkTwitterAuth = async () => {
+        if (isTwitterAuthenticated() && localStorage.getItem('twitterFollowing') === 'true') {
+          setTasks(prev => ({ ...prev, twitterFollow: true }));
+        }
+      };
+
+      checkTwitterAuth();
+    }
+
+    // Check for error message
+    const error = searchParams.get('error');
+    if (error) {
+      toast.error(decodeURIComponent(error).replace(/\+/g, ' '));
+    }
+  }, [searchParams, account]);
 
   useEffect(() => {
-    setEligible(Object.values(tasks).every(Boolean));
-  }, [tasks]);
+    setEligible(Object.values(tasks).every(Boolean) && !alreadyClaimed);
+  }, [tasks, alreadyClaimed]);
 
-  const checkTask = (task) => {
-    setTasks((prev) => ({ ...prev, [task]: true }));
+  const checkTaskStatus = async (task) => {
+    if (!account) {
+      toast.error('Please connect your wallet first');
+      return;
+    }
+
+    setLoading(prev => ({ ...prev, [task]: true }));
+
+    try {
+      switch (task) {
+        case 'twitterFollow':
+          if (!isTwitterAuthenticated()) {
+            // Redirect to Twitter auth if not authenticated
+            redirectToTwitterAuth();
+            return;
+          }
+
+          const result = await checkTwitterFollow();
+
+          if (result.success && result.isFollowing) {
+            // Cập nhật task trong state và Firebase
+            setTasks(prev => ({ ...prev, [task]: true }));
+            await updateTaskStatus(account, task, true);
+            toast.success('Twitter follow verified successfully!');
+          } else if (result.success && !result.isFollowing) {
+            toast.error('Please follow Movly on Twitter to complete this task.');
+            window.open('https://twitter.com/movly_official', '_blank');
+          } else {
+            toast.error(result.message || 'Failed to verify Twitter follow status');
+          }
+          break;
+
+        case 'twitterLikeRetweet':
+          // Open the specific tweet for like/retweet
+          window.open('https://twitter.com/movly_official/status/1750555132519371181', '_blank');
+
+          // For now, just mark as completed when they click the button
+          // In a real implementation, you'd verify this with an API call
+          setTasks(prev => ({ ...prev, [task]: true }));
+          await updateTaskStatus(account, task, true);
+          toast.success('Like & Retweet task completed!');
+          break;
+
+        case 'telegramFollow':
+          window.open('https://t.me/movly_official', '_blank');
+          setTasks(prev => ({ ...prev, [task]: true }));
+          await updateTaskStatus(account, task, true);
+          toast.success('Telegram follow task completed!');
+          break;
+
+        case 'discordFollow':
+          window.open('https://discord.gg/movly', '_blank');
+          setTasks(prev => ({ ...prev, [task]: true }));
+          await updateTaskStatus(account, task, true);
+          toast.success('Discord join task completed!');
+          break;
+
+        default:
+          break;
+      }
+    } catch (error) {
+      console.error(`Error checking task ${task}:`, error);
+      toast.error(`Failed to verify ${task}. Please try again.`);
+    } finally {
+      setLoading(prev => ({ ...prev, [task]: false }));
+    }
   };
 
-  const handleClaim = () => {
-    // Implementation of handleClaim function
+  const handleClaim = async () => {
+    if (!account) {
+      toast.error('Please connect your wallet first');
+      return;
+    }
+
+    if (!eligible) {
+      toast.error('Please complete all tasks first');
+      return;
+    }
+
+    if (alreadyClaimed) {
+      toast.error('You have already claimed tokens');
+      return;
+    }
+
+    setClaimLoading(true);
+
+    try {
+      // Cập nhật trạng thái đã claim
+      await updateClaimStatus(account);
+      setAlreadyClaimed(true);
+
+      // Thông báo thành công
+      toast.success('Congratulations! Your tokens will be sent to your wallet soon.');
+    } catch (error) {
+      console.error('Error claiming tokens:', error);
+      toast.error('Failed to claim tokens. Please try again.');
+    } finally {
+      setClaimLoading(false);
+    }
   };
 
   return (
@@ -107,11 +280,11 @@ const Airdrop = () => {
                     <span className={styles.taskText}>Follow Twitter</span>
                   </div>
                   <button
-                    onClick={() => checkTask("twitterFollow")}
-                    disabled={tasks.twitterFollow}
+                    onClick={() => checkTaskStatus("twitterFollow")}
+                    disabled={tasks.twitterFollow || loading.twitterFollow || !account}
                     className={`${styles.button} ${tasks.twitterFollow ? styles.completedTask : ''}`}
                   >
-                    {tasks.twitterFollow ? <FaCheck className={styles.checkIcon} /> : "Check"}
+                    {loading.twitterFollow ? "Loading..." : tasks.twitterFollow ? <FaCheck className={styles.checkIcon} /> : "Check"}
                   </button>
                 </div>
 
@@ -121,11 +294,11 @@ const Airdrop = () => {
                     <span className={styles.taskText}>Like & Retweet</span>
                   </div>
                   <button
-                    onClick={() => checkTask("twitterLikeRetweet")}
-                    disabled={tasks.twitterLikeRetweet}
+                    onClick={() => checkTaskStatus("twitterLikeRetweet")}
+                    disabled={tasks.twitterLikeRetweet || loading.twitterLikeRetweet || !account}
                     className={`${styles.button} ${tasks.twitterLikeRetweet ? styles.completedTask : ''}`}
                   >
-                    {tasks.twitterLikeRetweet ? <FaCheck className={styles.checkIcon} /> : "Check"}
+                    {loading.twitterLikeRetweet ? "Loading..." : tasks.twitterLikeRetweet ? <FaCheck className={styles.checkIcon} /> : "Check"}
                   </button>
                 </div>
 
@@ -135,11 +308,11 @@ const Airdrop = () => {
                     <span className={styles.taskText}>Join Telegram</span>
                   </div>
                   <button
-                    onClick={() => checkTask("telegramFollow")}
-                    disabled={tasks.telegramFollow}
+                    onClick={() => checkTaskStatus("telegramFollow")}
+                    disabled={tasks.telegramFollow || loading.telegramFollow || !account}
                     className={`${styles.button} ${tasks.telegramFollow ? styles.completedTask : ''}`}
                   >
-                    {tasks.telegramFollow ? <FaCheck className={styles.checkIcon} /> : "Check"}
+                    {loading.telegramFollow ? "Loading..." : tasks.telegramFollow ? <FaCheck className={styles.checkIcon} /> : "Check"}
                   </button>
                 </div>
 
@@ -149,25 +322,32 @@ const Airdrop = () => {
                     <span className={styles.taskText}>Join Discord</span>
                   </div>
                   <button
-                    onClick={() => checkTask("discordFollow")}
-                    disabled={tasks.discordFollow}
+                    onClick={() => checkTaskStatus("discordFollow")}
+                    disabled={tasks.discordFollow || loading.discordFollow || !account}
                     className={`${styles.button} ${tasks.discordFollow ? styles.completedTask : ''}`}
                   >
-                    {tasks.discordFollow ? <FaCheck className={styles.checkIcon} /> : "Check"}
+                    {loading.discordFollow ? "Loading..." : tasks.discordFollow ? <FaCheck className={styles.checkIcon} /> : "Check"}
                   </button>
                 </div>
               </div>
 
               {/* Wallet Section */}
               <div className={styles.walletSection}>
-                <button
-                  className={styles.claimButton}
-                  disabled={!account || !eligible}
-                  onClick={handleClaim}
-                >
-                  <FaGift className={styles.giftIcon} />
-                  Claim Tokens
-                </button>
+                {alreadyClaimed ? (
+                  <div className={styles.claimedMessage}>
+                    <FaCheck className={styles.claimedIcon} />
+                    <span>Tokens Claimed</span>
+                  </div>
+                ) : (
+                  <button
+                    className={styles.claimButton}
+                    disabled={!account || !eligible || claimLoading}
+                    onClick={handleClaim}
+                  >
+                    <FaGift className={styles.giftIcon} />
+                    {claimLoading ? "Processing..." : "Claim Tokens"}
+                  </button>
+                )}
               </div>
             </div>
           </div>

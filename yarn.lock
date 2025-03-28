@@ -5456,6 +5456,11 @@ tsparticles@^2.12.0:
     tsparticles-updater-twinkle "^2.12.0"
     tsparticles-updater-wobble "^2.12.0"
 
+twitter-api-v2@^1.22.0:
+  version "1.22.0"
+  resolved "https://registry.yarnpkg.com/twitter-api-v2/-/twitter-api-v2-1.22.0.tgz#72dc04821d751c964daee1406619245e44e24ea3"
+  integrity sha512-KlcRL9vcBzjeS/PwxX33NziP+SHp9n35DOclKtpOmnNes7nNVnK7WG4pKlHfBqGrY5kAz/8J5ERS8DWkYOaiWw==
+
 ufo@^1.5.4:
   version "1.5.4"
   resolved "https://registry.yarnpkg.com/ufo/-/ufo-1.5.4.tgz#16d6949674ca0c9e0fbbae1fa20a71d7b1ded754"

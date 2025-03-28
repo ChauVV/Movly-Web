@@ -818,3 +818,24 @@
     transform: translateY(-7px) rotate(1deg);
   }
 }
+
+.claimedMessage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #2ecc71;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 18px;
+  width: 100%;
+  max-width: 250px;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.claimedIcon {
+  font-size: 20px;
+}
