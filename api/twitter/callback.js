@@ -3,7 +3,15 @@
 
 const { TwitterApi } = require('twitter-api-v2');
 
+// Main website URL with custom domain
+const WEBSITE_URL = 'https://movly.run';
+
 module.exports = async (req, res) => {
+  // Handle preflight OPTIONS request
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
   try {
     // Get oauth tokens
     const { oauth_token, oauth_verifier } = req.query;
@@ -17,8 +25,14 @@ module.exports = async (req, res) => {
 
     const oauth_token_secret = cookies?.oauth_token_secret;
 
+    console.log('OAuth tokens:', {
+      oauth_token: oauth_token ? 'present' : 'missing',
+      oauth_verifier: oauth_verifier ? 'present' : 'missing',
+      oauth_token_secret: oauth_token_secret ? 'present' : 'missing'
+    });
+
     if (!oauth_token || !oauth_verifier || !oauth_token_secret) {
-      return res.status(400).redirect('/airdrop?error=Invalid+Twitter+callback');
+      return res.redirect(`${WEBSITE_URL}/airdrop?error=Invalid+Twitter+callback`);
     }
 
     // Initialize Twitter client
@@ -35,11 +49,11 @@ module.exports = async (req, res) => {
     // Clear the oauth token secret cookie
     res.setHeader('Set-Cookie', 'oauth_token_secret=; HttpOnly; Path=/; Max-Age=0');
 
-    // Redirect to airdrop page with success parameter
-    res.redirect(`/airdrop?twitter_auth=success&twitter_username=${screenName}&twitter_id=${userId}`);
+    // Redirect to main website airdrop page with success parameter
+    res.redirect(`${WEBSITE_URL}/airdrop?twitter_auth=success&twitter_username=${screenName}&twitter_id=${userId}`);
 
   } catch (error) {
     console.error('Twitter callback error:', error);
-    res.redirect('/airdrop?error=Failed+to+authenticate+with+Twitter');
+    res.redirect(`${WEBSITE_URL}/airdrop?error=Failed+to+authenticate+with+Twitter&message=${encodeURIComponent(error.message)}`);
   }
 }; 
