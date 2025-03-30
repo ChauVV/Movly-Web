@@ -10,7 +10,6 @@
 .calc_container {
   min-height: 100vh;
   height: 100%;
-  width: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -45,6 +44,15 @@
 
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 215, 0, 0.3) transparent;
+}
+
+.calc_content {
+  margin: 0 auto;
+  max-width: 1042px;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .calc_title {
