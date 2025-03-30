@@ -44,7 +44,7 @@ export default function Community() {
       name: 'Discord',
       icon: <FaDiscord />,
       type: 'Community',
-      url: 'https://discord.com/invite/BymvTeh5',
+      url: 'https://discord.com/invite/HKvXYkhEe5',
       description: 'Join our Discord server for community events & support',
       color: '#5865F2'
     },

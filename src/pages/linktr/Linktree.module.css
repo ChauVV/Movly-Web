@@ -1,0 +1,259 @@
+.linktree_page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow-x: hidden;
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.background_image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: -1;
+}
+
+.background_image img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.blur_img .blur_overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(5px);
+}
+
+.linktree_container {
+  max-width: 700px;
+  width: 100%;
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 10;
+}
+
+.linktree_profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+  text-align: center;
+  color: white;
+}
+
+.linktree_logo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 16px;
+  border: 3px solid #FFD700;
+  box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+}
+
+.linktree_profile h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  background: linear-gradient(90deg,
+      #FF4D00 0%,
+      #FFD700 30%,
+      #4CAF50 60%,
+      #2196F3 80%,
+      #9C27B0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: 'Poppins', sans-serif;
+}
+
+.linktree_profile p {
+  margin: 0;
+  font-size: 1rem;
+  opacity: 0.8;
+  max-width: 90%;
+}
+
+.profile_link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.profile_link:hover {
+  transform: scale(1.05);
+}
+
+.linktree_links {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+}
+
+.link_group {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+.group_title {
+  color: #FFD700;
+  font-size: 1.4rem;
+  margin: 0 0 5px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+  text-align: left;
+  font-weight: 600;
+}
+
+.linktree_link_item {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.linktree_link_item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(139, 92, 246, 0.2);
+}
+
+.linktree_link {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 16px 20px;
+  border-radius: 12px;
+  color: white;
+}
+
+.linktree_link:hover {
+  background: rgba(139, 92, 246, 0.3);
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+.link_content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.link_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  min-width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.linktree_link:hover .link_icon {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.link_text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.link_title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.link_description {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.footer_container {
+  margin-top: 40px;
+  width: 100%;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FFD700;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e5c100;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .linktree_container {
+    padding: 0 10px;
+  }
+
+  .linktree_logo {
+    width: 100px;
+    height: 100px;
+  }
+
+  .linktree_profile h1 {
+    font-size: 1.8rem;
+  }
+
+  .linktree_profile p {
+    font-size: 0.9rem;
+  }
+
+  .group_title {
+    font-size: 1.2rem;
+  }
+
+  .link_icon {
+    font-size: 1.5rem;
+    min-width: 36px;
+    height: 36px;
+  }
+
+  .link_title {
+    font-size: 1.1rem;
+  }
+
+  .link_description {
+    font-size: 0.8rem;
+  }
+}

@@ -69,7 +69,13 @@ export default function Header() {
         >
           Whitepaper
         </Link>
-
+        <Link
+          to="/linktr"
+          className={location.pathname === '/linktr' ? 'active' : ''}
+          onClick={handleNavigation('/linktr')}
+        >
+          Linktree
+        </Link>
         <Link
           to="/calculator"
           className={location.pathname === '/calculator' ? 'active' : ''}
@@ -98,7 +104,13 @@ export default function Header() {
         >
           Whitepaper
         </Link>
-
+        <Link
+          to="/linktr"
+          className={location.pathname === '/linktr' ? 'active' : ''}
+          onClick={handleNavigation('/linktr')}
+        >
+          Linktree
+        </Link>
         <Link
           to="/calculator"
           className={location.pathname === '/calculator' ? 'active' : ''}

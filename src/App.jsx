@@ -11,6 +11,7 @@ import Whitepaper from './pages/whitepaper';
 import MailRequest from './pages/mailRequest/MailRequest';
 import Privacy from './pages/privacy';
 import Terms from './pages/terms';
+import Linktree from './pages/linktr';
 import './App.css';
 
 // Define Ganache chain
@@ -61,6 +62,7 @@ function App() {
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/sale" element={<BuyToken />} />
+            <Route path="/linktr" element={<Linktree />} />
 
 
             <Route path="/" index element={<Main />} />
