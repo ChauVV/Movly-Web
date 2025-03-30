@@ -16,21 +16,35 @@ export default defineConfig({
   server: {
     port: 3000,
     host: true,
-    open: true
+    open: true,
+    proxy: {
+      // Proxying API requests to Vercel dev server
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        secure: false,
+      }
+    },
+    // Support client-side routing
+    historyApiFallback: true
   },
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
+    // Ensure proper MIME types
+    sourcemap: true,
     rollupOptions: {
       output: {
-        entryFileNames: 'assets/[name].js',
-        chunkFileNames: 'assets/[name].js',
-        assetFileNames: 'assets/[name].[ext]'
+        entryFileNames: 'assets/[name].[hash].js',
+        chunkFileNames: 'assets/[name].[hash].js',
+        assetFileNames: 'assets/[name].[hash].[ext]'
       }
     }
   },
   assetsInclude: ['**/*.md'],
   optimizeDeps: {
     include: ['react-markdown', 'remark-gfm', 'rehype-raw']
-  }
+  },
+  // Add base public path for production
+  base: '/'
 }) 

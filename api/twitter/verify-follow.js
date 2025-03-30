@@ -8,8 +8,15 @@ const TWITTER_ACCOUNT_ID = process.env.TWITTER_ACCOUNT_ID || '190344224635321548
 
 // Enable CORS headers
 const enableCors = (req, res) => {
+  const origin = req.headers.origin;
+  // Allow localhost for development
+  if (origin && (origin.includes('localhost') || origin === 'https://movly.run')) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  } else {
+    res.setHeader('Access-Control-Allow-Origin', 'https://movly.run');
+  }
+
   res.setHeader('Access-Control-Allow-Credentials', true);
-  res.setHeader('Access-Control-Allow-Origin', 'https://movly.run'); // Custom domain
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
   res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization');
 };
