@@ -1,15 +1,110 @@
+.pageWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* .airdropContainer {
+  min-height: 100vh;
+  height: 100%;
+  background: linear-gradient(to bottom, #000000, #111827, #000000);
+  width: 100vw;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  position: relative;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 215, 0, 0.3);
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 215, 0, 0.5);
+  }
+
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 215, 0, 0.3) transparent;
+} */
+
+/* .contentContainer {
+  margin: 0 auto;
+  padding-bottom: 100px;
+  height: 100%;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+} */
+
+
 .linktree_page {
   min-height: 100vh;
+  height: 100%;
   width: 100%;
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow-x: hidden;
-  padding: 20px;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+
+
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 215, 0, 0.3);
+    /* Gold color semi-transparent */
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 215, 0, 0.5);
+  }
+
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 215, 0, 0.3) transparent;
+}
+
+.linktree_container {
+  /* max-width: 700px;
+  width: 100%;
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 10; */
+
+
+  margin: 0 auto;
+  user-select: none;
+  padding-top: 80px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .background_image {
@@ -37,15 +132,7 @@
   backdrop-filter: blur(5px);
 }
 
-.linktree_container {
-  max-width: 700px;
-  width: 100%;
-  margin: 40px auto;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  z-index: 10;
-}
+
 
 .linktree_profile {
   display: flex;
@@ -57,14 +144,26 @@
   color: white;
 }
 
+.linktree_logo_container {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 3px solid #FFD700;
+  margin-bottom: 16px;
+  padding: 10px;
+}
+
 .linktree_logo {
   width: 120px;
   height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 16px;
-  border: 3px solid #FFD700;
-  box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+  object-fit: contain;
+  border: none;
+  box-shadow: none;
+  margin-bottom: 0;
 }
 
 .linktree_profile h1 {
@@ -111,11 +210,18 @@
   width: 100%;
 }
 
+.linktree_links_container {
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
+}
+
 .link_group {
   display: flex;
   flex-direction: column;
   gap: 14px;
   width: 100%;
+  margin-top: 20px;
 }
 
 .group_title {
@@ -197,8 +303,34 @@
 }
 
 .footer_container {
-  margin-top: 40px;
+  margin-top: 140px;
   width: 100%;
+  border-top: 0.4px solid rgba(255, 215, 0, 0.5);
+  position: relative;
+  z-index: 10;
+  background-color: rgba(255, 248, 220, 0.1);
+}
+
+.footer_container footer {
+  background: transparent;
+}
+
+.footer_container .Footer-content {
+  padding: 0 20px;
+}
+
+.footer_container .Footer-email,
+.footer_container .Footer-links a {
+  color: #FFD700;
+}
+
+.footer_container .Footer-copyright {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer_container .Footer-links a:hover {
+  color: #FFA500;
+  text-decoration: underline;
 }
 
 /* Scrollbar styling */
@@ -221,8 +353,19 @@
 }
 
 /* Mobile responsiveness */
+@media (max-width: 1100px) {
+  .linktree_links_container {
+    max-width: 90%;
+  }
+}
+
 @media (max-width: 768px) {
   .linktree_container {
+    padding: 0 10px;
+  }
+
+  .linktree_links_container {
+    max-width: 100%;
     padding: 0 10px;
   }
 
