@@ -392,261 +392,263 @@ const Calculator = () => {
   };
 
   return (
-    <div className={styles.calc_container}>
-      <div className={styles.calc_header}>
-        <img src={s3} alt="Header" />
-        <div className={styles.calc_headerOverlay}></div>
-      </div>
+    <div className={styles.pageWrapper}>
+      <div className={styles.calc_container}>
+        <div className={styles.calc_header}>
+          <img src={s3} alt="Header" />
+          <div className={styles.calc_headerOverlay}></div>
+        </div>
 
-      <h1 className={styles.calc_title}>MGD Earn Calculator</h1>
+        <h1 className={styles.calc_title}>MGD Earn Calculator</h1>
 
-      <div className={styles.calc_poster}>
-        <img src={posterCal} alt="Health Step Calculator Poster" />
-      </div>
+        <div className={styles.calc_poster}>
+          <img src={posterCal} alt="Health Step Calculator Poster" />
+        </div>
 
-      <div className={styles.calc_mainContent}>
-        {/* Left side - All inputs */}
-        <div className={styles.calc_contentSection}>
-          <h2>Sneaker</h2>
-          <div className={styles.calc_configGrid}>
-            <div className={styles.calc_configCard}>
-
-              <div className={styles.calc_configItem}>
-                <div className={styles.calc_configLabel}>CHOOSE RARITY:</div>
-                <div className={styles.calc_raritySelector}>
-                  <button
-                    className={styles.calc_rarityNav}
-                    onClick={() => handleRarityChange('prev')}
-                  >
-                    ‹
-                  </button>
-                  <div className={`${styles.calc_rarityDisplay} ${styles[`calc_rarity${rarityLabels[sneaker.rarity]}`]}`}>
-                    {rarityLabels[sneaker.rarity]}
-                  </div>
-                  <button
-                    className={styles.calc_rarityNav}
-                    onClick={() => handleRarityChange('next')}
-                  >
-                    ›
-                  </button>
-                </div>
-              </div>
-
-              <div className={styles.calc_configItem}>
-                <div className={styles.calc_configLabel}>SNEAKERS LEVEL:</div>
-                <div className={styles.calc_controls}>
-                  <button
-                    {...useLongPress(() => handleSneakerChange('level', Math.max(1, sneaker.level - 1)))}
-                  >‹</button>
-                  <span>{sneaker.level}</span>
-                  <button
-                    {...useLongPress(() => handleSneakerChange('level', sneaker.level + 1))}
-                  >›</button>
-                </div>
-              </div>
-
-              <div className={styles.calc_configItem}>
-                <div className={styles.calc_configLabel}>DAILY MANA:</div>
-                <div className={styles.calc_controls}>
-                  <button
-                    {...useLongPress(() => handleSneakerChange('mana', Math.max(2, sneaker.mana - 1)))}
-                  >‹</button>
-                  <span>{sneaker.mana}</span>
-                  <button
-                    {...useLongPress(() => handleSneakerChange('mana', Math.min(20, sneaker.mana + 1)))}
-                  >›</button>
-                </div>
-              </div>
-            </div>
-
-
-          </div>
-
-          <div className={styles.calc_enhancementsSection}>
-            <h2>Wings</h2>
-            <div className={styles.calc_configGrid}>
-              <div className={styles.calc_configCard} style={{ opacity: sneaker.level < 10 ? 0.5 : 1 }}>
-                <div className={styles.calc_configItem}>
-                  <div className={styles.calc_configLabel}>WINGS LEVEL:</div>
-                  <div className={styles.calc_controls}>
-                    <button
-                      {...useLongPress(() => {
-                        if (sneaker.level >= 10) {
-                          handleEnhancementChange('wings', 'level', sneaker.wings.level - 1);
-                        }
-                      })}
-                      disabled={sneaker.level < 10}
-                    >-</button>
-                    <span>{sneaker.wings.level}</span>
-                    <button
-                      {...useLongPress(() => {
-                        if (sneaker.level >= 10) {
-                          handleEnhancementChange('wings', 'level', sneaker.wings.level + 1);
-                        }
-                      })}
-                      disabled={sneaker.level < 10}
-                    >+</button>
-                  </div>
-                </div>
-                <div className={styles.calc_bonusInfo}>
-                  <div className={styles.calc_bonusRow}>
-                    <p className={styles.calc_bonusText}>Bonus: +{(calculateEnhancementBonus(sneaker.wings.level) * 100).toFixed(2)}%</p>
-                    <p className={styles.calc_levelWarning}>
-                      {sneaker.level < 10
-                        ? "Enable at Sneaker Level 10"
-                        : sneaker.wings.level === Math.min(40, sneaker.level)
-                          ? `Max level reached (${Math.min(40, sneaker.level)})`
-                          : `Max level: ${Math.min(40, sneaker.level)}`}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.calc_enhancementsSection}>
-            <h2>Halo</h2>
-            <div className={styles.calc_configGrid}>
-              <div className={styles.calc_configCard} style={{ opacity: sneaker.level < 10 ? 0.5 : 1 }}>
-                <div className={styles.calc_configItem}>
-                  <div className={styles.calc_configLabel}>HALO LEVEL:</div>
-                  <div className={styles.calc_controls}>
-                    <button
-                      {...useLongPress(() => {
-                        if (sneaker.level >= 10) {
-                          handleEnhancementChange('halo', 'level', sneaker.halo.level - 1);
-                        }
-                      })}
-                      disabled={sneaker.level < 10}
-                    >-</button>
-                    <span>{sneaker.halo.level}</span>
-                    <button
-                      {...useLongPress(() => {
-                        if (sneaker.level >= 10) {
-                          handleEnhancementChange('halo', 'level', sneaker.halo.level + 1);
-                        }
-                      })}
-                      disabled={sneaker.level < 10}
-                    >+</button>
-                  </div>
-                </div>
-                <div className={styles.calc_bonusInfo}>
-                  <div className={styles.calc_bonusRow}>
-                    <p className={styles.calc_bonusText}>Bonus: +{(calculateEnhancementBonus(sneaker.halo.level) * 100).toFixed(2)}%</p>
-                    <p className={styles.calc_levelWarning}>
-                      {sneaker.level < 10
-                        ? "Enable at Sneaker Level 10"
-                        : sneaker.halo.level === Math.min(40, sneaker.level)
-                          ? `Max level reached (${Math.min(40, sneaker.level)})`
-                          : `Max level: ${Math.min(40, sneaker.level)}`}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
+        <div className={styles.calc_mainContent}>
+          {/* Left side - All inputs */}
           <div className={styles.calc_contentSection}>
-            <h2>Power</h2>
-            <div className={styles.calc_powerSection}>
-              <div className={styles.calc_powerHeader}>
-                <div></div>
-                <div className={styles.calc_powerBaseColumn}>
-                  <span className={styles.calc_powerColumnTitle}>BASE</span>
+            <h2>Sneaker</h2>
+            <div className={styles.calc_configGrid}>
+              <div className={styles.calc_configCard}>
+
+                <div className={styles.calc_configItem}>
+                  <div className={styles.calc_configLabel}>CHOOSE RARITY:</div>
+                  <div className={styles.calc_raritySelector}>
+                    <button
+                      className={styles.calc_rarityNav}
+                      onClick={() => handleRarityChange('prev')}
+                    >
+                      ‹
+                    </button>
+                    <div className={`${styles.calc_rarityDisplay} ${styles[`calc_rarity${rarityLabels[sneaker.rarity]}`]}`}>
+                      {rarityLabels[sneaker.rarity]}
+                    </div>
+                    <button
+                      className={styles.calc_rarityNav}
+                      onClick={() => handleRarityChange('next')}
+                    >
+                      ›
+                    </button>
+                  </div>
                 </div>
-                <div className={styles.calc_powerTotalColumn}>
-                  <span className={styles.calc_powerColumnTitle}>TOTAL</span>
+
+                <div className={styles.calc_configItem}>
+                  <div className={styles.calc_configLabel}>SNEAKERS LEVEL:</div>
+                  <div className={styles.calc_controls}>
+                    <button
+                      {...useLongPress(() => handleSneakerChange('level', Math.max(1, sneaker.level - 1)))}
+                    >‹</button>
+                    <span>{sneaker.level}</span>
+                    <button
+                      {...useLongPress(() => handleSneakerChange('level', sneaker.level + 1))}
+                    >›</button>
+                  </div>
+                </div>
+
+                <div className={styles.calc_configItem}>
+                  <div className={styles.calc_configLabel}>DAILY MANA:</div>
+                  <div className={styles.calc_controls}>
+                    <button
+                      {...useLongPress(() => handleSneakerChange('mana', Math.max(2, sneaker.mana - 1)))}
+                    >‹</button>
+                    <span>{sneaker.mana}</span>
+                    <button
+                      {...useLongPress(() => handleSneakerChange('mana', Math.min(20, sneaker.mana + 1)))}
+                    >›</button>
+                  </div>
                 </div>
               </div>
 
-              <div className={styles.calc_powerItem}>
-                <div className={styles.calc_powerLabel}>SHOE:</div>
-                <div className={styles.calc_powerControls}>
-                  <input
-                    type="number"
-                    className={styles.calc_powerInput}
-                    placeholder={`${rarityPowerRanges[sneaker.rarity].min}-${rarityPowerRanges[sneaker.rarity].max}`}
-                    value={inputValues.shoe || ''}
-                    min={rarityPowerRanges[sneaker.rarity].min}
-                    max={rarityPowerRanges[sneaker.rarity].max}
-                    onChange={(e) => {
-                      setInputValues(prev => ({ ...prev, shoe: e.target.value }));
-                    }}
-                    onBlur={(e) => {
-                      const value = parseInt(e.target.value);
-                      const powerRange = rarityPowerRanges[sneaker.rarity];
-                      if (!isNaN(value)) {
-                        const validValue = Math.min(Math.max(value, powerRange.min), powerRange.max);
-                        setInputValues(prev => ({ ...prev, shoe: validValue.toString() }));
-                        handlePowerChange('shoe', validValue);
-                        setSneaker(prev => ({ ...prev, power: validValue }));
-                      } else {
-                        setInputValues(prev => ({ ...prev, shoe: '' }));
-                        handlePowerChange('shoe', powerRange.min);
-                        setSneaker(prev => ({ ...prev, power: powerRange.min }));
-                      }
-                    }}
-                  />
+
+            </div>
+
+            <div className={styles.calc_enhancementsSection}>
+              <h2>Wings</h2>
+              <div className={styles.calc_configGrid}>
+                <div className={styles.calc_configCard} style={{ opacity: sneaker.level < 10 ? 0.5 : 1 }}>
+                  <div className={styles.calc_configItem}>
+                    <div className={styles.calc_configLabel}>WINGS LEVEL:</div>
+                    <div className={styles.calc_controls}>
+                      <button
+                        {...useLongPress(() => {
+                          if (sneaker.level >= 10) {
+                            handleEnhancementChange('wings', 'level', sneaker.wings.level - 1);
+                          }
+                        })}
+                        disabled={sneaker.level < 10}
+                      >-</button>
+                      <span>{sneaker.wings.level}</span>
+                      <button
+                        {...useLongPress(() => {
+                          if (sneaker.level >= 10) {
+                            handleEnhancementChange('wings', 'level', sneaker.wings.level + 1);
+                          }
+                        })}
+                        disabled={sneaker.level < 10}
+                      >+</button>
+                    </div>
+                  </div>
+                  <div className={styles.calc_bonusInfo}>
+                    <div className={styles.calc_bonusRow}>
+                      <p className={styles.calc_bonusText}>Bonus: +{(calculateEnhancementBonus(sneaker.wings.level) * 100).toFixed(2)}%</p>
+                      <p className={styles.calc_levelWarning}>
+                        {sneaker.level < 10
+                          ? "Enable at Sneaker Level 10"
+                          : sneaker.wings.level === Math.min(40, sneaker.level)
+                            ? `Max level reached (${Math.min(40, sneaker.level)})`
+                            : `Max level: ${Math.min(40, sneaker.level)}`}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div className={styles.calc_powerTotal}>
-                  <span>{calculateTotalPower('shoe')}</span>
+              </div>
+            </div>
+
+            <div className={styles.calc_enhancementsSection}>
+              <h2>Halo</h2>
+              <div className={styles.calc_configGrid}>
+                <div className={styles.calc_configCard} style={{ opacity: sneaker.level < 10 ? 0.5 : 1 }}>
+                  <div className={styles.calc_configItem}>
+                    <div className={styles.calc_configLabel}>HALO LEVEL:</div>
+                    <div className={styles.calc_controls}>
+                      <button
+                        {...useLongPress(() => {
+                          if (sneaker.level >= 10) {
+                            handleEnhancementChange('halo', 'level', sneaker.halo.level - 1);
+                          }
+                        })}
+                        disabled={sneaker.level < 10}
+                      >-</button>
+                      <span>{sneaker.halo.level}</span>
+                      <button
+                        {...useLongPress(() => {
+                          if (sneaker.level >= 10) {
+                            handleEnhancementChange('halo', 'level', sneaker.halo.level + 1);
+                          }
+                        })}
+                        disabled={sneaker.level < 10}
+                      >+</button>
+                    </div>
+                  </div>
+                  <div className={styles.calc_bonusInfo}>
+                    <div className={styles.calc_bonusRow}>
+                      <p className={styles.calc_bonusText}>Bonus: +{(calculateEnhancementBonus(sneaker.halo.level) * 100).toFixed(2)}%</p>
+                      <p className={styles.calc_levelWarning}>
+                        {sneaker.level < 10
+                          ? "Enable at Sneaker Level 10"
+                          : sneaker.halo.level === Math.min(40, sneaker.level)
+                            ? `Max level reached (${Math.min(40, sneaker.level)})`
+                            : `Max level: ${Math.min(40, sneaker.level)}`}
+                      </p>
+                    </div>
+                  </div>
                 </div>
+              </div>
+            </div>
+
+            <div className={styles.calc_contentSection}>
+              <h2>Power</h2>
+              <div className={styles.calc_powerSection}>
+                <div className={styles.calc_powerHeader}>
+                  <div></div>
+                  <div className={styles.calc_powerBaseColumn}>
+                    <span className={styles.calc_powerColumnTitle}>BASE</span>
+                  </div>
+                  <div className={styles.calc_powerTotalColumn}>
+                    <span className={styles.calc_powerColumnTitle}>TOTAL</span>
+                  </div>
+                </div>
+
+                <div className={styles.calc_powerItem}>
+                  <div className={styles.calc_powerLabel}>SHOE:</div>
+                  <div className={styles.calc_powerControls}>
+                    <input
+                      type="number"
+                      className={styles.calc_powerInput}
+                      placeholder={`${rarityPowerRanges[sneaker.rarity].min}-${rarityPowerRanges[sneaker.rarity].max}`}
+                      value={inputValues.shoe || ''}
+                      min={rarityPowerRanges[sneaker.rarity].min}
+                      max={rarityPowerRanges[sneaker.rarity].max}
+                      onChange={(e) => {
+                        setInputValues(prev => ({ ...prev, shoe: e.target.value }));
+                      }}
+                      onBlur={(e) => {
+                        const value = parseInt(e.target.value);
+                        const powerRange = rarityPowerRanges[sneaker.rarity];
+                        if (!isNaN(value)) {
+                          const validValue = Math.min(Math.max(value, powerRange.min), powerRange.max);
+                          setInputValues(prev => ({ ...prev, shoe: validValue.toString() }));
+                          handlePowerChange('shoe', validValue);
+                          setSneaker(prev => ({ ...prev, power: validValue }));
+                        } else {
+                          setInputValues(prev => ({ ...prev, shoe: '' }));
+                          handlePowerChange('shoe', powerRange.min);
+                          setSneaker(prev => ({ ...prev, power: powerRange.min }));
+                        }
+                      }}
+                    />
+                  </div>
+                  <div className={styles.calc_powerTotal}>
+                    <span>{calculateTotalPower('shoe')}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right side - Sneaker and Results */}
+          <div className={styles.calc_sneakerSection}>
+            <div className={styles.calc_sneakerDisplay}>
+              <div className={`${styles.calc_sneakerBg} ${getQualityBackground()}`}>
+                {sneaker.halo.level > 0 && (
+                  <svg viewBox="0 0 100 100" className={styles.calc_flameAnimation}>
+                    <defs>
+                      <radialGradient id="haloGradient" cx="50%" cy="50%" r="50%">
+                        {sneaker.halo.level > 0 && getHaloGradientStops(getHaloColor(sneaker.halo.level))}
+                      </radialGradient>
+                    </defs>
+                    <circle cx="50" cy="50" r="49" fill="url(#haloGradient)" />
+                  </svg>
+                )}
+                <img src={shoe} alt="Sneaker" className={styles.calc_sneakerImage} />
+                {sneaker.wings.level > 0 &&
+                  <img src={wings} alt="Wings" className={styles.calc_wingsImage} />
+                }
+              </div>
+            </div>
+
+            <div className={styles.calc_resultsCard}>
+              <h2>Earnings</h2>
+              <div className={styles.calc_resultsContent}>
+                <p className={styles.calc_halvingInfo}>
+                  Halving count: <span className={styles.calc_halvingCount}>0</span> <span className={styles.calc_halvingRate}>(Earn Rate: 100%)</span>
+                </p>
+                <p>
+                  MGD per minute: <span>{earnings.mgdPerMin.toFixed(2)}</span>
+                </p>
+                <p>
+                  Running time: <span>{sneaker.mana * 5} minutes</span>
+                </p>
+                <p className={styles.calc_dailyIncome}>
+                  DAILY INCOME: <span>{(earnings.mgdPerMin * sneaker.mana * 5).toFixed(2)} <img src={goldCoin} alt="MGD" className={styles.calc_coinIcon} /></span>
+                </p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Right side - Sneaker and Results */}
-        <div className={styles.calc_sneakerSection}>
-          <div className={styles.calc_sneakerDisplay}>
-            <div className={`${styles.calc_sneakerBg} ${getQualityBackground()}`}>
-              {sneaker.halo.level > 0 && (
-                <svg viewBox="0 0 100 100" className={styles.calc_flameAnimation}>
-                  <defs>
-                    <radialGradient id="haloGradient" cx="50%" cy="50%" r="50%">
-                      {sneaker.halo.level > 0 && getHaloGradientStops(getHaloColor(sneaker.halo.level))}
-                    </radialGradient>
-                  </defs>
-                  <circle cx="50" cy="50" r="49" fill="url(#haloGradient)" />
-                </svg>
-              )}
-              <img src={shoe} alt="Sneaker" className={styles.calc_sneakerImage} />
-              {sneaker.wings.level > 0 &&
-                <img src={wings} alt="Wings" className={styles.calc_wingsImage} />
-              }
-            </div>
-          </div>
-
-          <div className={styles.calc_resultsCard}>
-            <h2>Earnings</h2>
-            <div className={styles.calc_resultsContent}>
-              <p className={styles.calc_halvingInfo}>
-                Halving count: <span className={styles.calc_halvingCount}>0</span> <span className={styles.calc_halvingRate}>(Earn Rate: 100%)</span>
-              </p>
-              <p>
-                MGD per minute: <span>{earnings.mgdPerMin.toFixed(2)}</span>
-              </p>
-              <p>
-                Running time: <span>{sneaker.mana * 5} minutes</span>
-              </p>
-              <p className={styles.calc_dailyIncome}>
-                DAILY INCOME: <span>{(earnings.mgdPerMin * sneaker.mana * 5).toFixed(2)} <img src={goldCoin} alt="MGD" className={styles.calc_coinIcon} /></span>
-              </p>
-            </div>
-          </div>
+        <div className={styles.calc_formula}>
+          <h3>Earning Formula:</h3>
+          <code>
+            MGD = 0.35 × Quality × (1 + Power×0.01) × (1 + Level×0.02) × [(1 + Wings) × (1 + Halo)] × HalvingRate
+          </code>
         </div>
-      </div>
 
-      <div className={styles.calc_formula}>
-        <h3>Earning Formula:</h3>
-        <code>
-          MGD = 0.35 × Quality × (1 + Power×0.01) × (1 + Level×0.02) × [(1 + Wings) × (1 + Halo)] × HalvingRate
-        </code>
-      </div>
-
-      <div className={styles.calc_footer}>
-        <img src={s3} alt="Footer" />
-        <div className={styles.calc_footerOverlay}></div>
+        <div className={styles.calc_footer}>
+          <img src={s3} alt="Footer" />
+          <div className={styles.calc_footerOverlay}></div>
+        </div>
       </div>
     </div>
   );
