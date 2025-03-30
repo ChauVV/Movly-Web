@@ -362,6 +362,7 @@
 @media (max-width: 768px) {
   .linktree_container {
     padding: 0 10px;
+    padding-top: 50px;
   }
 
   .linktree_links_container {
