@@ -1,0 +1,198 @@
+* {
+  max-inline-size: 100%;
+  overflow-wrap: break-word;
+}
+
+.privacyContainer {
+  min-height: 100vh;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.95) 100%);
+  color: #ffffff;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.privacyContent {
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  overflow-x: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.privacyContent h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+  font-family: 'Chakra Petch', sans-serif;
+}
+
+.lastUpdated {
+  text-align: center;
+  color: #aaa;
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+
+.privacyContent section,
+.privacyContent div,
+.privacyContent ul {
+  max-width: 100%;
+  word-break: break-word;
+  overflow: hidden;
+}
+
+.privacyContent div>h2 {
+  color: #00ffd1;
+  font-size: 1.6rem;
+  margin: 0.5rem 0 0.4rem;
+  padding-bottom: 0.2rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  font-family: 'Chakra Petch', sans-serif;
+}
+
+.privacyContent>div {
+  margin-bottom: 0;
+  position: relative;
+}
+
+.privacyContent h3 {
+  color: #ffffff;
+  font-size: 1.25rem;
+  margin: 1rem 0 0.7rem;
+}
+
+.privacyContent p {
+  line-height: 1.6;
+  margin-bottom: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  white-space: normal;
+  max-width: 100%;
+}
+
+.privacyContent ul {
+  list-style-type: none;
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.privacyContent li {
+  margin-bottom: 0.5rem;
+  position: relative;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.privacyContent li::before {
+  content: "•";
+  color: #00ffd1;
+  position: absolute;
+  left: -1.5rem;
+  font-size: 1.2rem;
+}
+
+.privacyContent a {
+  color: #00ffd1;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  white-space: normal;
+  max-width: 100%;
+}
+
+.privacyContent a:hover {
+  color: #00ccaa;
+}
+
+.privacyContent strong {
+  color: #00ffd1;
+  font-weight: 600;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.privacyContainer p a strong {
+  display: inline-block;
+}
+
+.privacyIntro {
+  margin-bottom: 0.5rem;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+@media (max-width: 768px) {
+  .privacyContainer {
+    padding: 1rem;
+  }
+
+  .privacyContent {
+    padding: 1.5rem;
+  }
+
+  .privacyContent h1 {
+    font-size: 2rem;
+  }
+
+  .privacyContent h2 {
+    font-size: 1.4rem;
+  }
+
+  .privacyContent h3 {
+    font-size: 1.15rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .privacyContainer {
+    padding: 0.5rem;
+  }
+
+  .privacyContent {
+    padding: 1.25rem;
+  }
+
+  .privacyContent h1 {
+    font-size: 1.8rem;
+  }
+
+  .privacyContent h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .privacyContent h3 {
+    font-size: 1.1rem;
+  }
+}

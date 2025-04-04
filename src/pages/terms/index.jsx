@@ -1,35 +1,35 @@
 import React from 'react';
-import './Terms.css';
+import styles from './Terms.module.css';
 
 const Terms = () => {
   return (
-    <div className="terms-container">
-      <div className="terms-content">
+    <div className={styles.termsContainer}>
+      <div className={styles.termsContent}>
         <h1>Movly Terms of Use</h1>
-        <p className="last-updated">Last updated: {new Date().toLocaleDateString()}</p>
+        <p className={styles.lastUpdated}>Last updated: 04/04/2025</p>
 
-        <section className="terms-intro">
+        <div className={styles.termsIntro}>
           <p>
-            <strong>Movly</strong> is a Web3 lifestyle app (<strong>"App"</strong>) launched by MOVLY TECHNOLOGY LIMITED (<strong>"Company"</strong>).
+            <strong>Movly</strong> is a Web3 lifestyle app (<strong style={{ display: 'inline' }}>"App"</strong>) launched by MOVLY TECHNOLOGY LIMITED (<strong style={{ display: 'inline' }}>"Company"</strong>).
             Users of the App can accumulate tokens by walking, jogging, or running outdoors with their smartwatch.
           </p>
           <p>
-            Access to, and use of, the App and the services available through the App (<strong>"Services"</strong>) are subject to the following
-            terms, conditions and notices (<strong>"Terms of Use"</strong>). By using the Services, you are agreeing to all of the Terms of Use,
+            Access to, and use of, the App and the services available through the App (<strong style={{ display: 'inline' }}>"Services"</strong>) are subject to the following
+            terms, conditions and notices (<strong style={{ display: 'inline' }}>"Terms of Use"</strong>). By using the Services, you are agreeing to all of the Terms of Use,
             as may be updated by us from time to time. You should check this page regularly to take notice of any changes we may have made to the Terms of Use.
           </p>
-        </section>
+        </div>
 
-        <section>
+        <div>
           <h2>1. Amendments to Terms of Use</h2>
           <p>
             The Company reserves the right to amend these Terms of Use from time to time. Amendments will be effective immediately upon notification
             on the App or through the Services. Your continued use of the App and the Services following such notification will represent an agreement
             by you to be bound by the Terms of Use as amended.
           </p>
-        </section>
+        </div>
 
-        <section>
+        <div>
           <h2>2. Who may use the App?</h2>
           <p>
             You must be at least 18 years old, or the age of legal majority in your jurisdiction of residence, to access the App and the Services.
@@ -42,9 +42,9 @@ const Terms = () => {
           </p>
           <p>By using the App or the Services you represent and warrant that your access to and use of the App and Services is lawful in your
             country of residence in the manner in which you access and use them.</p>
-        </section>
+        </div>
 
-        <section>
+        <div>
           <h2>3. App</h2>
           <p>
             Access to the App is permitted on a temporary basis, and we reserve the right to withdraw or amend the Services without notice.
@@ -63,11 +63,11 @@ const Terms = () => {
             We make no representation and give no warranty that tokens accumulated through the App or the Services will have any particular value
             or any monetary value at all. You are liable for any loss or diminution value of tokens.
           </p>
-        </section>
+        </div>
 
-        <section>
+        <div>
           <h2>4. Safety Warnings</h2>
-          <p className="warning">
+          <p className={styles.warning}>
             THE COMPANY OFFERS HEALTH AND FITNESS INFORMATION AND IS DESIGNED FOR EDUCATIONAL AND ENTERTAINMENT PURPOSES ONLY. YOU SHOULD CONSULT
             YOUR PHYSICIAN OR GENERAL PRACTITIONER BEFORE BEGINNING A NEW FITNESS PROGRAM USING THE APP OR THE SERVICES. YOU SHOULD NOT RELY ON
             THIS INFORMATION AS A SUBSTITUTE FOR, NOR DOES IT REPLACE, PROFESSIONAL MEDICAL ADVICE, DIAGNOSIS, OR TREATMENT.
@@ -78,12 +78,12 @@ const Terms = () => {
             BECAUSE OF YOUR QUEST TO ACCUMULATE TOKENS ON THE MOVE USING THE APP OR THE SERVICES. THE USE OF ANY INFORMATION PROVIDED THROUGH THE
             APP AND THE SERVICES IS SOLELY AT YOUR OWN RISK AND IS NOT MEDICAL OR HEALTHCARE ADVICE.
           </p>
-        </section>
+        </div>
 
-        <section>
+        <div>
           <h2>5. Anti-Cheating</h2>
           <p>
-            After each activity session, our Machine Learning Anti-Cheating System (<strong>"System"</strong>) will evaluate if users have
+            After each activity session, our Machine Learning Anti-Cheating System (<strong style={{ display: 'inline' }}>"System"</strong>) will evaluate if users have
             exploited the Movly move-to-earn mechanics. The System will add or deduct users' Trust Score at the end of each session. Users
             cannot start a new session before the System completes the analysis.
           </p>
@@ -100,9 +100,9 @@ const Terms = () => {
             <li>Using automated movement or devices</li>
             <li>Any other form of system manipulation</li>
           </ul>
-        </section>
+        </div>
 
-        <section>
+        <div>
           <h2>6. User Representations and Warranties</h2>
           <p>In becoming a user of the App and the Services, you represent and warrant that all of the following statements are true:</p>
           <ul>
@@ -114,9 +114,9 @@ const Terms = () => {
             <li>Your physician is not currently prescribing medication for your blood pressure or heart condition</li>
             <li>You do not know of any other reason you should not exercise</li>
           </ul>
-        </section>
+        </div>
 
-        <section>
+        <div>
           <h2>7. Intellectual Property</h2>
           <p>
             The App and all content, including but not limited to text, graphics, logos, button icons, images, audio clips, digital downloads,
@@ -126,9 +126,9 @@ const Terms = () => {
             The Company's trademarks and trade dress may not be used in connection with any product or service that is not the Company's,
             in any manner that is likely to cause confusion among customers, or in any manner that disparages or discredits the Company.
           </p>
-        </section>
+        </div>
 
-        <section>
+        <div>
           <h2>8. Disclaimer of Liability</h2>
           <p>
             To the fullest extent permitted by applicable law, the Company shall not be liable for any indirect, incidental, special,
@@ -143,23 +143,23 @@ const Terms = () => {
             <li>Any errors or omissions in any content or for any loss or damage incurred as a result of the use of any content posted,
               emailed, transmitted, or otherwise made available through the App</li>
           </ul>
-        </section>
+        </div>
 
-        <section>
+        <div>
           <h2>9. Governing Law</h2>
           <p>
             These Terms of Use are governed by and construed in accordance with the laws of British Virgin Islands. You agree to submit to
             the exclusive jurisdiction of the courts of British Virgin Islands.
           </p>
-        </section>
+        </div>
 
-        <section>
+        <div>
           <h2>10. Contact Us</h2>
           <p>
             If you have any questions about these Terms of Use, please contact us at:{' '}
             <a href="mailto:support@movly.run">support@movly.run</a>
           </p>
-        </section>
+        </div>
       </div>
     </div>
   );

@@ -9,59 +9,67 @@
   max-width: 800px;
   margin: 0 auto;
   background: rgba(255, 255, 255, 0.05);
-  padding: 2rem;
+  padding: 2.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .privacy-content h1 {
   font-size: 2.5rem;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   color: #ffffff;
   font-family: 'Chakra Petch', sans-serif;
 }
 
 .privacy-content .last-updated {
   text-align: center;
-  color: #888;
-  margin-bottom: 2rem;
+  color: #aaa;
+  margin-bottom: 3rem;
   font-style: italic;
 }
 
 .privacy-content section {
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .privacy-content h2 {
   color: #00ffd1;
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+  font-size: 1.6rem;
+  margin-bottom: 1.2rem;
   font-family: 'Chakra Petch', sans-serif;
 }
 
 .privacy-content h3 {
   color: #ffffff;
-  font-size: 1.2rem;
-  margin: 1rem 0;
+  font-size: 1.25rem;
+  margin: 1.5rem 0 1rem;
 }
 
 .privacy-content p {
-  line-height: 1.6;
-  margin-bottom: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
   color: rgba(255, 255, 255, 0.9);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
 }
 
 .privacy-content ul {
   list-style-type: none;
   padding-left: 1.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .privacy-content li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.7rem;
   position: relative;
   color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .privacy-content li::before {
@@ -69,6 +77,7 @@
   color: #00ffd1;
   position: absolute;
   left: -1.5rem;
+  font-size: 1.2rem;
 }
 
 .privacy-content a {
@@ -100,11 +109,11 @@
   }
 
   .privacy-content h2 {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
   }
 
   .privacy-content h3 {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
   }
 }
 
@@ -114,7 +123,7 @@
   }
 
   .privacy-content {
-    padding: 1rem;
+    padding: 1.25rem;
   }
 
   .privacy-content h1 {
@@ -122,10 +131,11 @@
   }
 
   .privacy-content h2 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
   }
 
   .privacy-content h3 {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 }

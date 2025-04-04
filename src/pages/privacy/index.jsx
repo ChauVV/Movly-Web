@@ -1,21 +1,21 @@
 import React from 'react';
-import './Privacy.css';
+import styles from './Privacy.module.css';
 
 const Privacy = () => {
   return (
-    <div className="privacy-container">
-      <div className="privacy-content">
+    <div className={styles.privacyContainer}>
+      <div className={styles.privacyContent}>
         <h1>Privacy Policy</h1>
-        <p className="last-updated">Last updated: {new Date().toLocaleDateString()}</p>
+        <p className={styles.lastUpdated}>Last updated: 04/04/2025</p>
 
-        <section>
+        <div>
           <h2>Introduction</h2>
           <p>
             MOVLY TECHNOLOGY LIMITED (referred to as "we," "our," or "us") understands and respects your desire to maintain your privacy. This Privacy Policy explains how your information is collected, used, and disclosed through your use of the Movly move-to-earn smartwatch app ("App").
           </p>
-        </section>
+        </div>
 
-        <section>
+        <div>
           <h2>Information We Collect</h2>
           <h3>1. Information You Provide to Us</h3>
           <ul>
@@ -43,9 +43,9 @@ const Privacy = () => {
             exercise intensity, and other fitness metrics. This information is collected only with
             your consent and is necessary for the core functionality of our move-to-earn features.
           </p>
-        </section>
+        </div>
 
-        <section>
+        <div>
           <h2>How We Use Your Information</h2>
           <ul>
             <li>To provide and maintain the move-to-earn functionality</li>
@@ -59,9 +59,9 @@ const Privacy = () => {
             <li>To send important updates about the service</li>
             <li>To prevent fraud and ensure security</li>
           </ul>
-        </section>
+        </div>
 
-        <section>
+        <div>
           <h2>Data Storage and Security</h2>
           <p>
             We implement industry-standard security measures to protect your data. However, no method
@@ -75,9 +75,9 @@ const Privacy = () => {
             <li>GPS data is only stored temporarily for activity verification</li>
             <li>We use secure protocols for all data transfers</li>
           </ul>
-        </section>
+        </div>
 
-        <section>
+        <div>
           <h2>Your Rights</h2>
           <p>Under applicable privacy laws, you have the right to:</p>
           <ul>
@@ -88,18 +88,18 @@ const Privacy = () => {
             <li>Export your data</li>
             <li>Lodge complaints with relevant authorities</li>
           </ul>
-        </section>
+        </div>
 
-        <section>
+        <div>
           <h2>International Data Transfers</h2>
           <p>
             Your data may be processed in various countries where we operate. We ensure appropriate
             safeguards are in place for international transfers, including standard contractual clauses
             and other legal mechanisms to protect your data.
           </p>
-        </section>
+        </div>
 
-        <section>
+        <div>
           <h2>Data Retention</h2>
           <p>We retain your data only as long as necessary for:</p>
           <ul>
@@ -109,9 +109,9 @@ const Privacy = () => {
             <li>Preventing fraud</li>
             <li>Enforcing agreements</li>
           </ul>
-        </section>
+        </div>
 
-        <section>
+        <div>
           <h2>Special Provisions for EU Users</h2>
           <p>
             For users in the European Economic Area (EEA), we comply with GDPR requirements including:
@@ -123,9 +123,9 @@ const Privacy = () => {
             <li>Breach notifications</li>
             <li>Cross-border transfer safeguards</li>
           </ul>
-        </section>
+        </div>
 
-        <section>
+        <div>
           <h2>Cookie Policy</h2>
           <p>
             Our App and website use cookies and similar technologies to:
@@ -137,24 +137,24 @@ const Privacy = () => {
             <li>Provide social media features</li>
             <li>Deliver relevant advertising</li>
           </ul>
-        </section>
+        </div>
 
-        <section>
+        <div>
           <h2>Changes to This Policy</h2>
           <p>
             We may update this Privacy Policy from time to time. We will notify you of any significant
             changes through the App and our website. Continued use of our services after changes
             constitutes acceptance of the updated policy.
           </p>
-        </section>
+        </div>
 
-        <section>
+        <div>
           <h2>Contact Us</h2>
           <p>
             If you have any questions about this Privacy Policy or our privacy practices, please contact us at:{' '}
             <a href="mailto:support@movly.run">support@movly.run</a>
           </p>
-        </section>
+        </div>
       </div>
     </div>
   );
