@@ -77,10 +77,13 @@ export default function Community() {
         target="_blank"
         rel="noopener noreferrer"
         className={styles.card}
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ y: 25 }}
+        whileInView={{ y: 0 }}
         viewport={{ once: true }}
-        transition={{ delay: index * 0.1 }}
+        transition={{
+          duration: 0.3,
+          delay: index * 0.2
+        }}
       >
         <div className={styles.icon} style={{ color: social.color }}>
           {social.icon}
