@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import './Tokens.css';
+import styles from './Tokens.module.css';
 import React, { useState, useEffect } from 'react';
 import HalvingPopup from '../../../components/HalvingPopup';
 import { FaExclamationCircle } from 'react-icons/fa';
@@ -59,41 +59,42 @@ export default function Tokens() {
   };
 
   return (
-    <section className="main-section tokens-section">
-      <div className="background-image">
+    <section className={`${styles['main-section']} ${styles['tokens-section']}`}>
+      <div className={styles['background-image']}>
         <img src={bg} alt="background" />
-        <div className="blur-overlay" />
       </div>
-      <h2 className="tokens-title">Our Tokens</h2>
+      <div className={styles['blur-overlay']}></div>
+
+      <h2 className={styles['tokens-title']}>Our Tokens</h2>
       {isMobile ? (
-        <div className="tokens-content">
-          <div className="tokens-container">
+        <div className={styles['tokens-content']}>
+          <div className={styles['tokens-container']}>
             {tokens.map((token) => (
-              <div key={token.symbol} className="token-card">
-                <div className="token-header">
-                  <div className="token-header-left">
-                    <div className="token-symbol">
+              <div key={token.symbol} className={styles['token-card']}>
+                <div className={styles['token-header']}>
+                  <div className={styles['token-header-left']}>
+                    <div className={styles['token-symbol']}>
                       <h3>{token.symbol}</h3>
                     </div>
-                    <p className="token-name">{token.name}</p>
+                    <p className={styles['token-name']}>{token.name}</p>
                   </div>
-                  <div className="token-icon-wrapper">
-                    <img src={token.icon} alt={token.symbol} className="token-icon" />
+                  <div className={styles['token-icon-wrapper']}>
+                    <img src={token.icon} alt={token.symbol} className={styles['token-icon']} />
                   </div>
                 </div>
 
-                <div className="token-description-wrapper">
-                  <p className="token-description">{token.description}</p>
+                <div className={styles['token-description-wrapper']}>
+                  <p className={styles['token-description']}>{token.description}</p>
                   {token.symbol === 'MGD' && (
                     <FaExclamationCircle
-                      className="info-icon"
+                      className={styles['info-icon']}
                       onClick={() => handleInfoClick(token.symbol)}
                       title="Click for halving details"
                     />
                   )}
                 </div>
 
-                <div className="token-features">
+                <div className={styles['token-features']}>
                   <h4>Features</h4>
                   <ul>
                     {token.features.map((feature, index) => {
@@ -106,7 +107,7 @@ export default function Tokens() {
                       return (
                         <li
                           key={index}
-                          className={`${feature.startsWith(' ') ? 'sub-feature' : ''} ${isHighlight ? 'highlight' : ''}`}
+                          className={`${feature.startsWith(' ') ? styles['sub-feature'] : ''} ${isHighlight ? styles['highlight'] : ''}`}
                         >
                           {feature}
                         </li>
@@ -120,46 +121,46 @@ export default function Tokens() {
         </div>
       ) : (
         <motion.div
-          className="tokens-content"
+          className={styles['tokens-content']}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <div className="tokens-container">
+          <div className={styles['tokens-container']}>
             {tokens.map((token, index) => (
               <motion.div
                 key={token.symbol}
-                className="token-card"
+                className={styles['token-card']}
                 initial={{ opacity: 1, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2 }}
               >
-                <div className="token-header">
-                  <div className="token-header-left">
-                    <div className="token-symbol">
+                <div className={styles['token-header']}>
+                  <div className={styles['token-header-left']}>
+                    <div className={styles['token-symbol']}>
                       <h3>{token.symbol}</h3>
                     </div>
-                    <p className="token-name">{token.name}</p>
+                    <p className={styles['token-name']}>{token.name}</p>
                   </div>
-                  <div className="token-icon-wrapper">
-                    <img src={token.icon} alt={token.symbol} className="token-icon" />
+                  <div className={styles['token-icon-wrapper']}>
+                    <img src={token.icon} alt={token.symbol} className={styles['token-icon']} />
                   </div>
                 </div>
 
-                <div className="token-description-wrapper">
-                  <p className="token-description">{token.description}</p>
+                <div className={styles['token-description-wrapper']}>
+                  <p className={styles['token-description']}>{token.description}</p>
                   {token.symbol === 'MGD' && (
                     <FaExclamationCircle
-                      className="info-icon"
+                      className={styles['info-icon']}
                       onClick={() => handleInfoClick(token.symbol)}
                       title="Click for halving details"
                     />
                   )}
                 </div>
 
-                <div className="token-features">
+                <div className={styles['token-features']}>
                   <h4>Features</h4>
                   <ul>
                     {token.features.map((feature, index) => {
@@ -172,7 +173,7 @@ export default function Tokens() {
                       return (
                         <li
                           key={index}
-                          className={`${feature.startsWith(' ') ? 'sub-feature' : ''} ${isHighlight ? 'highlight' : ''}`}
+                          className={`${feature.startsWith(' ') ? styles['sub-feature'] : ''} ${isHighlight ? styles['highlight'] : ''}`}
                         >
                           {feature}
                         </li>

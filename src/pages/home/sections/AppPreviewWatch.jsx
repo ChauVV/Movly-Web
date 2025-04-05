@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import './AppPreviewWatch.css';
+import styles from './AppPreviewWatch.module.css';
 import bg from '@assets/images/ma3.jpg';
 import watch from '@assets/images/watch.png';
 import { useState, useEffect } from 'react';
@@ -36,27 +36,27 @@ export default function AppPreview() {
   ];
 
   return (
-    <section className="watch-app-preview-section">
-      <div className="background-image blur-img1">
+    <section className={styles['watch-app-preview-section']}>
+      <div className={`${styles['background-image']} ${styles['blur-img1']}`}>
         <img src={bg} alt="background" />
-        <div className="watch-blur-overlay1" />
+        <div className={styles['watch-blur-overlay1']} />
       </div>
-      <h2 className="watch-app-preview-title">Watch App</h2>
-      <div className="watch-app-preview-content">
-        <div className="watch-app-preview-container">
-          <div className="watch-mockup-container">
+      <h2 className={styles['watch-app-preview-title']}>Watch App</h2>
+      <div className={styles['watch-app-preview-content']}>
+        <div className={styles['watch-app-preview-container']}>
+          <div className={styles['watch-mockup-container']}>
             <div className="mockup-placeholder">
-              <img src={watch} alt="mobile-mockup" className="watch-mobile-img" />
+              <img src={watch} alt="mobile-mockup" className={styles['watch-mobile-img']} />
             </div>
           </div>
 
           {!isMobile && (
             // Desktop Layout
-            <div className="watch-features-container">
+            <div className={styles['watch-features-container']}>
               {features.map((feature) => (
                 <motion.div
                   key={feature.title}
-                  className="watch-feature-item"
+                  className={styles['watch-feature-item']}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -71,7 +71,7 @@ export default function AppPreview() {
         </div>
       </div>
       {isMobile &&
-        <div className="watch-features-text">
+        <div className={styles['watch-features-text']}>
           {features.map((feature) => (
             <div key={feature.title}>
               <h3>{feature.title}</h3>

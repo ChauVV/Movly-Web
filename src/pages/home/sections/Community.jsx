@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import './Community.css';
+import styles from './Community.module.css';
 import bg from '@assets/images/s3.jpg';
 import { useEffect, useState } from 'react';
 import Footer from '@/components/Footer';
@@ -57,14 +57,14 @@ export default function Community() {
           href={social.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="Community-card"
+          className={styles.card}
         >
-          <div className="Community-icon" style={{ color: social.color }}>
+          <div className={styles.icon} style={{ color: social.color }}>
             {social.icon}
           </div>
-          <div className="Community-info">
+          <div className={styles.info}>
             <h3>{social.name}</h3>
-            <span className="Community-type">{social.type}</span>
+            <span className={styles.type}>{social.type}</span>
             <p>{social.description}</p>
           </div>
         </a>
@@ -76,18 +76,18 @@ export default function Community() {
         href={social.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="Community-card"
+        className={styles.card}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: index * 0.1 }}
       >
-        <div className="Community-icon" style={{ color: social.color }}>
+        <div className={styles.icon} style={{ color: social.color }}>
           {social.icon}
         </div>
-        <div className="Community-info">
+        <div className={styles.info}>
           <h3>{social.name}</h3>
-          <span className="Community-type">{social.type}</span>
+          <span className={styles.type}>{social.type}</span>
           <p>{social.description}</p>
         </div>
       </motion.a>
@@ -95,22 +95,22 @@ export default function Community() {
   };
 
   return (
-    <section className="Community-section">
-      <div className="Community-background blur-img1">
+    <section className={styles.section}>
+      <div className={`${styles.background} ${styles.blurImg1}`}>
         <img src={bg} alt="background" />
-        <div className="Community-blur-overlay" />
+        <div className={styles.blurOverlay} />
       </div>
-      <div className="Community-main">
-        <h2 className="Community-title">Join Our Community</h2>
-        <div className="Community-content">
-          <div className="Community-wrap-content">
-            <div className="Community-container">
+      <div className={styles.main}>
+        <h2 className={styles.title}>JOIN OUR COMMUNITY</h2>
+        <div className={styles.content}>
+          <div className={styles.wrapContent}>
+            <div className={styles.container}>
               {socialLinks.map((social, index) => (
                 <SocialCard key={social.name} social={social} index={index} />
               ))}
             </div>
           </div>
-          <div className="Community-footer">
+          <div className={styles.footer}>
             <Footer />
           </div>
         </div>

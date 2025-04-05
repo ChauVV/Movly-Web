@@ -1,11 +1,10 @@
-import { motion, useScroll, AnimatePresence, useInView } from 'framer-motion';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import './Hero.css';
+import styles from './Hero.module.css';
 import logo from '@assets/images/logo512.png';
 import { useNavigate } from 'react-router-dom';
 
 export default function Hero({ onScroll }) {
-  const { scrollY } = useScroll();
   const ref = useRef(null);
   const inView = useInView(ref, {
     amount: 0.3,
@@ -35,22 +34,21 @@ export default function Hero({ onScroll }) {
   };
 
   return (
-    <section className="main-section hero-section" ref={ref}>
-      <div className="hero-logo">
+    <section className={styles.heroSection} ref={ref}>
+      <div className={styles.heroLogo}>
         <img src={logo} alt="Health Step Logo" />
       </div>
       <AnimatePresence>
         {inView && (
           <motion.div
-            className="hero-content"
+            className={styles.heroContent}
             variants={contentVariants}
             initial="hidden"
             animate="visible"
             exit="exit"
-            style={{ textAlign: 'center' }}
           >
             <motion.div
-              className="hero-title"
+              className={styles.heroTitle}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
@@ -64,7 +62,7 @@ export default function Hero({ onScroll }) {
                 Movly
               </motion.h1>
               <motion.p
-                className="hero-subtitle"
+                className={styles.heroSubtitle}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.8, duration: 0.8 }}
@@ -74,7 +72,7 @@ export default function Hero({ onScroll }) {
             </motion.div>
 
             <motion.div
-              className="hero-description"
+              className={styles.heroDescription}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.1, duration: 0.8 }}
@@ -83,14 +81,13 @@ export default function Hero({ onScroll }) {
             </motion.div>
 
             <motion.div
-              className="hero-buttons"
+              className={styles.heroButtons}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.4, duration: 0.8 }}
-              style={{ display: 'flex', gap: '2rem', justifyContent: 'center' }}
             >
               <motion.button
-                className="primary-button"
+                className={styles.primaryButton}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={onScroll}
@@ -98,7 +95,7 @@ export default function Hero({ onScroll }) {
                 Get Started
               </motion.button>
               <motion.button
-                className="secondary-button"
+                className={styles.secondaryButton}
                 onClick={() => navigate('/whitepaper')}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

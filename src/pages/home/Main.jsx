@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
 import ParticlesBackground from '@components/ParticlesBackground';
 import Hero from './sections/Hero';
@@ -9,12 +9,25 @@ import Roadmap from './sections/Roadmap';
 import AppPreview from './sections/AppPreview';
 import AppPreviewWatch from './sections/AppPreviewWatch';
 import Community from './sections/Community';
-import './Main.css';
+import styles from './Main.module.css';
 import Header from '@/components/Header';
 
 function Main() {
   const containerRef = useRef(null);
   const [currentSection, setCurrentSection] = useState('hero');
+  const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
+
+  // Define sections explicitly
+  const sections = [
+    { id: 'hero', name: 'hero' },
+    { id: 'howItWorks', name: 'howItWorks' },
+    { id: 'tokenomics', name: 'tokenomics' },
+    { id: 'tokens', name: 'tokens' },
+    { id: 'roadmap', name: 'roadmap' },
+    { id: 'appPreview', name: 'appPreview' },
+    { id: 'appPreviewWatch', name: 'appPreviewWatch' },
+    { id: 'community', name: 'community' }
+  ];
 
   const handleScroll = () => {
     const container = containerRef.current;
@@ -22,6 +35,11 @@ function Main() {
       const scrollPosition = container.scrollTop;
       const windowHeight = window.innerHeight;
 
+      // Determine current section based on scroll position
+      const sectionIndex = Math.floor(scrollPosition / windowHeight);
+      setCurrentSectionIndex(Math.min(sectionIndex, sections.length - 1));
+
+      // Update current section for ParticlesBackground
       if (scrollPosition < windowHeight) {
         setCurrentSection('hero');
       } else if (scrollPosition < windowHeight * 2) {
@@ -38,15 +56,15 @@ function Main() {
     }
   };
 
-  const scrollToTop = () => {
+  useEffect(() => {
     const container = containerRef.current;
     if (container) {
-      container.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
+      container.addEventListener('scroll', handleScroll);
+      return () => {
+        container.removeEventListener('scroll', handleScroll);
+      };
     }
-  };
+  }, []);
 
   const scrollToHowItWorks = () => {
     const container = containerRef.current;
@@ -58,11 +76,23 @@ function Main() {
     }
   };
 
-  const scrollToBottom = () => {
+  const scrollToPrevSection = () => {
     const container = containerRef.current;
-    if (container) {
+    if (container && currentSectionIndex > 0) {
+      const prevSectionIndex = currentSectionIndex - 1;
       container.scrollTo({
-        top: container.scrollHeight,
+        top: prevSectionIndex * window.innerHeight,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const scrollToNextSection = () => {
+    const container = containerRef.current;
+    if (container && currentSectionIndex < sections.length - 1) {
+      const nextSectionIndex = currentSectionIndex + 1;
+      container.scrollTo({
+        top: nextSectionIndex * window.innerHeight,
         behavior: 'smooth'
       });
     }
@@ -70,27 +100,27 @@ function Main() {
 
   return (
     <div
-      className="main-container"
+      className={styles.mainContainer}
       ref={containerRef}
       onScroll={handleScroll}
     >
       <Header />
       <ParticlesBackground type={currentSection === 'tokenomics' ? 'tokenomics' : 'hero'} />
 
-      <Hero onScroll={scrollToHowItWorks} />
-      <HowItWorks />
-      <Tokenomics />
-      <Tokens />
-      <Roadmap />
-      <AppPreview />
-      <AppPreviewWatch />
-      <Community />
+      <section id="hero" className={styles.section}><Hero onScroll={scrollToHowItWorks} /></section>
+      <section id="howItWorks" className={styles.section}><HowItWorks /></section>
+      <section id="tokenomics" className={styles.section}><Tokenomics /></section>
+      <section id="tokens" className={styles.section}><Tokens /></section>
+      <section id="roadmap" className={styles.section}><Roadmap /></section>
+      <section id="appPreview" className={styles.section}><AppPreview /></section>
+      <section id="appPreviewWatch" className={styles.section}><AppPreviewWatch /></section>
+      <section id="community" className={styles.section}><Community /></section>
 
-      <div className="section-controls">
-        <button className="nav-button" onClick={scrollToTop}>
+      <div className={styles.sectionControls}>
+        <button className={styles.navButton} onClick={scrollToPrevSection}>
           <IoIosArrowUp />
         </button>
-        <button className="nav-button" onClick={scrollToBottom}>
+        <button className={styles.navButton} onClick={scrollToNextSection}>
           <IoIosArrowDown />
         </button>
       </div>

@@ -64,23 +64,8 @@ function App() {
             <Route path="/sale" element={<BuyToken />} />
             <Route path="/linktr" element={<Linktree />} />
 
-
             <Route path="/" index element={<Main />} />
             <Route path="*" element={<Navigate to="/" replace />} />
-            {/* Routes with header */}
-            {/* <Route path="/" element={
-              <div className="App">
-                <Header />
-                <main className="main-content">
-                  <Outlet />
-                </main>
-              </div>
-            }>
-              <Route index element={<Main />} />
-            </Route> */}
-
-            {/* Redirect invalid URLs to home */}
-            {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
           </Routes>
         </Router>
       </QueryClientProvider>

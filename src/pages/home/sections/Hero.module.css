@@ -1,10 +1,16 @@
-.hero-section {
+.heroSection {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
 }
 
-.hero-logo {
+.heroLogo {
   position: absolute;
-  top: 38%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 0;
@@ -14,21 +20,28 @@
   pointer-events: none;
 }
 
-.hero-logo img {
+.heroLogo img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-.hero-content {
+.heroContent {
   position: relative;
   margin: 0 auto;
   text-align: center;
   color: white;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 2rem;
 }
 
-.hero-text h1 {
+.heroText h1 {
   font-size: 4.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
@@ -38,19 +51,19 @@
   -webkit-text-fill-color: transparent;
 }
 
-.hero-text h2 {
+.heroText h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
   color: rgba(255, 255, 255, 0.9);
 }
 
-.hero-text p {
+.heroText p {
   font-size: 1.2rem;
   color: rgba(255, 255, 255, 0.7);
   margin-bottom: 3rem;
 }
 
-.hero-features {
+.heroFeatures {
   display: flex;
   justify-content: center;
   gap: 4rem;
@@ -63,19 +76,19 @@
   align-items: center;
 }
 
-.feature-number {
+.featureNumber {
   font-size: 2.5rem;
   font-weight: 700;
   color: #4facfe;
   margin-bottom: 0.5rem;
 }
 
-.feature-text {
+.featureText {
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.7);
 }
 
-.hero-buttons {
+.heroButtons {
   display: flex;
   gap: 1.5rem;
   justify-content: center;
@@ -83,55 +96,55 @@
 
 /* Mobile Styles */
 @media (max-width: 768px) {
-  .hero-content {
+  .heroContent {
     padding: 1vh 10px;
     margin-bottom: 30px;
   }
 
-  .hero-text h1 {
+  .heroText h1 {
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
   }
 
-  .hero-text h2 {
+  .heroText h2 {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
   }
 
-  .hero-text p {
+  .heroText p {
     font-size: 1rem;
     margin-bottom: 2rem;
     padding: 0 10px;
   }
 
-  .hero-subtitle {
+  .heroSubtitle {
     font-size: 1.4rem;
     margin-bottom: 1.5rem;
     letter-spacing: 1px;
     white-space: nowrap;
   }
 
-  .hero-features {
+  .heroFeatures {
     flex-direction: column;
     gap: 2rem;
     margin-bottom: 2rem;
   }
 
-  .feature-number {
+  .featureNumber {
     font-size: 2rem;
   }
 
-  .feature-text {
+  .featureText {
     font-size: 0.9rem;
   }
 
-  .hero-buttons {
+  .heroButtons {
     flex-direction: column;
     gap: 1rem;
     padding: 0 20px;
   }
 
-  .hero-logo {
+  .heroLogo {
     width: 300px;
     height: 300px;
   }
@@ -139,33 +152,33 @@
 
 /* Tablet Styles */
 @media (min-width: 769px) and (max-width: 1024px) {
-  .hero-content {
+  .heroContent {
     padding: 18vh 20px;
     margin-bottom: 30px;
   }
 
-  .hero-text h1 {
+  .heroText h1 {
     font-size: 3.5rem;
   }
 
-  .hero-text h2 {
+  .heroText h2 {
     font-size: 1.8rem;
   }
 
-  .hero-features {
+  .heroFeatures {
     gap: 3rem;
   }
 }
 
 /* Responsive */
 @media (max-width: 1200px) {
-  .hero-logo {
+  .heroLogo {
     width: 500px;
     height: 500px;
   }
 }
 
-.hero-title h1 {
+.heroTitle h1 {
   font-size: 4.5rem;
   font-weight: 800;
   margin-bottom: 1rem;
@@ -197,7 +210,7 @@
   }
 }
 
-.hero-subtitle {
+.heroSubtitle {
   font-size: 1.4rem;
   font-weight: 600;
   margin-bottom: 2rem;
@@ -206,7 +219,7 @@
   letter-spacing: 2px;
 }
 
-.hero-description p {
+.heroDescription p {
   font-size: 1.4rem;
   margin-bottom: 3rem;
   color: #ffffff;
@@ -214,7 +227,7 @@
   font-weight: 500;
 }
 
-.primary-button {
+.primaryButton {
   padding: 1.2rem 3rem;
   font-size: 1.1rem;
   font-weight: 600;
@@ -229,7 +242,7 @@
   box-shadow: 0 4px 15px rgba(0, 255, 135, 0.3);
 }
 
-.secondary-button {
+.secondaryButton {
   padding: 1.2rem 3rem;
   font-size: 1.1rem;
   font-weight: 600;
@@ -245,25 +258,25 @@
   min-width: 229px;
 }
 
-.primary-button:hover {
+.primaryButton:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(0, 255, 135, 0.4);
   background: linear-gradient(45deg, #60efff, #00ff87);
 }
 
-.secondary-button:hover {
+.secondaryButton:hover {
   background: rgba(255, 255, 255, 0.3);
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
 }
 
 /* Thêm animation cho buttons khi click */
-.primary-button:active,
-.secondary-button:active {
+.primaryButton:active,
+.secondaryButton:active {
   transform: translateY(1px);
 }
 
-.logo-container {
+.logoContainer {
   position: absolute;
   top: 2rem;
   left: 2rem;
@@ -272,21 +285,21 @@
   transition: transform 0.3s ease;
 }
 
-.logo-container:hover {
+.logoContainer:hover {
   transform: scale(1.1);
 }
 
-.logo-icon {
+.logoIcon {
   filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.3));
 }
 
 @media (max-width: 768px) {
-  .logo-container {
+  .logoContainer {
     top: 1rem;
     left: 1rem;
   }
 
-  .logo-icon {
+  .logoIcon {
     width: 40px;
     height: 40px;
   }

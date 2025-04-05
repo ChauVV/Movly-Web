@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import './Tokenomics.css';
+import styles from './Tokenomics.module.css';
 import bg from '@assets/images/ma7.jpg';
 import chartDetail from '@assets/images/TokenDistributionStructure.png';
 
@@ -13,23 +13,23 @@ export default function Tokenomics() {
   ];
 
   return (
-    <section className="main-section tokenomics-section">
-      <div className="background-image blur-img1">
+    <section className={`${styles['main-section']} ${styles['tokenomics-section']}`}>
+      <div className={styles['background-image']}>
         <img src={bg} alt="background" />
-        <div className="blur-overlay1" />
       </div>
-      <h2 className="tokenomics-title">Movly Distribution</h2>
+      <div className={styles['blur-overlay1']}></div>
+
+      <h2 className={styles['tokenomics-title']}>Movly Distribution</h2>
       <motion.div
-        className="tokenomics-content"
+        className={styles['tokenomics-content']}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-
-        <div className="tokenomics-container">
-          <div className="chart-right">
-            <div className="chart-container-right">
+        <div className={styles['tokenomics-container']}>
+          <div className={styles['chart-right']}>
+            <div className={styles['chart-container-right']}>
               <img src={chartDetail} alt="background" style={{ objectFit: 'center' }} />
             </div>
           </div>

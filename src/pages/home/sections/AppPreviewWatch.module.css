@@ -2,9 +2,10 @@
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.95) 100%);
   display: flex;
   flex-direction: column;
-  padding: 4rem 1rem;
+  padding: 4rem 1rem 6rem 1rem;
   overflow: hidden;
-  height: calc(100vh - 53px);
+  height: 100vh;
+  position: relative;
 }
 
 .watch-app-preview-title {
@@ -15,7 +16,6 @@
   letter-spacing: 0.02em;
   text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
   margin: 0;
-  margin-top: 53px;
   height: 120px;
   font-family: 'Chakra Petch', sans-serif;
   font-weight: 700;
@@ -36,7 +36,7 @@
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  gap: 4rem;
+  gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
   height: 100%;
@@ -105,6 +105,41 @@
   font-style: italic;
 }
 
+/* Background image and overlay */
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.background-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6;
+}
+
+.blur-img1 {
+  z-index: 0;
+}
+
+.watch-blur-overlay1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0.6) 40%,
+      rgba(0, 0, 0, 0.3) 60%,
+      rgba(0, 0, 0, 0) 100%);
+}
+
 @media (max-width: 1024px) {
   .watch-features-container {
     grid-template-columns: 1fr;
@@ -112,6 +147,10 @@
 }
 
 @media (max-width: 768px) {
+  .watch-app-preview-section {
+    padding: 1.5rem 0.5rem 4rem 0.5rem;
+  }
+
   .watch-app-preview-container {
     flex-direction: column;
     padding: 1rem;
@@ -192,8 +231,7 @@
 
 @media (max-width: 480px) {
   .watch-app-preview-section {
-    padding: 0.8rem 0.5rem;
-    height: calc(100vh - 53px);
+    padding: 0.8rem 0.5rem 3rem 0.5rem;
   }
 
   .watch-app-preview-title {
@@ -247,17 +285,4 @@
     color: rgba(255, 255, 255, 0.95);
     font-weight: 400;
   }
-}
-
-.watch-blur-overlay1 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to top,
-      rgba(0, 0, 0, 0.8) 0%,
-      rgba(0, 0, 0, 0.6) 40%,
-      rgba(0, 0, 0, 0.3) 60%,
-      rgba(0, 0, 0, 0) 100%);
 }
