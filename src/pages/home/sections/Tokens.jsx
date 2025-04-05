@@ -74,7 +74,7 @@ export default function Tokens() {
                 <div className={styles['token-header']}>
                   <div className={styles['token-header-left']}>
                     <div className={styles['token-symbol']}>
-                      <h3>{token.symbol}</h3>
+                      <h3>{`#${token.symbol}`}</h3>
                     </div>
                     <p className={styles['token-name']}>{token.name}</p>
                   </div>
@@ -122,8 +122,8 @@ export default function Tokens() {
       ) : (
         <motion.div
           className={styles['tokens-content']}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ y: 20 }}
+          whileInView={{ y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
@@ -140,7 +140,7 @@ export default function Tokens() {
                 <div className={styles['token-header']}>
                   <div className={styles['token-header-left']}>
                     <div className={styles['token-symbol']}>
-                      <h3>{token.symbol}</h3>
+                      <h3>{`#${token.symbol}`}</h3>
                     </div>
                     <p className={styles['token-name']}>{token.name}</p>
                   </div>
