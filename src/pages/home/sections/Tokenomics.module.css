@@ -64,6 +64,7 @@
   margin: 0;
   margin-bottom: 60px;
   height: 57px;
+  margin-top: 60px;
   font-family: 'Chakra Petch', sans-serif;
   font-weight: 700;
   font-style: normal;
@@ -154,7 +155,6 @@
 @media (max-width: 1200px) {
 
   .tokenomics-title {
-    margin-top: 20px;
     font-size: 3rem;
   }
 
