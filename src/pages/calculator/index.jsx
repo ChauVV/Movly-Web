@@ -394,13 +394,13 @@ const Calculator = () => {
   return (
     <div className={styles.pageWrapper}>
       <div className={styles.calc_container}>
-        <div className={styles.calc_content}>
-          <div className={styles.calc_header}>
-            <img src={s3} alt="Header" />
-            <div className={styles.calc_headerOverlay}></div>
-          </div>
+        <div className={styles.calc_header}>
+          <img src={s3} alt="Header" />
+          <div className={styles.calc_headerOverlay}></div>
+        </div>
 
-          <h1 className={styles.calc_title}>MGD Earn Calculator</h1>
+        <div className={styles.calc_content}>
+          <h1 className={styles.calc_title}>MGD EARN CALCULATOR</h1>
 
           <div className={styles.calc_poster}>
             <img src={posterCal} alt="Health Step Calculator Poster" />
@@ -645,11 +645,11 @@ const Calculator = () => {
               MGD = 0.35 × Quality × (1 + Power×0.01) × (1 + Level×0.02) × [(1 + Wings) × (1 + Halo)] × HalvingRate
             </code>
           </div>
+        </div>
 
-          <div className={styles.calc_footer}>
-            <img src={s3} alt="Footer" />
-            <div className={styles.calc_footerOverlay}></div>
-          </div>
+        <div className={styles.calc_footer}>
+          <img src={s3} alt="Footer" />
+          <div className={styles.calc_footerOverlay}></div>
         </div>
       </div>
     </div>
