@@ -276,15 +276,16 @@ const Calculator = () => {
   const getHaloGradientStops = (color) => (
     <>
       <stop offset="0%" stopColor="#FFF" stopOpacity="1" />
-      <stop offset="30%" stopColor={color} stopOpacity="0.9" />
-      <stop offset="60%" stopColor={color} stopOpacity="0.7" />
-      <stop offset="85%" stopColor={color} stopOpacity="0.3" />
+      <stop offset="10%" stopColor={color} stopOpacity="0.9" />
+      <stop offset="30%" stopColor={color} stopOpacity="0.7" />
+      <stop offset="60%" stopColor={color} stopOpacity="0.5" />
+      <stop offset="75%" stopColor={color} stopOpacity="0.3" />
+      <stop offset="90%" stopColor={color} stopOpacity="0.1" />
       <stop offset="100%" stopColor={color} stopOpacity="0" />
     </>
   );
 
   const getHaloColor = (level) => {
-    if (level === 0) return null;
     if (level < 10) return "#808080";  // Gray
     if (level < 20) return "#4CAF50";  // Green
     if (level < 30) return "#2196F3";  // Blue
@@ -602,11 +603,11 @@ const Calculator = () => {
             <div className={styles.calc_sneakerSection}>
               <div className={styles.calc_sneakerDisplay}>
                 <div className={`${styles.calc_sneakerBg} ${getQualityBackground()}`}>
-                  {sneaker.halo.level > 0 && (
+                  {(
                     <svg viewBox="0 0 100 100" className={styles.calc_flameAnimation}>
                       <defs>
                         <radialGradient id="haloGradient" cx="50%" cy="50%" r="50%">
-                          {sneaker.halo.level > 0 && getHaloGradientStops(getHaloColor(sneaker.halo.level))}
+                          {getHaloGradientStops(getHaloColor(sneaker.halo.level))}
                         </radialGradient>
                       </defs>
                       <circle cx="50" cy="50" r="49" fill="url(#haloGradient)" />
