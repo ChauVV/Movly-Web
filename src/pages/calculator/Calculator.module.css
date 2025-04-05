@@ -53,6 +53,7 @@
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  padding: 1rem;
 }
 
 .calc_title {
@@ -597,7 +598,6 @@
 
 @media (max-width: 768px) {
   .calc_container {
-    padding: 1rem;
     padding-bottom: 0;
     padding-top: 0;
   }

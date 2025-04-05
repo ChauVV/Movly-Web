@@ -186,6 +186,24 @@
   height: 100vh;
   overflow-y: auto;
   width: calc(100% - 280px);
+
+  /* Thêm CSS cho scrollbar */
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 215, 0, 0.3);
+    border-radius: 4px;
+  }
+
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 215, 0, 0.3) transparent;
 }
 
 .markdown-content {

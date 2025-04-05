@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
-import './Whitepaper.css';
+import styles from './Whitepaper.module.css';
 import { Link } from 'react-router-dom';
 
 // Import markdown files directly
@@ -98,9 +98,9 @@ const Whitepaper = () => {
   const content = findContent(activeSection);
 
   return (
-    <div className="whitepaper-container">
+    <div className={styles['whitepaper-container']}>
       <button
-        className="nav-toggle"
+        className={styles['nav-toggle']}
         onClick={() => setIsNavOpen(!isNavOpen)}
       >
         {isNavOpen ? '✕' : '☰'}
@@ -108,35 +108,35 @@ const Whitepaper = () => {
 
       {isNavOpen && (
         <div
-          className="nav-overlay"
+          className={styles['nav-overlay']}
           onClick={() => setIsNavOpen(false)}
         />
       )}
 
-      <nav className={`whitepaper-nav ${isNavOpen ? 'open' : ''}`}>
-        <div className="nav-header">
+      <nav className={`${styles['whitepaper-nav']} ${isNavOpen ? styles.open : ''}`}>
+        <div className={styles['nav-header']}>
           <motion.h2
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Link to="/" className="home-link">Movly</Link>
+            <Link to="/" className={styles['home-link']}>Movly</Link>
           </motion.h2>
           <motion.div
-            className="subtitle"
+            className={styles.subtitle}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.5 }}
           >
             Whitepaper
-            <span className="version">v1.0.0</span>
+            <span className={styles.version}>v1.0.0</span>
           </motion.div>
         </div>
-        <div className="nav-sections">
+        <div className={styles['nav-sections']}>
           {sections.map((section) => (
-            <div key={section.id} className="section-item">
+            <div key={section.id} className={styles['section-item']}>
               <button
-                className={`section-button ${activeSection === section.id ? 'active' : ''}`}
+                className={`${styles['section-button']} ${activeSection === section.id ? styles.active : ''}`}
                 onClick={() => {
                   if (section.subSections) {
                     toggleSubSections(section.id);
@@ -147,18 +147,18 @@ const Whitepaper = () => {
               >
                 {section.title}
                 {section.subSections && (
-                  <span className={`arrow ${expandedSection === section.id ? 'expanded' : ''}`}>
+                  <span className={`${styles.arrow} ${expandedSection === section.id ? styles.expanded : ''}`}>
                     ▼
                   </span>
                 )}
               </button>
 
               {section.subSections && expandedSection === section.id && (
-                <div className="sub-sections">
+                <div className={styles['sub-sections']}>
                   {section.subSections.map((subSection) => (
                     <button
                       key={subSection.id}
-                      className={`sub-section-button ${activeSection === subSection.id ? 'active' : ''}`}
+                      className={`${styles['sub-section-button']} ${activeSection === subSection.id ? styles.active : ''}`}
                       onClick={() => handleSectionClick(subSection.id)}
                     >
                       {subSection.title}
@@ -172,14 +172,14 @@ const Whitepaper = () => {
       </nav>
 
       <motion.main
-        className="whitepaper-content"
+        className={styles['whitepaper-content']}
         key={activeSection}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         style={{ paddingBottom: isMobileView ? '140px' : '70px' }}
       >
-        <div className="markdown-content">
+        <div className={styles['markdown-content']}>
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             rehypePlugins={[rehypeRaw]}

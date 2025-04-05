@@ -6,7 +6,7 @@ import { SiTether } from 'react-icons/si';
 import { SiBinance } from 'react-icons/si';
 import bg from '@assets/images/mm5.jpg';
 import goldCoin from '@assets/tokens/m200.png'
-import './BuyToken.css';
+import styles from './BuyToken.module.css';
 import { toast } from 'react-hot-toast';
 import DialogResult from './DialogResult';
 import ConnectWallet from './ConnectWallet';
@@ -20,7 +20,6 @@ function BuyToken() {
   const [saleInfo, setSaleInfo] = useState(null);
   const [loading, setLoading] = useState(false);
   const [bnbPrice, setBnbPrice] = useState(0);
-  const [isTooltipActive, setIsTooltipActive] = useState(false);
 
   // Dialog states
   const [showDialog, setShowDialog] = useState(false);
@@ -291,31 +290,31 @@ function BuyToken() {
   const isWalletConnected = !!account;
 
   return (
-    <div className="buy-token-fixed-container">
+    <div className={styles['buy-token-fixed-container']}>
       <Header />
-      <div className="token-sale-content-wrapper">
-        <div className="token-sale-bg">
+      <div className={styles['token-sale-content-wrapper']}>
+        <div className={styles['token-sale-bg']}>
           <img src={bg} alt="background" />
-          <div className="token-sale-bg-overlay" />
+          <div className={styles['token-sale-bg-overlay']} />
         </div>
 
-        <div className="token-sale-main-content">
-          <h1 className="token-sale-heading">Buy Movly Token</h1>
+        <div className={styles['token-sale-main-content']}>
+          <h1 className={styles['token-sale-heading']}>Buy Movly Token</h1>
 
           {/* Wallet connection */}
           <ConnectWallet account={account} setAccount={setAccount} />
 
           {/* Card */}
-          <div className="token-sale-card">
-            <h2 className="token-sale-card-title">{`Purchase Tokens${bonusPercent > 0 ? ` - Presale (Bonus ${bonusPercent}%)` : ''}`}</h2>
+          <div className={styles['token-sale-card']}>
+            <h2 className={styles['token-sale-card-title']}>{`Purchase Tokens${bonusPercent > 0 ? ` - Presale (Bonus ${bonusPercent}%)` : ''}`}</h2>
 
-            <div className="token-sale-form-group">
-              <p className="info-label">Payment Method</p>
-              <div className="token-sale-select-wrapper">
+            <div className={styles['token-sale-form-group']}>
+              <p className={styles['info-label']}>Payment Method</p>
+              <div className={styles['token-sale-select-wrapper']}>
                 <select
                   value={paymentMethod}
                   onChange={(e) => setPaymentMethod(e.target.value)}
-                  className="token-sale-select"
+                  className={styles['token-sale-select']}
                 >
                   {paymentOptions.map(option => (
                     <option key={option.value} value={option.value}>
@@ -323,62 +322,62 @@ function BuyToken() {
                     </option>
                   ))}
                 </select>
-                <div className="token-sale-select-icon">
+                <div className={styles['token-sale-select-icon']}>
                   {paymentOptions.find(opt => opt.value === paymentMethod)?.icon}
                 </div>
               </div>
             </div>
 
-            <div className="token-sale-form-group">
-              <p className="info-label">Amount ({paymentMethod})</p>
-              <div className="token-sale-input-group">
+            <div className={styles['token-sale-form-group']}>
+              <p className={styles['info-label']}>Amount ({paymentMethod})</p>
+              <div className={styles['token-sale-input-group']}>
                 <input
                   type="number"
-                  className="token-sale-input"
+                  className={styles['token-sale-input']}
                   value={amount}
                   onChange={handleAmountChange}
                   placeholder={`Enter amount in ${paymentMethod}`}
                   min="0"
                   step="any"
                 />
-                <div className="token-sale-input-icon">
+                <div className={styles['token-sale-input-icon']}>
                   {paymentOptions.find(opt => opt.value === paymentMethod)?.icon}
                 </div>
               </div>
             </div>
 
             <div className="info-item">
-              <div className="token-sale-calc">
-                <div className="token-sale-row">
+              <div className={styles['token-sale-calc']}>
+                <div className={styles['token-sale-row']}>
                   <span>BASE Movly:</span>
-                  <span className="token-sale-amount">
+                  <span className={styles['token-sale-amount']}>
                     <span>{Number(estimatedTokens.baseTokens).toLocaleString()}</span>
-                    <span className="token-sale-unit">Movly</span>
-                    <img src={goldCoin} alt="Movly" className="token-sale-icon" />
+                    <span className={styles['token-sale-unit']}>Movly</span>
+                    <img src={goldCoin} alt="Movly" className={styles['token-sale-icon']} />
                   </span>
                 </div>
-                <div className="token-sale-row">
+                <div className={styles['token-sale-row']}>
                   <span>BONUS ({bonusPercent}%):</span>
-                  <span className="token-sale-amount">
+                  <span className={styles['token-sale-amount']}>
                     <span>{Number(estimatedTokens.bonusTokens).toLocaleString()}</span>
-                    <span className="token-sale-unit">Movly</span>
-                    <img src={goldCoin} alt="Movly" className="token-sale-icon" />
+                    <span className={styles['token-sale-unit']}>Movly</span>
+                    <img src={goldCoin} alt="Movly" className={styles['token-sale-icon']} />
                   </span>
                 </div>
-                <div className="token-sale-row total">
+                <div className={`${styles['token-sale-row']} ${styles.total}`}>
                   <span>You will receive:</span>
-                  <span className="token-sale-amount">
+                  <span className={styles['token-sale-amount']}>
                     <span>{Number(estimatedTokens.totalTokens).toLocaleString()}</span>
-                    <span className="token-sale-unit">Movly</span>
-                    <img src={goldCoin} alt="Movly" className="token-sale-icon" />
+                    <span className={styles['token-sale-unit']}>Movly</span>
+                    <img src={goldCoin} alt="Movly" className={styles['token-sale-icon']} />
                   </span>
                 </div>
 
-                <div className="token-sale-rate">
-                  <div className="rate-with-info">
-                    <span className="rate-text">Rate: 1 USDT = 25 Movly</span>
+                <div className={styles['token-sale-rate']}>
+                  <div className={styles['rate-with-info']}>
+                    <span className={styles['rate-text']}>Rate: 1 USDT = 25 Movly</span>
                     <FaExclamationCircle
-                      className="info-icon"
+                      className={styles['info-icon']}
                       onClick={handleInfoClick}
                     />
                   </div>
@@ -389,7 +388,7 @@ function BuyToken() {
             <button
               onClick={handleBuy}
               disabled={!isWalletConnected || !amount || parseFloat(amount) <= 0 || loading}
-              className="token-sale-buy-btn"
+              className={styles['token-sale-buy-btn']}
               title={
                 !isWalletConnected
                   ? 'Please connect your wallet first'
@@ -415,22 +414,22 @@ function BuyToken() {
 
           {/* Ajouter la modale d'information */}
           {showInfoModal && (
-            <div className="info-modal-overlay" onClick={handleCloseInfoModal}>
-              <div className="info-modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className={styles['info-modal-overlay']} onClick={handleCloseInfoModal}>
+              <div className={styles['info-modal-content']} onClick={(e) => e.stopPropagation()}>
                 <h3>Price Information</h3>
                 <ul>
                   <li>The displayed Movly amount is an estimate</li>
                   <li>Actual amount will be calculated based on market price at transaction time</li>
                   <li>Price updates every 30 seconds</li>
                 </ul>
-                <button className="info-modal-close" onClick={handleCloseInfoModal}>Close</button>
+                <button className={styles['info-modal-close']} onClick={handleCloseInfoModal}>Close</button>
               </div>
             </div>
           )}
         </div>
 
         {/* Footer */}
-        <div className="token-sale-footer elevated-footer">
+        <div className={`${styles['token-sale-footer']} ${styles['elevated-footer']}`}>
           <Footer />
         </div>
       </div>
