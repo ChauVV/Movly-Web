@@ -373,23 +373,6 @@
   height: 100px;
 }
 
-/* Halo Animation */
-.calc_halo {
-  position: absolute;
-  top: -10%;
-  left: -10%;
-  width: 120%;
-  height: 120%;
-  border-radius: 50%;
-  background: radial-gradient(circle at center,
-      rgba(255, 215, 0, 0.8) 0%,
-      rgba(255, 215, 0, 0.4) 40%,
-      rgba(255, 215, 0, 0.1) 60%,
-      transparent 70%);
-  animation: glowPulse 2s infinite ease-in-out;
-  pointer-events: none;
-}
-
 /* Quality Backgrounds */
 .calc_warriorBg {
   background-image: url('@assets/svgs/warrior-bg.svg');
@@ -496,18 +479,6 @@
 
 .calc_button:hover {
   background: #f9fafb;
-}
-
-.calc_haloRing {
-  position: absolute;
-  top: -15%;
-  left: -15%;
-  width: 130%;
-  height: 130%;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 165, 0, 0.5);
-  pointer-events: none;
-  z-index: 5;
 }
 
 .calc_raritySelector {
@@ -920,4 +891,24 @@
   left: 93%;
   transform: translate(-50%, -50%);
   z-index: 3;
+}
+
+.calc_auraBg {
+  background: linear-gradient(135deg, #808080, #4CAF50, #2196F3, #9C27B0, #FF9800);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }

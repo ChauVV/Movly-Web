@@ -17,7 +17,7 @@ const Calculator = () => {
       level: 0,
       bonus: 0
     },
-    halo: {
+    aura: {
       level: 0,
       bonus: 0
     }
@@ -32,13 +32,13 @@ const Calculator = () => {
   const [basePowers, setBasePowers] = useState({
     shoe: 0,
     wings: 0,
-    halo: 0
+    aura: 0
   });
 
   const [inputValues, setInputValues] = useState({
     shoe: '',
     wings: '',
-    halo: ''
+    aura: ''
   });
 
   const rarityOrder = ['warrior', 'general', 'knight', 'lord', 'sovereign'];
@@ -131,8 +131,8 @@ const Calculator = () => {
 
     // Enhancement bonus
     const wingsBonus = 1 + calculateEnhancementBonus(sneaker.wings.level);
-    const haloBonus = 1 + calculateEnhancementBonus(sneaker.halo.level);
-    const enhancementMultiplier = wingsBonus * haloBonus;
+    const auraBonus = 1 + calculateEnhancementBonus(sneaker.aura.level);
+    const enhancementMultiplier = wingsBonus * auraBonus;
 
     // Calculate MGD per minute
     const mgdPerMin = baseRate * qualityMultiplier * powerBonus * levelMultiplier * enhancementMultiplier;
@@ -153,7 +153,7 @@ const Calculator = () => {
       const levelBonus = sneaker.level * rarityAttributePoints[sneaker.rarity];
       return basePowers[type] + levelBonus;
     }
-    // Wings và Halo không có power, chỉ có bonus percentage
+    // Wings và Aura không có power, chỉ có bonus percentage
     return 0;
   };
 
@@ -163,19 +163,19 @@ const Calculator = () => {
 
   useEffect(() => {
     if (sneaker.level < 10) {
-      // Reset Wings and Halo values when level < 10
+      // Reset Wings and Aura values when level < 10
       setBasePowers(prev => ({
         ...prev,
         wings: 0,
-        halo: 0
+        aura: 0
       }));
       setInputValues(prev => ({
         ...prev,
         wings: '',
-        halo: ''
+        aura: ''
       }));
       handleEnhancementChange('wings', 'level', 0);
-      handleEnhancementChange('halo', 'level', 0);
+      handleEnhancementChange('aura', 'level', 0);
     }
   }, [sneaker.level]);
 
@@ -191,19 +191,19 @@ const Calculator = () => {
         [field]: field === 'rarity' ? value : Math.min(value, 50)
       };
 
-      // Reset wings and halo levels if sneaker level is set below 10
+      // Reset wings and aura levels if sneaker level is set below 10
       if (field === 'level') {
         if (value < 10) {
           // Reset khi level < 10
           updatedSneaker.wings.level = 0;
-          updatedSneaker.halo.level = 0;
+          updatedSneaker.aura.level = 0;
         } else if (value < prev.level) {
-          // Reset khi giảm level và wings/halo level lớn hơn level mới hoặc 40
+          // Reset khi giảm level và wings/aura level lớn hơn level mới hoặc 40
           if (prev.wings.level > Math.min(value, 40)) {
             updatedSneaker.wings.level = 0;
           }
-          if (prev.halo.level > Math.min(value, 40)) {
-            updatedSneaker.halo.level = 0;
+          if (prev.aura.level > Math.min(value, 40)) {
+            updatedSneaker.aura.level = 0;
           }
         }
       }
@@ -214,14 +214,14 @@ const Calculator = () => {
         setInputValues({
           shoe: '',
           wings: '',
-          halo: ''
+          aura: ''
         });
 
         // Reset base powers
         setBasePowers({
           shoe: 0,
           wings: 0,
-          halo: 0
+          aura: 0
         });
       }
 
@@ -241,13 +241,13 @@ const Calculator = () => {
   };
 
   const getQualityBackground = () => {
-    const haloLevel = sneaker.halo.level;
+    const auraLevel = sneaker.aura.level;
 
-    if (haloLevel >= 0 && haloLevel < 10) return styles.calc_warriorBg;
-    if (haloLevel >= 10 && haloLevel < 20) return styles.calc_generalBg;
-    if (haloLevel >= 20 && haloLevel < 30) return styles.calc_knightBg;
-    if (haloLevel >= 30 && haloLevel < 40) return styles.calc_lordBg;
-    if (haloLevel === 40) return styles.calc_sovereignBg;
+    if (auraLevel >= 0 && auraLevel < 10) return styles.calc_warriorBg;
+    if (auraLevel >= 10 && auraLevel < 20) return styles.calc_generalBg;
+    if (auraLevel >= 20 && auraLevel < 30) return styles.calc_knightBg;
+    if (auraLevel >= 30 && auraLevel < 40) return styles.calc_lordBg;
+    if (auraLevel === 40) return styles.calc_sovereignBg;
 
     return styles.calc_warriorBg; // Default case
   };
@@ -270,10 +270,10 @@ const Calculator = () => {
         };
       });
     }
-    // Không xử lý increment cho Wings và Halo vì chúng không có power
+    // Không xử lý increment cho Wings và Aura vì chúng không có power
   };
 
-  const getHaloGradientStops = (color) => (
+  const getAuraGradientStops = (color) => (
     <>
       <stop offset="0%" stopColor="#FFF" stopOpacity="1" />
       <stop offset="10%" stopColor={color} stopOpacity="0.9" />
@@ -285,7 +285,7 @@ const Calculator = () => {
     </>
   );
 
-  const getHaloColor = (level) => {
+  const getAuraColor = (level) => {
     if (level < 10) return "#808080";  // Gray
     if (level < 20) return "#4CAF50";  // Green
     if (level < 30) return "#2196F3";  // Blue
@@ -508,25 +508,25 @@ const Calculator = () => {
               </div>
 
               <div className={styles.calc_enhancementsSection}>
-                <h2>Halo</h2>
+                <h2>Aura</h2>
                 <div className={styles.calc_configGrid}>
                   <div className={styles.calc_configCard} style={{ opacity: sneaker.level < 10 ? 0.5 : 1 }}>
                     <div className={styles.calc_configItem}>
-                      <div className={styles.calc_configLabel}>HALO LEVEL:</div>
+                      <div className={styles.calc_configLabel}>AURA LEVEL:</div>
                       <div className={styles.calc_controls}>
                         <button
                           {...useLongPress(() => {
                             if (sneaker.level >= 10) {
-                              handleEnhancementChange('halo', 'level', sneaker.halo.level - 1);
+                              handleEnhancementChange('aura', 'level', sneaker.aura.level - 1);
                             }
                           })}
                           disabled={sneaker.level < 10}
                         >-</button>
-                        <span>{sneaker.halo.level}</span>
+                        <span>{sneaker.aura.level}</span>
                         <button
                           {...useLongPress(() => {
                             if (sneaker.level >= 10) {
-                              handleEnhancementChange('halo', 'level', sneaker.halo.level + 1);
+                              handleEnhancementChange('aura', 'level', sneaker.aura.level + 1);
                             }
                           })}
                           disabled={sneaker.level < 10}
@@ -535,11 +535,11 @@ const Calculator = () => {
                     </div>
                     <div className={styles.calc_bonusInfo}>
                       <div className={styles.calc_bonusRow}>
-                        <p className={styles.calc_bonusText}>Bonus: +{(calculateEnhancementBonus(sneaker.halo.level) * 100).toFixed(2)}%</p>
+                        <p className={styles.calc_bonusText}>Bonus: +{(calculateEnhancementBonus(sneaker.aura.level) * 100).toFixed(2)}%</p>
                         <p className={styles.calc_levelWarning}>
                           {sneaker.level < 10
                             ? "Enable at Sneaker Level 10"
-                            : sneaker.halo.level === Math.min(40, sneaker.level)
+                            : sneaker.aura.level === Math.min(40, sneaker.level)
                               ? `Max level reached (${Math.min(40, sneaker.level)})`
                               : `Max level: ${Math.min(40, sneaker.level)}`}
                         </p>
@@ -606,11 +606,11 @@ const Calculator = () => {
                   {(
                     <svg viewBox="0 0 100 100" className={styles.calc_flameAnimation}>
                       <defs>
-                        <radialGradient id="haloGradient" cx="50%" cy="50%" r="50%">
-                          {getHaloGradientStops(getHaloColor(sneaker.halo.level))}
+                        <radialGradient id="auraGradient" cx="50%" cy="50%" r="50%">
+                          {getAuraGradientStops(getAuraColor(sneaker.aura.level))}
                         </radialGradient>
                       </defs>
-                      <circle cx="50" cy="50" r="49" fill="url(#haloGradient)" />
+                      <circle cx="50" cy="50" r="49" fill="url(#auraGradient)" />
                     </svg>
                   )}
                   <img src={shoe} alt="Sneaker" className={styles.calc_sneakerImage} />
@@ -643,7 +643,7 @@ const Calculator = () => {
           <div className={styles.calc_formula}>
             <h3>Earning Formula:</h3>
             <code>
-              MGD = 0.35 × Quality × (1 + Power×0.01) × (1 + Level×0.02) × [(1 + Wings) × (1 + Halo)] × HalvingRate
+              MGD = 0.35 × Quality × (1 + Power×0.01) × (1 + Level×0.02) × [(1 + Wings) × (1 + Aura)] × HalvingRate
             </code>
           </div>
         </div>

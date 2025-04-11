@@ -30,7 +30,7 @@ Upon levelling, users gain additional Attribute points to assign according to th
 
 Key Milestones and Features:
 - Level 5 (Unlocks Minting Feature)
-- Level 10 (Unlocks Wings and Halo)
+- Level 10 (Unlocks Wings and Aura)
 - Level 20
 - Level 29
 - Level 30
@@ -74,35 +74,35 @@ Sneakers transform their appearance based on:
 
 2. **Combined Aesthetics**:
    - Sneaker appearance reflects its current level
-   - Wings and Halo visuals complement sneaker design
+   - Wings and Aura visuals complement sneaker design
    - Each evolution stage creates unique combinations
    - Special effects intensity increases with level
 
-## Wings and Halo
-Movly sneakers can be enhanced with two types of special NFTs: Wings and Halo. These NFTs follow the BEP-1155 standard and provide Power bonuses to the sneakers they're equipped to. Both Wings and Halo share identical mechanics in terms of leveling, evolution, and enhancement benefits.
+## Wings and Aura
+Movly sneakers can be enhanced with two types of special NFTs: Wings and Aura. These NFTs follow the BEP-1155 standard and provide Power bonuses to the sneakers they're equipped to. Both Wings and Aura share identical mechanics in terms of leveling, evolution, and enhancement benefits.
 
 1. **Level System**:
    - Maximum Level: 40
    - Requires both Movly and MGD to level up
    - Higher levels provide increased Power boost
    - Upgrade costs increase with each level
-   - Both Wings and Halo follow the same leveling pattern
+   - Both Wings and Aura follow the same leveling pattern
 
 2. **Visual Evolution**:
-   Both Wings and Halo transform appearance at key milestones:
+   Both Wings and Aura transform appearance at key milestones:
    - Level 10: First Evolution
    - Level 20: Second Evolution
    - Level 30: Third Evolution
    - Level 40: Final Evolution
 
 3. **Enhancement Benefits**:
-   Wings and Halo provide:
+   Wings and Aura provide:
    - Power boost increases with level
    - Visual effects improve at evolution milestones
    - Unique appearance based on current evolution stage
    - Additional bonuses at max level
 
-*Note: While Wings and Halo share the same mechanics, they provide distinct visual effects and complement each other when equipped together.*
+*Note: While Wings and Aura share the same mechanics, they provide distinct visual effects and complement each other when equipped together.*
 
 ## NFT Marketplace
 ### Trading
