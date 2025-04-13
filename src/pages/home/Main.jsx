@@ -21,8 +21,8 @@ function Main() {
   const sections = [
     { id: 'hero', name: 'hero' },
     { id: 'howItWorks', name: 'howItWorks' },
-    { id: 'tokenomics', name: 'tokenomics' },
     { id: 'tokens', name: 'tokens' },
+    { id: 'tokenomics', name: 'tokenomics' },
     { id: 'roadmap', name: 'roadmap' },
     { id: 'appPreview', name: 'appPreview' },
     { id: 'appPreviewWatch', name: 'appPreviewWatch' },
@@ -45,9 +45,9 @@ function Main() {
       } else if (scrollPosition < windowHeight * 2) {
         setCurrentSection('howItWorks');
       } else if (scrollPosition < windowHeight * 3) {
-        setCurrentSection('tokenomics');
-      } else if (scrollPosition < windowHeight * 4) {
         setCurrentSection('tokens');
+      } else if (scrollPosition < windowHeight * 4) {
+        setCurrentSection('tokenomics');
       } else if (scrollPosition < windowHeight * 5) {
         setCurrentSection('roadmap');
       } else {
@@ -109,8 +109,8 @@ function Main() {
 
       <section id="hero" className={styles.section}><Hero onScroll={scrollToHowItWorks} /></section>
       <section id="howItWorks" className={styles.section}><HowItWorks /></section>
-      <section id="tokenomics" className={styles.section}><Tokenomics /></section>
       <section id="tokens" className={styles.section}><Tokens /></section>
+      <section id="tokenomics" className={styles.section}><Tokenomics /></section>
       <section id="roadmap" className={styles.section}><Roadmap /></section>
       <section id="appPreview" className={styles.section}><AppPreview /></section>
       <section id="appPreviewWatch" className={styles.section}><AppPreviewWatch /></section>

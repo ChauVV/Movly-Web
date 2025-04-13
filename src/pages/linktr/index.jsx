@@ -71,14 +71,14 @@ const socialLinks = [
     icon: <FaDiscord />,
     color: '#5865F2'
   },
-  {
-    title: 'GitHub',
-    url: 'https://github.com/ChauVV',
-    description: 'Check out our code on GitHub',
-    isInternal: false,
-    icon: <FaGithub />,
-    color: '#6e5494'
-  }
+  // {
+  //   title: 'GitHub',
+  //   url: 'https://github.com/ChauVV',
+  //   description: 'Check out our code on GitHub',
+  //   isInternal: false,
+  //   icon: <FaGithub />,
+  //   color: '#6e5494'
+  // }
 ];
 
 const connectLinks = [
