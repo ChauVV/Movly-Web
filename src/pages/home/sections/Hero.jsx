@@ -67,7 +67,7 @@ export default function Hero({ onScroll }) {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.8, duration: 0.8 }}
               >
-                Move To Earn - Live To Earn
+                Move Daily - Earn More - Live Better
               </motion.p>
             </motion.div>
 
