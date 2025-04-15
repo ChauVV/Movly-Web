@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './Calculator.module.css';
 import posterCal from '@assets/images/mm2m.jpg';
-import goldCoin from '@assets/tokens/gold.jpeg';
+import goldCoin from '@assets/tokens/silver.png';
 import s3 from '@assets/images/s3.jpg';
 import shoe from '@assets/images/shoe5.png';
 import wings from '@assets/images/wing3.png';
+import Header from '@/components/Header';
 
 const Calculator = () => {
   const [sneaker, setSneaker] = useState({
@@ -394,6 +395,7 @@ const Calculator = () => {
 
   return (
     <div className={styles.pageWrapper}>
+      <Header />
       <div className={styles.calc_container}>
         <div className={styles.calc_header}>
           <img src={s3} alt="Header" />
@@ -643,7 +645,7 @@ const Calculator = () => {
           <div className={styles.calc_formula}>
             <h3>Earning Formula:</h3>
             <code>
-              MGD = 0.35 × Quality × (1 + Power×0.01) × (1 + Level×0.02) × [(1 + Wings) × (1 + Aura)] × HalvingRate
+              MGD = 0.35 × Quality × (1 + Power×0.01) × (1 + Level×0.02) × [(1 + Wings) × (1 + Aura)] × HalvingEarnRate
             </code>
           </div>
         </div>

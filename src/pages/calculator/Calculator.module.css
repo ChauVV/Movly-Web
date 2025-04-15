@@ -243,8 +243,8 @@
 }
 
 .calc_coinIcon {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   vertical-align: middle;
   margin-left: 6px;
   margin-bottom: 1px;
@@ -686,10 +686,6 @@
   margin: 0;
 }
 
-/* For Firefox */
-.calc_powerInput[type=number] {
-  -moz-appearance: textfield;
-}
 
 .calc_powerControls {
   display: flex;
