@@ -12,6 +12,60 @@ const ConnectWallet = ({ account, setAccount }) => {
   const [showDisconnectModal, setShowDisconnectModal] = useState(false);
   const [showNoMetamaskModal, setShowNoMetamaskModal] = useState(false);
 
+  // Check if the network is BSC
+  const checkAndSwitchNetwork = async (provider) => {
+    try {
+      const network = await provider.getNetwork();
+
+      // BSC Mainnet chainId is 56, Testnet is 97
+      const isBSC = network.chainId === 56 || network.chainId === 97;
+
+      if (!isBSC) {
+        // Configure BSC Mainnet
+        const bscNetwork = {
+          chainId: '0x38', // 56 in hexadecimal
+          chainName: 'BNB Smart Chain',
+          nativeCurrency: {
+            name: 'BNB',
+            symbol: 'BNB',
+            decimals: 18
+          },
+          rpcUrls: ['https://bsc-dataseed.binance.org/'],
+          blockExplorerUrls: ['https://bscscan.com/']
+        };
+
+        try {
+          // Request network switch
+          await window.ethereum.request({
+            method: 'wallet_switchEthereumChain',
+            params: [{ chainId: '0x38' }], // BSC Mainnet
+          });
+          return true;
+        } catch (switchError) {
+          // This error code indicates that the chain has not been added to MetaMask
+          if (switchError.code === 4902) {
+            try {
+              await window.ethereum.request({
+                method: 'wallet_addEthereumChain',
+                params: [bscNetwork],
+              });
+              return true;
+            } catch (addError) {
+              toast.error('Please switch to BSC network manually in your wallet');
+              return false;
+            }
+          }
+          toast.error('Failed to switch network. Please try again.');
+          return false;
+        }
+      }
+      return true;
+    } catch (error) {
+      console.error('Network check failed:', error);
+      return false;
+    }
+  };
+
   // Wallet connection handler
   const handleConnectWallet = async () => {
     // If already connected, show disconnect modal instead of trying to connect
@@ -37,6 +91,13 @@ const ConnectWallet = ({ account, setAccount }) => {
         try {
           const provider = new ethers.providers.Web3Provider(window.ethereum);
 
+          // Check and switch to BSC network first
+          const isCorrectNetwork = await checkAndSwitchNetwork(provider);
+          if (!isCorrectNetwork) {
+            setIsConnecting(false);
+            return;
+          }
+
           // Add timeout to avoid hanging if user doesn't respond
           const timeoutPromise = new Promise((_, reject) =>
             setTimeout(() => reject(new Error("Connection request timed out")), 30000)
@@ -49,8 +110,15 @@ const ConnectWallet = ({ account, setAccount }) => {
           ]);
 
           if (accounts && accounts.length > 0) {
+            // Double check network after connection
+            const finalCheck = await checkAndSwitchNetwork(provider);
+            if (!finalCheck) {
+              setIsConnecting(false);
+              return;
+            }
+
             setAccount(accounts[0]);
-            toast.success("Wallet connected successfully!");
+            toast.success("Wallet connected successfully on BSC!");
           }
         } catch (error) {
           console.error("Connection error:", error);
@@ -90,10 +158,10 @@ const ConnectWallet = ({ account, setAccount }) => {
       <div className="wallet-connect-container">
         <h3 className="wallet-connect-title">
           {isWalletConnected
-            ? 'Wallet Connected'
+            ? 'Wallet Connected (BSC)'
             : isConnecting
               ? 'Connecting...'
-              : 'Connect Your Wallet'}
+              : 'Connect Your Wallet (BSC)'}
         </h3>
         <div
           className={`wallet-icon-container ${isWalletConnected ? 'connected' : ''} ${isConnecting ? 'connecting' : ''}`}
@@ -111,7 +179,7 @@ const ConnectWallet = ({ account, setAccount }) => {
             ? account
             : isConnecting
               ? 'Waiting for MetaMask confirmation...'
-              : 'Connect your wallet to buy Movly tokens'}
+              : 'Binance Smart Chain (BSC)'}
         </p>
       </div>
 

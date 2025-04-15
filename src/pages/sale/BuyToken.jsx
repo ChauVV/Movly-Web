@@ -4,6 +4,7 @@ import { DEPLOYER_ADDRESS, DEPLOYER_ABI, USDT_ADDRESS } from '../../config/BNBco
 import { FaExclamationCircle } from 'react-icons/fa';
 import { SiTether } from 'react-icons/si';
 import { SiBinance } from 'react-icons/si';
+import { RiAddFill } from 'react-icons/ri';
 import bg from '@assets/images/mm5.jpg';
 import goldCoin from '@assets/tokens/m200.png'
 import styles from './BuyToken.module.css';
@@ -281,6 +282,37 @@ function BuyToken() {
     setShowInfoModal(false);
   };
 
+  const handleAddToken = async () => {
+    try {
+      const tokenAddress = "0xb7C8969df0076bEe6922789AaB4bC73aAa8d45D2";
+      const tokenSymbol = "MOVLY";
+      const tokenDecimals = 18;
+      const tokenImage = "https://movly.run/images/m200.png";
+
+      const wasAdded = await window.ethereum.request({
+        method: 'wallet_watchAsset',
+        params: {
+          type: 'ERC20',
+          options: {
+            address: tokenAddress,
+            symbol: tokenSymbol,
+            decimals: tokenDecimals,
+            image: tokenImage,
+          },
+        },
+      });
+
+      if (wasAdded) {
+        toast.success('MOVLY Token was added to MetaMask');
+      } else {
+        toast.error('Failed to add MOVLY Token');
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error('Something went wrong while adding the token');
+    }
+  };
+
   const paymentOptions = [
     { value: 'BNB', label: 'BNB', icon: <SiBinance size={20} /> },
     { value: 'USDT', label: 'USDT', icon: <SiTether size={20} /> }
@@ -303,7 +335,6 @@ function BuyToken() {
 
           {/* Wallet connection */}
           <ConnectWallet account={account} setAccount={setAccount} />
-
           {/* Card */}
           <div className={styles['token-sale-card']}>
             <h2 className={styles['token-sale-card-title']}>{`Purchase Tokens${bonusPercent > 0 ? ` - Presale (Bonus ${bonusPercent}%)` : ''}`}</h2>
@@ -407,6 +438,52 @@ function BuyToken() {
                     ? 'Enter Amount to Buy'
                     : `Buy with ${paymentMethod}`}
             </button>
+
+            {isWalletConnected && (
+              <div>
+                <div className={styles['token-line-seperate']} />
+                <div className={styles['token-line-seperate-down-arrow']}></div>
+                <div className={styles['token-line-seperate-down-arrow1']}></div>
+                <div className={styles['token-info']}>
+                  <button
+                    onClick={handleAddToken}
+                    className={styles['add-token-btn']}
+                    title="Add MOVLY Token to MetaMask"
+                  >
+                    <RiAddFill size={20} />
+                    Add MOVLY to MetaMask
+                  </button>
+
+                  <div className={styles['token-icon']}>
+                    <img src={goldCoin} alt="Movly" />
+                  </div>
+
+                  <div className={styles['token-address']}>
+                    <div className={styles['token-details-group']}>
+                      <div className={styles['token-detail']}>
+                        <span className={styles['detail-label']}>Network:</span>
+                        <span className={styles['detail-value']}>Binance Smart Chain [BSC]</span>
+                      </div>
+
+                      <div className={styles['token-detail']}>
+                        <span className={styles['detail-label']}>Address:</span>
+                        <span className={styles['detail-value']}>0xb7C8969df0076bEe6922789AaB4bC73aAa8d45D2</span>
+                      </div>
+
+                      <div className={styles['token-detail']}>
+                        <span className={styles['detail-label']}>Symbol:</span>
+                        <span className={styles['detail-value']}>MOVLY</span>
+                      </div>
+
+                      <div className={styles['token-detail']}>
+                        <span className={styles['detail-label']}>Decimals:</span>
+                        <span className={styles['detail-value']}>18</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Dialog */}
@@ -437,4 +514,4 @@ function BuyToken() {
   );
 }
 
-export default BuyToken; 
+export default BuyToken;
