@@ -451,7 +451,7 @@ function BuyToken() {
                     title="Add MOVLY Token to MetaMask"
                   >
                     <RiAddFill size={20} />
-                    Add MOVLY to MetaMask
+                    Add MOVLY token to MetaMask
                   </button>
 
                   <div className={styles['token-icon']}>

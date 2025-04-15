@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react';
+import React, { useState, memo, useEffect } from 'react';
 import { ethers } from 'ethers';
 import { toast } from 'react-hot-toast';
 import metamaskIcon from '@assets/icons/metamark.svg';
@@ -7,10 +7,58 @@ import NoMetamaskModal from './NoMetamaskModal';
 import './ConnectWallet.css';
 import './WalletModals.css';
 
+const WALLET_KEY = 'movly_wallet_address';
+
 const ConnectWallet = ({ account, setAccount }) => {
   const [isConnecting, setIsConnecting] = useState(false);
   const [showDisconnectModal, setShowDisconnectModal] = useState(false);
   const [showNoMetamaskModal, setShowNoMetamaskModal] = useState(false);
+
+  // Load wallet from localStorage on mount
+  useEffect(() => {
+    const savedAccount = localStorage.getItem(WALLET_KEY);
+    if (savedAccount && window.ethereum) {
+      setAccount(savedAccount);
+    }
+  }, []);
+
+  // Handle MetaMask events
+  useEffect(() => {
+    if (window.ethereum) {
+      // Handle account changes
+      window.ethereum.on('accountsChanged', (accounts) => {
+        if (accounts.length === 0) {
+          // User disconnected their wallet
+          handleDisconnect();
+        } else {
+          // User switched accounts
+          setAccount(accounts[0]);
+          localStorage.setItem(WALLET_KEY, accounts[0]);
+          toast.success('Account changed successfully!');
+        }
+      });
+
+      // Handle chain changes
+      window.ethereum.on('chainChanged', () => {
+        // Reload the page on chain change as recommended by MetaMask
+        window.location.reload();
+      });
+
+      // Handle disconnect
+      window.ethereum.on('disconnect', () => {
+        handleDisconnect();
+      });
+    }
+
+    // Cleanup listeners on unmount
+    return () => {
+      if (window.ethereum) {
+        window.ethereum.removeListener('accountsChanged', () => {});
+        window.ethereum.removeListener('chainChanged', () => {});
+        window.ethereum.removeListener('disconnect', () => {});
+      }
+    };
+  }, []);
 
   // Check if the network is BSC
   const checkAndSwitchNetwork = async (provider) => {
@@ -118,6 +166,7 @@ const ConnectWallet = ({ account, setAccount }) => {
             }
 
             setAccount(accounts[0]);
+            localStorage.setItem(WALLET_KEY, accounts[0]);
             toast.success("Wallet connected successfully on BSC!");
           }
         } catch (error) {
@@ -141,6 +190,7 @@ const ConnectWallet = ({ account, setAccount }) => {
   // Handle wallet disconnection
   const handleDisconnect = () => {
     setAccount(null);
+    localStorage.removeItem(WALLET_KEY);
     toast.success("Wallet disconnected successfully");
     setShowDisconnectModal(false);
   };
