@@ -49,6 +49,16 @@ function BuyToken() {
 
   const fetchPrices = async () => {
     try {
+      if (!window.ethereum) {
+        // Fallback to using an API for BNB price when MetaMask isn't available
+        const response = await fetch('https://api.binance.com/api/v3/ticker/price?symbol=BNBUSDT');
+        const data = await response.json();
+        // Convert price to same format as contract (8 decimals)
+        const bnbPriceInWei = ethers.utils.parseUnits(data.price, 8);
+        setBnbPrice(bnbPriceInWei);
+        return;
+      }
+
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const tokenDeployer = new ethers.Contract(
         DEPLOYER_ADDRESS,
@@ -59,6 +69,10 @@ function BuyToken() {
       setBnbPrice(bnbPriceData);
     } catch (error) {
       console.error("Error fetching prices:", error);
+      // Set a fallback BNB price in case of error (e.g. $220)
+      const fallbackPrice = "220";
+      const bnbPriceInWei = ethers.utils.parseUnits(fallbackPrice, 8);
+      setBnbPrice(bnbPriceInWei);
     }
   };
 
@@ -93,16 +107,17 @@ function BuyToken() {
   };
 
   useEffect(() => {
-    if (account) {
-      fetchPrices();
-      const interval = setInterval(fetchPrices, 30000); // Update every 30 seconds
-      return () => clearInterval(interval);
-    }
-  }, [account]);
+    // Fetch prices even without account connection
+    fetchPrices();
+    const interval = setInterval(fetchPrices, 30000); // Update every 30 seconds
+    return () => clearInterval(interval);
+  }, []); // Remove account dependency
 
   useEffect(() => {
     const fetchSaleStatus = async () => {
       try {
+        if (!window.ethereum) return;
+
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const tokenDeployer = new ethers.Contract(
           DEPLOYER_ADDRESS,
@@ -119,17 +134,16 @@ function BuyToken() {
           currentBonus: status[5].toNumber()
         });
 
-        // Cập nhật bonus dựa trên kết quả từ contract
         setBonusPercent(status[5].toNumber());
       } catch (error) {
         console.error("Error fetching sale status:", error);
       }
     };
 
-    if (account) {
+    if (window.ethereum) {
       fetchSaleStatus();
     }
-  }, [account]);
+  }, []);  // Remove account dependency
 
   const handleBuy = async () => {
     if (!amount || parseFloat(amount) <= 0) {

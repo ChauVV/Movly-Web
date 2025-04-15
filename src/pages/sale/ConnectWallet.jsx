@@ -53,9 +53,9 @@ const ConnectWallet = ({ account, setAccount }) => {
     // Cleanup listeners on unmount
     return () => {
       if (window.ethereum) {
-        window.ethereum.removeListener('accountsChanged', () => {});
-        window.ethereum.removeListener('chainChanged', () => {});
-        window.ethereum.removeListener('disconnect', () => {});
+        window.ethereum.removeListener('accountsChanged', () => { });
+        window.ethereum.removeListener('chainChanged', () => { });
+        window.ethereum.removeListener('disconnect', () => { });
       }
     };
   }, []);
