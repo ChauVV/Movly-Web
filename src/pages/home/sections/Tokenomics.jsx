@@ -1,38 +1,213 @@
 import { motion } from 'framer-motion';
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import styles from './Tokenomics.module.css';
 import bg from '@assets/images/ma7.jpg';
-import chartDetail from '@assets/images/TokenDistributionStructure.png';
+import React from 'react';
 
 export default function Tokenomics() {
-  const tokenData = [
-    { title: 'Sale', value: 40, color: '#8B5CF6' },
-    { title: 'Ecosystem/Treasury', value: 30, color: '#818CF8' },
-    { title: 'Team', value: 15, color: '#F472B6' },
-    { title: 'Market Launchpad', value: 12, color: '#34D399' },
-    { title: 'Advisors', value: 3, color: '#FCD34D' }
+  const [isWideScreen, setIsWideScreen] = React.useState(window.innerWidth > 1200);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      setIsWideScreen(window.innerWidth > 1200);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const data = [
+    {
+      name: 'Token Sale',
+      value: 40,
+      amount: '2,000,000,000',
+      details: 'Public and private sale allocations'
+    },
+    {
+      name: 'Ecosystem Development',
+      value: 30,
+      amount: '1,500,000,000',
+      details: 'Game Rewards & Incentives, Community Events, Partnership Programs'
+    },
+    {
+      name: 'Team & Advisors',
+      value: 18,
+      amount: '900,000,000',
+      details: 'Team (15%) & Advisors (3%) with 2-year vesting period and monthly unlocks'
+    },
+    {
+      name: 'Marketing & Operations',
+      value: 12,
+      amount: '600,000,000',
+      details: 'Market Making, Exchange Listings, Marketing Campaigns'
+    }
   ];
+  const COLORS = ['#ffde00', '#ff9d00', '#ff6b00', '#ff5c4d'];
+
+  const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+    const RADIAN = Math.PI / 180;
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.6;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+    if (percent < 0.05) return null;
+
+    return (
+      <text
+        x={x}
+        y={y}
+        fill="white"
+        textAnchor="middle"
+        dominantBaseline="middle"
+        style={{ fontSize: window.innerWidth <= 480 ? '12px' : '14px' }}
+      >
+        {`${(percent * 100).toFixed(0)}%`}
+      </text>
+    );
+  };
+
+  const CustomTooltip = ({ active, payload }) => {
+    if (active && payload && payload.length) {
+      const data = payload[0].payload;
+      return (
+        <div className={styles.tooltipContainer}>
+          <p className={styles.tooltipName}>{data.name}</p>
+          <p className={styles.tooltipValue}>{data.value}%</p>
+          <p className={styles.tooltipAmount}>{data.amount} MOVLY</p>
+        </div>
+      );
+    }
+    return null;
+  };
 
   return (
-    <section className={`${styles['main-section']} ${styles['tokenomics-section']}`}>
+    <section className={styles['tokenomics-section']}>
       <div className={styles['background-image']}>
         <img src={bg} alt="background" />
       </div>
       <div className={styles['blur-overlay1']}></div>
 
-      <h2 className={styles['tokenomics-title']}>Movly Distribution</h2>
+      <motion.h2
+        className={styles['tokenomics-title']}
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        Movly Distribution
+      </motion.h2>
+
       <motion.div
         className={styles['tokenomics-content']}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
+        viewport={{ once: false }}
+        transition={{ duration: 0.8, delay: 0.2 }}
       >
-        <div className={styles['tokenomics-container']}>
-          <div className={styles['chart-right']}>
-            <div className={styles['chart-container-right']}>
-              <img src={chartDetail} alt="background" style={{ objectFit: 'center' }} />
+        <div className={styles['content-grid']}>
+          <motion.div
+            className={styles['chart-column']}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <div className={styles['chart-wrapper']}>
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={data}
+                    cx="50%"
+                    cy="50%"
+                    labelLine={false}
+                    label={renderCustomizedLabel}
+                    outerRadius="90%"
+                    fill="#8884d8"
+                    dataKey="value"
+                    startAngle={90}
+                    endAngle={450}
+                    animationBegin={0}
+                    animationDuration={1500}
+                    key={Math.random()} // Force re-render animation
+                  >
+                    {data.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                  </Pie>
+                  <Tooltip content={<CustomTooltip />} />
+                </PieChart>
+              </ResponsiveContainer>
             </div>
-          </div>
+
+            <motion.div
+              className={styles['legend-container']}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: false }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
+              {data.map((entry, index) => (
+                <motion.div
+                  key={index}
+                  className={styles['legend-item']}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false }}
+                  transition={{ duration: 0.5, delay: 0.2 * index }}
+                >
+                  <div className={styles['legend-header']}>
+                    <span
+                      className={styles['legend-color']}
+                      style={{ backgroundColor: COLORS[index] }}
+                    />
+                    <span className={styles['legend-text']}>
+                      <span className={styles['legend-name']}>{entry.name}</span>
+                      <span className={styles['legend-value']}>{entry.value}%</span>
+                    </span>
+                  </div>
+                  <div className={styles['legend-details']}>
+                    <span className={styles['legend-amount']}>{entry.amount} MOVLY</span>
+                    <span className={styles['legend-description']}>{entry.details}</span>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {isWideScreen && (
+            <motion.div
+              className={styles['info-column']}
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <div className={styles['total-supply']}>
+                <h3>Total Supply</h3>
+                <div className={styles['supply-amount']}>5,000,000,000</div>
+                <p className={styles['supply-label']}>Maximum tokens that will ever exist</p>
+              </div>
+
+              <div className={styles['token-grid']}>
+                <div className={styles['token-item']}>
+                  <span className={styles['token-label']}>Token Name</span>
+                  <span className={styles['token-value']}>MOVLY</span>
+                </div>
+                <div className={styles['token-item']}>
+                  <span className={styles['token-label']}>Token Symbol</span>
+                  <span className={styles['token-value']}>MOVLY</span>
+                </div>
+                <div className={styles['token-item']}>
+                  <span className={styles['token-label']}>Network</span>
+                  <span className={styles['token-value']}>BNB Chain</span>
+                </div>
+                <div className={styles['token-item']}>
+                  <span className={styles['token-label']}>Token Standard</span>
+                  <span className={styles['token-value']}>BEP-20</span>
+                </div>
+              </div>
+            </motion.div>
+          )}
         </div>
       </motion.div>
     </section>

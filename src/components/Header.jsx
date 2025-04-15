@@ -61,13 +61,19 @@ export default function Header() {
         >
           Buy Token
         </Link>
-
         <Link
-          to="/whitepaper"
-          className={location.pathname === '/whitepaper' ? 'active' : ''}
-          onClick={handleNavigation('/whitepaper')}
+          to="/tokenomics"
+          className={location.pathname === '/tokenomics' ? 'active' : ''}
+          onClick={handleNavigation('/tokenomics')}
         >
-          Whitepaper
+          Tokenomics
+        </Link>
+        <Link
+          to="/calculator"
+          className={location.pathname === '/calculator' ? 'active' : ''}
+          onClick={handleNavigation('/calculator')}
+        >
+          Earn Calculator
         </Link>
         <Link
           to="/linktr"
@@ -77,11 +83,11 @@ export default function Header() {
           Linktree
         </Link>
         <Link
-          to="/calculator"
-          className={location.pathname === '/calculator' ? 'active' : ''}
-          onClick={handleNavigation('/calculator')}
+          to="/whitepaper"
+          className={location.pathname === '/whitepaper' ? 'active' : ''}
+          onClick={handleNavigation('/whitepaper')}
         >
-          Earn Calculator
+          Whitepaper
         </Link>
       </div>
     </>
@@ -98,11 +104,18 @@ export default function Header() {
           Buy Token
         </Link>
         <Link
-          to="/whitepaper"
-          className={location.pathname === '/whitepaper' ? 'active' : ''}
-          onClick={handleNavigation('/whitepaper')}
+          to="/tokenomics"
+          className={location.pathname === '/tokenomics' ? 'active' : ''}
+          onClick={handleNavigation('/tokenomics')}
         >
-          Whitepaper
+          Tokenomics
+        </Link>
+        <Link
+          to="/calculator"
+          className={location.pathname === '/calculator' ? 'active' : ''}
+          onClick={handleNavigation('/calculator')}
+        >
+          Earn Calculator
         </Link>
         <Link
           to="/linktr"
@@ -112,11 +125,11 @@ export default function Header() {
           Linktree
         </Link>
         <Link
-          to="/calculator"
-          className={location.pathname === '/calculator' ? 'active' : ''}
-          onClick={handleNavigation('/calculator')}
+          to="/whitepaper"
+          className={location.pathname === '/whitepaper' ? 'active' : ''}
+          onClick={handleNavigation('/whitepaper')}
         >
-          Earn Calculator
+          Whitepaper
         </Link>
       </div>
     </>

@@ -12,6 +12,8 @@ import MailRequest from './pages/mailRequest/MailRequest';
 import Privacy from './pages/privacy';
 import Terms from './pages/terms';
 import Linktree from './pages/linktr';
+import Tokenomics from './pages/tokenomics';
+
 import './App.css';
 
 // Define Ganache chain
@@ -63,7 +65,9 @@ function App() {
             <Route path="/terms" element={<Terms />} />
             <Route path="/sale" element={<BuyToken />} />
             <Route path="/linktr" element={<Linktree />} />
+            <Route path="/tokenomics" element={<Tokenomics />} />
 
+            {/* Routes with header */}
             <Route path="/" index element={<Main />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

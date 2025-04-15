@@ -1,0 +1,317 @@
+.container {
+    min-height: 100vh;
+    width: 100%;
+    padding: 0;
+    background: linear-gradient(180deg, #281a44, #3c1e53 33.58%, #431f58 49.09%, #3c1e53 66.67%, #281b45);
+    color: white;
+}
+
+.title {
+    font-size: 48px;
+    text-align: center;
+    margin-bottom: 10px;
+    padding-top: 80px;
+    background: linear-gradient(90deg, #FFD700 0%, #FFA500 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    text-align: center;
+    color: #888;
+    margin-bottom: 60px;
+}
+
+.content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.leftColumn {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.rightColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.chartSection h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #FFD700;
+}
+
+.chartContainer {
+    margin-bottom: 30px;
+    border-radius: 16px;
+    padding: 0;
+}
+
+.legendContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.legendItem {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    padding: 12px;
+    transition: transform 0.3s ease;
+}
+
+.legendItem:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.legendHeader {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.legendColor {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+.legendTitle {
+    flex: 1;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.legendPercentage {
+    font-size: 14px;
+    font-weight: 500;
+    color: #FFD700;
+}
+
+.legendContent {
+    margin-left: 18px;
+}
+
+.legendAmount {
+    color: #FFA500;
+    font-size: 13px;
+    margin-bottom: 3px;
+}
+
+.legendDetails {
+    color: #888;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.totalSupply {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.totalSupply h3 {
+    font-size: 20px;
+    color: #FFD700;
+    margin-bottom: 16px;
+}
+
+.supplyAmount {
+    font-size: 32px;
+    font-weight: bold;
+    background: linear-gradient(90deg, #FFD700 0%, #FFA500 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+}
+
+.supplyDescription {
+    color: #888;
+    font-size: 14px;
+}
+
+.tokenDetails {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.infoCard {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.infoCard:hover {
+    transform: translateY(-5px);
+}
+
+.label {
+    font-size: 14px;
+    color: #FFD700;
+    margin-bottom: 8px;
+}
+
+.value {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.distributionInfo {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.distributionInfo h3 {
+    font-size: 20px;
+    color: #FFD700;
+    margin-bottom: 20px;
+}
+
+.distributionList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.distributionItem {
+    padding: 12px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.distributionHeader {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.distributionDot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.distributionName {
+    flex: 1;
+    font-size: 16px;
+}
+
+.distributionPercentage {
+    font-weight: 600;
+    color: #FFD700;
+}
+
+.distributionAmount {
+    font-size: 14px;
+    color: #888;
+    margin-left: 18px;
+}
+
+.tooltipContainer {
+    background: rgba(10, 10, 10, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 12px;
+    min-width: 200px;
+}
+
+.tooltipName {
+    color: #FFD700;
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+
+.tooltipValue {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.tooltipAmount {
+    color: #FFA500;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.tooltipDetails {
+    color: #888;
+    font-size: 13px;
+}
+
+.footer_container {
+    width: 100%;
+    border-top: 0.4px solid rgba(255, 215, 0, 0.5);
+    position: relative;
+    z-index: 10;
+    background-color: rgba(255, 248, 220, 0.1);
+    margin-top: 150px;
+}
+
+@media (max-width: 1024px) {
+    .content {
+        grid-template-columns: 1fr;
+    }
+
+    .leftColumn {
+        order: 2;
+    }
+
+    .rightColumn {
+        order: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0;
+    }
+
+    .title {
+        padding-top: 40px;
+        font-size: 36px;
+    }
+
+    .tokenDetails {
+        grid-template-columns: 1fr;
+    }
+
+    .content {
+        padding: 0 16px;
+    }
+
+    .legendContent {
+        margin-left: 16px;
+    }
+
+    .legendContainer {
+        grid-template-columns: 1fr;
+    }
+}
