@@ -97,20 +97,12 @@ export default function Tokenomics() {
         Movly Distribution
       </motion.h2>
 
-      <motion.div
+      <div
         className={styles['tokenomics-content']}
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false }}
-        transition={{ duration: 0.8, delay: 0.2 }}
       >
         <div className={styles['content-grid']}>
-          <motion.div
+          <div
             className={styles['chart-column']}
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false }}
-            transition={{ duration: 0.8, delay: 0.4 }}
           >
             <div className={styles['chart-wrapper']}>
               <ResponsiveContainer width="100%" height="100%">
@@ -126,9 +118,7 @@ export default function Tokenomics() {
                     dataKey="value"
                     startAngle={90}
                     endAngle={450}
-                    animationBegin={0}
-                    animationDuration={1500}
-                    key={Math.random()} // Force re-render animation
+                    key={Math.random()}
                   >
                     {data.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
@@ -167,12 +157,12 @@ export default function Tokenomics() {
                   </div>
                   <div className={styles['legend-details']}>
                     <span className={styles['legend-amount']}>{entry.amount} MOVLY</span>
-                    <span className={styles['legend-description']}>{entry.details}</span>
+                    {isWideScreen && <span className={styles['legend-description']}>{entry.details}</span>}
                   </div>
                 </motion.div>
               ))}
             </motion.div>
-          </motion.div>
+          </div>
 
           {isWideScreen && (
             <motion.div
@@ -209,7 +199,7 @@ export default function Tokenomics() {
             </motion.div>
           )}
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
