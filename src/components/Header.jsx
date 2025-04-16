@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { IoMenu, IoClose } from 'react-icons/io5';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Header.css';
-import logo from '@assets/icons/logo2.jpeg';
+import MovlyLogo from './MovlyLogo';
 
 export default function Header() {
   const location = useLocation();
@@ -38,21 +38,7 @@ export default function Header() {
       </button>
 
       <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
-        <Link
-          to="/"
-          className={`mobile-nav-link ${location.pathname === '/' ? 'active' : ''}`}
-          onClick={handleNavigation('/')}
-        >
-          <img src={logo} alt="Movly Logo" className="nav-logo" />
-          <span className="mobile-only">Movly</span>
-        </Link>
-
-        <Link to="/"
-          className={location.pathname === '/' ? 'active' : ''}
-          onClick={handleNavigation('/')}>
-          <img src={logo} alt="Movly Logo" className="header-logo" />
-          <span>Movly</span>
-        </Link>
+        <MovlyLogo setIsMenuOpen={setIsMenuOpen} />
 
         <Link
           to="/sale"
@@ -138,10 +124,7 @@ export default function Header() {
   return (
     <header className="header">
       <nav className="nav-container">
-        <Link to="/" className="logo" onClick={handleNavigation('/')}>
-          <img src={logo} alt="Movly Logo" className="header-logo" />
-          <span>Movly</span>
-        </Link>
+        <MovlyLogo setIsMenuOpen={setIsMenuOpen} />
 
         {isMobile ? renderMobileMenu() : renderDesktopMenu()}
       </nav>
