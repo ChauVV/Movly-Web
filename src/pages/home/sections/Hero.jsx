@@ -1,111 +1,61 @@
-import { motion, AnimatePresence, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { motion } from 'framer-motion';
 import styles from './Hero.module.css';
-import logo from '@assets/images/logo512.png';
 import { useNavigate } from 'react-router-dom';
+import hero from '@assets/images/hero/hero.png';
+import heroshadow from '@assets/images/hero/hero-shadow.png';
+import herobgg from '@assets/images/hero/herobgg.png';
 
-export default function Hero({ onScroll }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, {
-    amount: 0.3,
-    once: false
-  });
+export default function Hero() {
   const navigate = useNavigate();
 
-  const contentVariants = {
-    hidden: {
-      opacity: 0,
-      y: 100
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 1.2,
-        type: "spring",
-        stiffness: 50,
-        damping: 20
-      }
-    },
-    exit: {
-      opacity: 0,
-      y: -100
-    }
-  };
-
   return (
-    <section className={styles.heroSection} ref={ref}>
-      <div className={styles.heroLogo}>
-        <img src={logo} alt="Health Step Logo" />
+    <section className={styles.heroSection}>
+      <div className={styles.heroBg}>
+        <img src={herobgg} alt="background" className={styles.bgImage} />
       </div>
-      <AnimatePresence>
-        {inView && (
-          <motion.div
-            className={styles.heroContent}
-            variants={contentVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-          >
-            <motion.div
-              className={styles.heroTitle}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.8,
-                delay: 0.3,
-                type: "spring",
-                stiffness: 100
-              }}
-            >
-              <motion.h1>
-                Movly
-              </motion.h1>
-              <motion.p
-                className={styles.heroSubtitle}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.8, duration: 0.8 }}
-              >
-                Move Daily - Earn More - Live Better
-              </motion.p>
-            </motion.div>
+      <div className={styles.heroContainer}>
+        <motion.div
+          className={styles.imageSide}
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className={styles.heroImageWrapper}>
+            <img src={hero} alt="hero" className={styles.heroImage} />
+            <img src={heroshadow} alt="" className={styles.heroShadow} />
+          </div>
+        </motion.div>
 
-            <motion.div
-              className={styles.heroDescription}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.1, duration: 0.8 }}
-            >
-              <p>Walk, Run and Earn with every step you take</p>
-            </motion.div>
-
-            <motion.div
-              className={styles.heroButtons}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.4, duration: 0.8 }}
-            >
-              <motion.button
-                className={styles.primaryButton}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={onScroll}
+        <motion.div
+          className={styles.contentSide}
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <div className={styles.textContent}>
+            <h1>Move To Earn With</h1>
+            <h2>MOVLY</h2>
+            <h3 className={styles.slogan}>Move Daily - Earn More - Live Better</h3>
+            <p>
+              Transform your daily movements into rewards with MOVLY.
+            </p>
+            <div className={styles.buttonGroup}>
+              <button
+                className={styles.primaryBtn}
+                onClick={() => navigate('/sale')}
               >
-                Get Started
-              </motion.button>
-              <motion.button
-                className={styles.secondaryButton}
+                Join Presale
+              </button>
+              <button
+                className={styles.secondaryBtn}
                 onClick={() => navigate('/whitepaper')}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
               >
-                More Info
-              </motion.button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                Whitepaper
+              </button>
+            </div>
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 }

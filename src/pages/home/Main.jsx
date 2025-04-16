@@ -105,7 +105,7 @@ function Main() {
       onScroll={handleScroll}
     >
       <Header />
-      <ParticlesBackground type={currentSection === 'tokenomics' ? 'tokenomics' : 'hero'} />
+      {/* <ParticlesBackground type={currentSection === 'tokenomics' ? 'tokenomics' : 'hero'} /> */}
 
       <section id="hero" className={styles.section}><Hero onScroll={scrollToHowItWorks} /></section>
       <section id="howItWorks" className={styles.section}><HowItWorks /></section>
