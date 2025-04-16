@@ -18,12 +18,26 @@ export default function Hero() {
           className={styles.imageSide}
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{
+            duration: 0.8,
+            opacity: { duration: 0.8 },
+            x: { duration: 0.8 }
+          }}
         >
-          <div className={styles.heroImageWrapper}>
+          <motion.div
+            className={styles.heroImageWrapper}
+            animate={{
+              scale: [1, 1.02, 1]
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
             <img src={hero} alt="hero" className={styles.heroImage} />
             <img src={heroshadow} alt="" className={styles.heroShadow} />
-          </div>
+          </motion.div>
         </motion.div>
 
         <motion.div
