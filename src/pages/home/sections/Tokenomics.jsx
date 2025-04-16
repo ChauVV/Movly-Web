@@ -2,12 +2,14 @@ import { motion } from 'framer-motion';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import styles from './Tokenomics.module.css';
 import bg from '@assets/images/ma7.jpg';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 export default function Tokenomics() {
   const [isWideScreen, setIsWideScreen] = React.useState(window.innerWidth > 1200);
+  const [isVisible, setIsVisible] = React.useState(false);
+  const sectionRef = React.useRef(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleResize = () => {
       setIsWideScreen(window.innerWidth > 1200);
     };
@@ -15,6 +17,34 @@ export default function Tokenomics() {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting && !isVisible) {
+          setTimeout(() => {
+            setIsVisible(true);
+          }, 400);
+        } else if (!entry.isIntersecting && isVisible) {
+          setIsVisible(false);
+        }
+      },
+      {
+        threshold: 0.2
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, [isVisible]);
 
   const data = [
     {
@@ -81,7 +111,7 @@ export default function Tokenomics() {
   };
 
   return (
-    <section className={styles['tokenomics-section']}>
+    <section className={styles['tokenomics-section']} ref={sectionRef}>
       <div className={styles['background-image']}>
         <img src={bg} alt="background" />
       </div>
@@ -105,7 +135,7 @@ export default function Tokenomics() {
             className={styles['chart-column']}
           >
             <div className={styles['chart-wrapper']}>
-              <ResponsiveContainer width="100%" height="100%">
+              {isVisible && <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
                     data={data}
@@ -118,7 +148,7 @@ export default function Tokenomics() {
                     dataKey="value"
                     startAngle={90}
                     endAngle={450}
-                    key={Math.random()}
+                    key={isVisible ? Math.random() : undefined}
                   >
                     {data.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
@@ -126,7 +156,7 @@ export default function Tokenomics() {
                   </Pie>
                   <Tooltip content={<CustomTooltip />} />
                 </PieChart>
-              </ResponsiveContainer>
+              </ResponsiveContainer>}
             </div>
 
             <motion.div
