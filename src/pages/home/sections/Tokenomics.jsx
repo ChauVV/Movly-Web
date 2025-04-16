@@ -25,7 +25,7 @@ export default function Tokenomics() {
         if (entry.isIntersecting && !isVisible) {
           setTimeout(() => {
             setIsVisible(true);
-          }, 400);
+          }, 1000);
         } else if (!entry.isIntersecting && isVisible) {
           setIsVisible(false);
         }
@@ -170,7 +170,7 @@ export default function Tokenomics() {
                 <motion.div
                   key={index}
                   className={styles['legend-item']}
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 1, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: false }}
                   transition={{ duration: 0.5, delay: 0.2 * index }}
