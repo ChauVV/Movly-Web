@@ -51,7 +51,7 @@ export default function Hero() {
             <h2>MOVLY</h2>
             <h3 className={styles.slogan}>Move Daily - Earn More - Live Better</h3>
             <p>
-              Transform your daily movements into rewards with MOVLY.
+              Transform your daily movements into rewards with MOVLY
             </p>
             <div className={styles.buttonGroup}>
               <button

@@ -4,7 +4,7 @@
   flex-direction: column;
   padding: 4rem 1rem;
   overflow: hidden;
-  height: calc(100vh - 53px);
+  height: 100vh;
 }
 
 .app-preview-title {
@@ -192,7 +192,7 @@
 @media (max-width: 480px) {
   .app-preview-section {
     padding: 0.8rem 0.5rem;
-    height: calc(100vh - 53px);
+    height: 100vh;
   }
 
   .app-preview-title {
