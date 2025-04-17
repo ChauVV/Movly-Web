@@ -3,16 +3,13 @@ import styles from './Hero.module.css';
 import { useNavigate } from 'react-router-dom';
 import hero from '@assets/images/hero/hero.png';
 import heroshadow from '@assets/images/hero/hero-shadow.png';
-import herobgg from '@assets/images/hero/herobgg.png';
 
 export default function Hero() {
   const navigate = useNavigate();
 
   return (
     <section className={styles.heroSection}>
-      <div className={styles.heroBg}>
-        <img src={herobgg} alt="background" className={styles.bgImage} />
-      </div>
+      <div className={styles.heroBg}></div>
       <div className={styles.heroContainer}>
         <motion.div
           className={styles.imageSide}
