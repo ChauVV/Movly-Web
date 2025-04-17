@@ -36,7 +36,7 @@ const Tokenomics = () => {
 
     const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
         const RADIAN = Math.PI / 180;
-        const radius = innerRadius + (outerRadius - innerRadius) * 0.8;
+        const radius = innerRadius + (outerRadius - innerRadius) * 0.6;
         const x = cx + radius * Math.cos(-midAngle * RADIAN);
         const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
@@ -78,7 +78,7 @@ const Tokenomics = () => {
                                     cy="50%"
                                     labelLine={false}
                                     label={renderCustomizedLabel}
-                                    outerRadius="80%"
+                                    outerRadius="90%"
                                     fill="#8884d8"
                                     dataKey="value"
                                     startAngle={90}
