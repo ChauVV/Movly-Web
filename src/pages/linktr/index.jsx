@@ -192,9 +192,9 @@ export default function Linktree() {
             transition={{ duration: 0.5 }}
           >
             <Link to="/" className={styles.profile_link}>
-              <div className={styles.linktree_logo_container}>
+              {/* <div className={styles.linktree_logo_container}>
                 <img src={logo} alt="Movly Logo" className={styles.linktree_logo} />
-              </div>
+              </div> */}
               <h1>Movly</h1>
             </Link>
             <p>Transform your movement into rewards • Move-to-Earn on BNB Chain</p>
