@@ -104,6 +104,31 @@ body {
   gap: 10px;
 }
 
+.socialIcons {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 20;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.socialIcon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.socialIcon a {
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+}
+
 .navButton {
   width: 40px;
   height: 40px;
@@ -185,4 +210,72 @@ body {
   justify-content: center;
   position: relative;
   scroll-snap-align: start;
+}
+
+/* Animation cho icon đầu tiên - lên xuống */
+@keyframes moveUpDown {
+
+  0%,
+  95% {
+    transform: translateY(0);
+  }
+
+  97.5% {
+    transform: translateY(-9px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Animation cho icon thứ hai - qua lại */
+@keyframes moveLeftRight {
+
+  0%,
+  95% {
+    transform: translateX(0);
+  }
+
+  97.5% {
+    transform: translateX(9px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Animation cho icon thứ ba - xoay tròn */
+@keyframes rotate360 {
+
+  0%,
+  95% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+.socialIcon svg {
+  transition: color 0.3s ease;
+}
+
+/* Icon Telegram - lên xuống */
+.socialIcon:first-child svg {
+  animation: moveUpDown 3.3s linear infinite;
+}
+
+/* Icon Twitter - qua lại */
+.socialIcon:nth-child(2) svg {
+  animation: moveLeftRight 3.3s linear infinite;
+  animation-delay: 1s;
+}
+
+/* Icon Discord - xoay */
+.socialIcon:last-child svg {
+  animation: rotate360 3.3s linear infinite;
+  animation-delay: 2s;
 }

@@ -11,6 +11,8 @@ import AppPreviewWatch from './sections/AppPreviewWatch';
 import Community from './sections/Community';
 import styles from './Main.module.css';
 import Header from '@/components/Header';
+import { FaDiscord, FaTelegram } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 
 function Main() {
   const containerRef = useRef(null);
@@ -50,7 +52,12 @@ function Main() {
         setCurrentSection('tokenomics');
       } else if (scrollPosition < windowHeight * 5) {
         setCurrentSection('roadmap');
-      } else {
+      } else if (scrollPosition < windowHeight * 6) {
+        setCurrentSection('appPreview');
+      } else if (scrollPosition < windowHeight * 7) {
+        setCurrentSection('appPreviewWatch');
+      }
+      else {
         setCurrentSection('community');
       }
     }
@@ -124,8 +131,46 @@ function Main() {
           <IoIosArrowDown />
         </button>
       </div>
+
+      {currentSection !== 'community' &&
+        <div className={styles.socialIcons}>
+          <div className={styles.socialIcon}>
+            <a
+              href="https://t.me/movlyRun"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaTelegram
+                style={{ color: currentSection === 'hero' ? '#7a4a00' : '#fff' }}
+              />
+            </a>
+          </div>
+          <div className={styles.socialIcon}>
+            <a
+              href="https://x.com/MovlyRun"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaXTwitter
+                style={{ color: currentSection === 'hero' ? '#7a4a00' : '#fff' }}
+              />
+            </a>
+          </div>
+          <div className={styles.socialIcon}>
+            <a
+              href="https://discord.com/invite/HKvXYkhEe5"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaDiscord
+                style={{ color: currentSection === 'hero' ? '#7a4a00' : '#fff' }}
+              />
+            </a>
+          </div>
+        </div>
+      }
     </div>
   );
 }
 
-export default Main; 
+export default Main;
