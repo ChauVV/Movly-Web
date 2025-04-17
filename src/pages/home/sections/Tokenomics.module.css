@@ -280,6 +280,11 @@
   font-weight: 600;
 }
 
+.tooltipAmount {
+  font-size: 13px;
+  color: #FFA500;
+}
+
 
 @media (max-width: 1200px) {
   .content-grid {
