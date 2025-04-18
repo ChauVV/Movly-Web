@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import HalvingPopup from '../../../components/HalvingPopup';
 import { FaExclamationCircle } from 'react-icons/fa';
 import bg from '@assets/images/map4.jpeg';
-import silverIcon from '@assets/tokens/silver.jpeg';
+import silverIcon from '@assets/gmd/gmd.png';
 import goldIcon from '@assets/tokens/m200.png';
 
 export default function Tokens() {

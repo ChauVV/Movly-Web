@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './Calculator.module.css';
 import posterCal from '@assets/images/mm2m.jpg';
-import goldCoin from '@assets/tokens/silver.png';
+import goldCoin from '@assets/gmd/gmd.png';
 import s3 from '@assets/images/s3.jpg';
 import shoe from '@assets/images/shoe5.png';
 import wings from '@assets/images/wing3.png';

@@ -21,6 +21,7 @@ import mgdToken from './sections/4.10_MGD_token.md?raw';
 import smartContract from './sections/smart_contract.md?raw';
 import gettingHelp from './sections/getting_help.md?raw';
 import privacy from './sections/privacy.md?raw';
+import MovlyLogo from '@/components/MovlyLogo';
 
 const sections = [
   { id: 'overview', title: 'Overview', content: overview },
@@ -120,7 +121,7 @@ const Whitepaper = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Link to="/" className={styles['home-link']}>Movly</Link>
+            <MovlyLogo style={{ justifyContent: 'left', paddingLeft: '16px', marginBottom: '16px' }} scale={1.2} />
           </motion.h2>
           <motion.div
             className={styles.subtitle}

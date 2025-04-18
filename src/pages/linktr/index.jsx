@@ -10,6 +10,7 @@ import Footer from '@components/Footer';
 import { FaTelegram, FaDiscord, FaGithub, FaFileAlt, FaShoppingCart, FaGlobe, FaCalculator } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import { MdEmail } from 'react-icons/md';
+import MovlyLogo from '@/components/MovlyLogo';
 
 const generalLinks = [
   {
@@ -191,9 +192,9 @@ export default function Linktree() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Link to="/" className={styles.profile_link}>
-              <h1>Movly</h1>
-            </Link>
+            <div style={{ height: '100px', marginTop: '30px' }}>
+              <MovlyLogo isVertical scale={2} />
+            </div>
             <p>Transform your movement into rewards • Move-to-Earn on BNB Chain</p>
           </motion.div>
 
