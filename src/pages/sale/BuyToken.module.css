@@ -98,7 +98,7 @@
   position: relative;
   z-index: 2;
   font-size: 40px;
-  color: #FFD700;
+  color: #fff;
   text-align: center;
   text-transform: uppercase;
   margin: 0;
@@ -132,11 +132,11 @@
 }
 
 .token-sale-card-title {
-  color: #FFD700;
+  color: #fff;
   font-size: 24px;
   font-weight: 600;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 60px;
 }
 
 .token-sale-form-group {
