@@ -29,12 +29,53 @@
   margin-right: 60px;
 }
 
+/* Animation cho logo */
+@keyframes logoAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  5% {
+    transform: rotate(-15deg);
+  }
+
+  25% {
+    transform: rotate(-15deg);
+  }
+
+  30% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(0deg);
+  }
+
+  50.6% {
+    transform: rotate(-375deg);
+  }
+
+  75% {
+    transform: rotate(-375deg);
+  }
+
+  80% {
+    transform: rotate(-360deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
 .header-logo {
   width: 24px;
   height: 24px;
   margin-right: 8px;
   vertical-align: middle;
   border-radius: 4px;
+  animation: logoAnimation 20s linear infinite;
+  animation-delay: 1s;
 }
 
 /* Desktop Navigation */

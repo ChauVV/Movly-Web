@@ -1,6 +1,7 @@
 import { memo } from "react"
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import "./Header.css";
 
 const MovlyLogo = ({
     setIsMenuOpen, scale = 1,
@@ -35,7 +36,7 @@ const MovlyLogo = ({
                 ...style
             }}
         >
-            {showIcon && <img src="/logo192.png" alt="Movly Logo" style={styleIcon} />}
+            {showIcon && <img src="/logo192.png" alt="Movly Logo" style={styleIcon} className="header-logo" />}
             {showName && <span>Movly</span>}
         </Link>
     )

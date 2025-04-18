@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import styles from './Linktree.module.css';
-import logo from '@assets/images/logo512.png';
 import mm5 from '@assets/images/mm5.jpg';
 import Footer from '@components/Footer';
 
