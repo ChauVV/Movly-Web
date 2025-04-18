@@ -155,7 +155,7 @@
 .token-sale-input {
   width: 100%;
   height: 48px;
-  background: rgba(51, 46, 0, 0.8);
+  background: rgba(51, 46, 0, 0.2);
   border: 1px solid rgba(255, 214, 0, 0.3);
   border-radius: 12px;
   padding: 0 48px 0 16px;
@@ -251,7 +251,7 @@
 .token-sale-calc {
   font-size: 16px;
   padding: 16px;
-  background: rgba(51, 46, 0, 0.5);
+  background: rgba(51, 46, 0, 0.2);
   border-radius: 12px;
   border: 1px solid rgba(255, 214, 0, 0.3);
   box-shadow: 0 4px 12px rgba(255, 214, 0, 0.1);
@@ -355,9 +355,9 @@
   .token-sale-payment-btn,
   .token-sale-input,
   .token-sale-buy-btn {
-    height: 44px;
-    min-height: 44px;
-    max-height: 44px;
+    height: 48px;
+    min-height: 48px;
+    max-height: 48px;
   }
 
   .token-sale-payment-btn {
@@ -413,10 +413,9 @@
   .token-sale-input,
   .token-sale-payment-btn,
   .token-sale-buy-btn {
-    height: 40px;
-    min-height: 40px;
-    max-height: 40px;
-    font-size: 14px;
+    height: 48px;
+    min-height: 48px;
+    max-height: 48px;
   }
 
   .token-sale-calc {
@@ -628,7 +627,7 @@
   font-size: 16px;
   border: 1px solid rgba(255, 214, 0, 0.3);
   border-radius: 12px;
-  background: rgba(51, 46, 0, 0.8);
+  background: rgba(51, 46, 0, 0.2);
   color: rgba(255, 214, 0, 0.9);
   appearance: none;
   cursor: pointer;
@@ -792,6 +791,15 @@
   transition: all 0.3s ease;
 }
 
+.connect-wallet {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+}
+
 .add-token-btn:hover {
   background: rgba(255, 215, 0, 0.1);
   transform: translateY(-1px);
@@ -807,6 +815,10 @@
     padding: 12px;
     font-size: 14px;
     gap: 8px;
+  }
+
+  .connect-wallet {
+    font-size: 20;
   }
 }
 

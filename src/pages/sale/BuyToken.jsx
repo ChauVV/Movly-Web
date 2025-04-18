@@ -297,11 +297,13 @@ function BuyToken() {
   };
 
   const handleAddToken = async () => {
+    if (!isWalletConnected) return;
+
     try {
       const tokenAddress = "0xb7C8969df0076bEe6922789AaB4bC73aAa8d45D2";
       const tokenSymbol = "MOVLY";
       const tokenDecimals = 18;
-      const tokenImage = "https://movly.run/images/m200.png";
+      const tokenImage = "https://movly.run/images/movly.png";
 
       const wasAdded = await window.ethereum.request({
         method: 'wallet_watchAsset',
@@ -452,51 +454,55 @@ function BuyToken() {
                     : `Buy with ${paymentMethod}`}
             </button>
 
-            {isWalletConnected && (
-              <div>
-                <div className={styles['token-line-seperate']} />
-                <div className={styles['token-line-seperate-down-arrow']}></div>
-                <div className={styles['token-line-seperate-down-arrow1']}></div>
-                <div className={styles['token-info']}>
-                  <button
-                    onClick={handleAddToken}
-                    className={styles['add-token-btn']}
-                    title="Add MOVLY Token to MetaMask"
-                  >
-                    <RiAddFill size={20} />
-                    Add MOVLY token to MetaMask
-                  </button>
-
-                  <div className={styles['token-icon']} onClick={handleAddToken}>
-                    <img src={goldCoin} alt="Movly" />
+            <div>
+              <div className={styles['token-line-seperate']} />
+              <div className={styles['token-line-seperate-down-arrow']}></div>
+              <div className={styles['token-line-seperate-down-arrow1']}></div>
+              <div className={styles['token-info']}>
+                {isWalletConnected ? <button
+                  onClick={handleAddToken}
+                  className={styles['add-token-btn']}
+                  title="Add MOVLY Token to MetaMask"
+                >
+                  <RiAddFill size={20} />
+                  Add MOVLY token to MetaMask
+                </button>
+                  :
+                  <div className={styles['connect-wallet']}>
+                    TOKEN INFO
                   </div>
+                }
 
-                  <div className={styles['token-address']}>
-                    <div className={styles['token-details-group']}>
-                      <div className={styles['token-detail']}>
-                        <span className={styles['detail-label']}>Network:</span>
-                        <span className={styles['detail-value']}>Binance Smart Chain [BSC]</span>
-                      </div>
+                <div className={styles['token-icon']} onClick={handleAddToken}>
+                  <img src={goldCoin} alt="Movly" />
+                </div>
 
-                      <div className={styles['token-detail']}>
-                        <span className={styles['detail-label']}>Address:</span>
-                        <span className={styles['detail-value']}>0xb7C8969df0076bEe6922789AaB4bC73aAa8d45D2</span>
-                      </div>
+                <div className={styles['token-address']}>
+                  <div className={styles['token-details-group']}>
+                    <div className={styles['token-detail']}>
+                      <span className={styles['detail-label']}>Network:</span>
+                      <span className={styles['detail-value']}>Binance Smart Chain [BSC]</span>
+                    </div>
 
-                      <div className={styles['token-detail']}>
-                        <span className={styles['detail-label']}>Symbol:</span>
-                        <span className={styles['detail-value']}>MOVLY</span>
-                      </div>
+                    <div className={styles['token-detail']}>
+                      <span className={styles['detail-label']}>Address:</span>
+                      <span className={styles['detail-value']}>0xb7C8969df0076bEe6922789AaB4bC73aAa8d45D2</span>
+                    </div>
 
-                      <div className={styles['token-detail']}>
-                        <span className={styles['detail-label']}>Decimals:</span>
-                        <span className={styles['detail-value']}>18</span>
-                      </div>
+                    <div className={styles['token-detail']}>
+                      <span className={styles['detail-label']}>Symbol:</span>
+                      <span className={styles['detail-value']}>MOVLY</span>
+                    </div>
+
+                    <div className={styles['token-detail']}>
+                      <span className={styles['detail-label']}>Decimals:</span>
+                      <span className={styles['detail-value']}>18</span>
                     </div>
                   </div>
                 </div>
               </div>
-            )}
+            </div>
+
           </div>
 
           {/* Dialog */}
