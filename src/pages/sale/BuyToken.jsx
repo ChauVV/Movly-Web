@@ -13,6 +13,7 @@ import DialogResult from './DialogResult';
 import ConnectWallet from './ConnectWallet';
 import Footer from '../../components/Footer';
 import Header from '@/components/Header';
+import { NumericFormat } from 'react-number-format';
 
 function BuyToken() {
   const [amount, setAmount] = useState('');
@@ -376,14 +377,18 @@ function BuyToken() {
             <div className={styles['token-sale-form-group']}>
               <p className={styles['info-label']}>Amount ({paymentMethod})</p>
               <div className={styles['token-sale-input-group']}>
-                <input
-                  type="number"
+                <NumericFormat
                   className={styles['token-sale-input']}
                   value={amount}
-                  onChange={handleAmountChange}
+                  onValueChange={(values) => {
+                    const { value } = values;
+                    handleAmountChange({ target: { value } });
+                  }}
                   placeholder={`Enter amount in ${paymentMethod}`}
-                  min="0"
-                  step="any"
+                  decimalScale={2}
+                  allowNegative={false}
+                  thousandSeparator=","
+                  decimalSeparator="."
                 />
                 <div className={styles['token-sale-input-icon']}>
                   {paymentOptions.find(opt => opt.value === paymentMethod)?.icon}
