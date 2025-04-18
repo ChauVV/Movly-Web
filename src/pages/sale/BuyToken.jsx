@@ -5,8 +5,7 @@ import { FaExclamationCircle } from 'react-icons/fa';
 import { SiTether } from 'react-icons/si';
 import { SiBinance } from 'react-icons/si';
 import { RiAddFill } from 'react-icons/ri';
-import bg from '@assets/images/mm5.jpg';
-import goldCoin from '@assets/tokens/m200.png'
+import goldCoin from '@assets/movly/movly.png'
 import styles from './BuyToken.module.css';
 import { toast } from 'react-hot-toast';
 import DialogResult from './DialogResult';
@@ -340,11 +339,6 @@ function BuyToken() {
     <div className={styles['buy-token-fixed-container']}>
       <Header />
       <div className={styles['token-sale-content-wrapper']}>
-        <div className={styles['token-sale-bg']}>
-          <img src={bg} alt="background" />
-          <div className={styles['token-sale-bg-overlay']} />
-        </div>
-
         <div className={styles['token-sale-main-content']}>
           <h1 className={styles['token-sale-heading']}>Buy Movly Token</h1>
 
@@ -473,7 +467,7 @@ function BuyToken() {
                     Add MOVLY token to MetaMask
                   </button>
 
-                  <div className={styles['token-icon']}>
+                  <div className={styles['token-icon']} onClick={handleAddToken}>
                     <img src={goldCoin} alt="Movly" />
                   </div>
 

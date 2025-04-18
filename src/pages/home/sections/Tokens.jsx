@@ -5,7 +5,7 @@ import HalvingPopup from '../../../components/HalvingPopup';
 import { FaExclamationCircle } from 'react-icons/fa';
 import bg from '@assets/images/map4.jpeg';
 import silverIcon from '@assets/gmd/gmd.png';
-import goldIcon from '@assets/tokens/m200.png';
+import goldIcon from '@assets/movly/movly.png';
 
 export default function Tokens() {
   const [showHalvingPopup, setShowHalvingPopup] = useState(false);

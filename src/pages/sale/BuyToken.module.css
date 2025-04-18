@@ -1,31 +1,9 @@
-/* Reset toàn bộ CSS về trạng thái cơ bản */
 .buy-token-fixed-container {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100vh;
   overflow-x: hidden;
-  overflow-y: auto;
-  position: relative;
-
-  /* Thêm CSS cho scrollbar (webkit browsers - Chrome, Safari, Opera) */
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 215, 0, 0.3);
-    /* Gold color semi-transparent */
-    border-radius: 4px;
-  }
-
-  /* Firefox */
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 215, 0, 0.3) transparent;
+  background: radial-gradient(circle at 50% top, #7a4a00 10%, #000000 99%);
 }
 
 .token-sale-bg {
@@ -49,7 +27,8 @@
   flex-direction: column;
   min-height: 100vh;
   width: 100%;
-  padding: 20px 0;
+  padding: 20px 0px 0px;
+  z-index: 0.5;
 }
 
 .token-sale-main-content {
@@ -480,8 +459,8 @@
   }
 
   .token-sale-icon {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
   }
 }
 
@@ -578,8 +557,8 @@
 }
 
 .token-sale-icon {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -867,26 +846,13 @@
 }
 
 .token-icon {
-  width: 64px;
-  height: 64px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 8px;
-  background: rgba(255, 215, 0, 0.05);
-  border-radius: 50%;
-  border: 1px solid rgba(255, 215, 0, 0.2);
-}
-
-.token-icon:hover {
-  background: rgba(255, 215, 0, 0.1);
-  transform: translateY(-0.1px);
+  width: 90px;
+  height: 90px;
 }
 
 .token-icon img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
 }
 
 .token-address {
@@ -926,7 +892,6 @@
   .token-icon {
     width: 48px;
     height: 48px;
-    padding: 6px;
   }
 
   .address-value {

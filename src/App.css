@@ -12,6 +12,8 @@ body {
   height: 100%;
   overflow-y: auto;
 
+  background: radial-gradient(circle at 30% center, #7a4a00 0%, #000000 70%);
+
   /* Thêm CSS cho scrollbar (webkit browsers - Chrome, Safari, Opera) */
   &::-webkit-scrollbar {
     width: 8px;
@@ -22,14 +24,14 @@ body {
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 215, 0, 0.3);
+    background-color: rgba(205, 175, 4, 0.55);
     /* Gold color semi-transparent */
     border-radius: 4px;
   }
 
   /* Firefox */
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 215, 0, 0.3) transparent;
+  scrollbar-color: rgba(176, 150, 3, 0.55) transparent;
 }
 
 .App {
