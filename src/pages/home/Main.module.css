@@ -221,7 +221,7 @@ body {
   }
 
   97.5% {
-    transform: translateY(-9px);
+    transform: translateY(-5px);
   }
 
   100% {
@@ -238,7 +238,7 @@ body {
   }
 
   97.5% {
-    transform: translateX(9px);
+    transform: translateX(5px);
   }
 
   100% {
@@ -265,17 +265,18 @@ body {
 
 /* Icon Telegram - lên xuống */
 .socialIcon:first-child svg {
-  animation: moveUpDown 3.3s linear infinite;
+  animation: moveUpDown 6.3s linear infinite;
+  animation-delay: 2s;
 }
 
 /* Icon Twitter - qua lại */
 .socialIcon:nth-child(2) svg {
-  animation: moveLeftRight 3.3s linear infinite;
-  animation-delay: 1s;
+  animation: moveLeftRight 6.3s linear infinite;
+  animation-delay: 4s;
 }
 
 /* Icon Discord - xoay */
 .socialIcon:last-child svg {
-  animation: rotate360 3.3s linear infinite;
-  animation-delay: 2s;
+  animation: rotate360 6.3s linear infinite;
+  animation-delay: 6s;
 }

@@ -51,20 +51,16 @@
     transform: rotate(0deg);
   }
 
-  50.6% {
-    transform: rotate(-375deg);
+  60% {
+    transform: rotate(5deg);
   }
 
   75% {
-    transform: rotate(-375deg);
-  }
-
-  80% {
-    transform: rotate(-360deg);
+    transform: rotate(0deg);
   }
 
   100% {
-    transform: rotate(-360deg);
+    transform: rotate(0deg);
   }
 }
 
