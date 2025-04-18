@@ -3,7 +3,8 @@
   flex-direction: column;
   width: 100%;
   overflow-x: hidden;
-  background: radial-gradient(circle at 50% top, #7a4a00 10%, #000000 99%);
+  background: radial-gradient(circle at 50% top, #7a4a00 15%, #281a44 70%);
+  /* background: radial-gradient(circle at 50% top, #281a44 20%, #7a4a00 70%); */
 }
 
 .token-sale-bg {
